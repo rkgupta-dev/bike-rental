@@ -3,6 +3,15 @@
     <b-row>
       <b-col cols="12" lg="6">
         <h2>{{ bike.name }}</h2>
+        <div class="d-flex flex-column align-items-start">
+          <b-button variant="light" size="sm" class="p-2">
+            <b-icon icon="share-fill" size="25" variant="primary"></b-icon>
+          </b-button>
+          <b-button variant="light" size="sm" class="p-2 my-2">
+            <b-icon icon="whatsapp" size="25" variant="success"></b-icon>
+          </b-button>
+        </div>
+        <!--if you want to set fixed image size -- style="width: 500px; height: 300px;"  -->
         <b-img :src="bike.image" :alt="bike.name" fluid></b-img>
         <small class="extra-small">
           Images are for representation purposes only. Actual products delivered
@@ -57,8 +66,10 @@
             >{{ bike.rating }} ({{ bike.ratingCount }})</span
           >
         </div>
-        <p><strong>Status:</strong> {{ getStatusText(bike.status) }}</p>
-        <p><strong>Description:</strong> {{ bike.description }}</p>
+        <div>
+          <p class="text-success">{{ getStatusText(bike.status) }}</p>
+          <CountDown />
+        </div>
       </b-col>
     </b-row>
 
@@ -67,7 +78,12 @@
 </template>
 
 <script>
+import CountDown from "@/views/CountDown.vue";
+
 export default {
+  components: {
+    CountDown,
+  },
   data() {
     return {
       bike: {},

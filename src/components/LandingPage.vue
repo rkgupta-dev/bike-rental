@@ -10,7 +10,7 @@
           <b-navbar-nav>
             <b-nav-item href="#">Link</b-nav-item>
             <b-nav-item-dropdown text="RENT BY CATEGORIES">
-              <b-dropdown-item href="#">Bikes</b-dropdown-item>
+              <b-dropdown-item to="/bikes">Bikes</b-dropdown-item>
               <b-dropdown-item href="#">Sportbikes</b-dropdown-item>
               <b-dropdown-item href="#">Scooters</b-dropdown-item>
               <b-dropdown-item href="#">Cruisers</b-dropdown-item>
