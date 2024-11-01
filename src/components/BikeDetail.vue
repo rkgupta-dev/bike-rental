@@ -135,7 +135,12 @@
           </div>
           <div class="row text-center mt-4">
             <b-col cols="12" md="6" class="my-2">
-              <b-button squared variant="outline-success" class="w-100" @click="chatOnWhatsApp(bike)">
+              <b-button
+                squared
+                variant="outline-success"
+                class="w-100"
+                @click="chatOnWhatsApp(bike)"
+              >
                 <i class="fa-brands fa-whatsapp"></i> Get Enquiry
               </b-button>
             </b-col>
@@ -145,6 +150,63 @@
               </b-button>
             </b-col>
           </div>
+        </b-col>
+      </b-row>
+      <!-- about bike -->
+      <h2 class="text-center my-5">About this bike</h2>
+      <b-row>
+        <b-col cols="12" lg="6">
+          <p class="text-muted">
+            {{ bike.about }}
+          </p>
+          <!-- card for about bike -->
+          <b-row>
+            <b-col cols="6" md="4" sm="6" class="my-2">
+              <b-card class="text-center bg-light">
+                <i class="fa-solid fa-gear fa-xl"></i>
+                <div class="font-weight-bold">Displacement</div>
+                <h6 class="text-primary">{{ bike.displacement }}</h6>
+              </b-card>
+            </b-col>
+            <b-col cols="6" md="4" sm="6" class="my-2">
+              <b-card class="text-center bg-light">
+                <i class="fa-solid fa-bolt fa-xl"></i>
+                <div class="font-weight-bold">Ignition</div>
+                <h6 class="text-primary">{{ bike.ignition }}</h6>
+              </b-card>
+            </b-col>
+            <b-col cols="6" md="4" sm="6" class="my-2">
+              <b-card class="text-center bg-light">
+                <i class="fa-solid fa-power-off fa-xl"></i>
+                <div class="font-weight-bold">Power</div>
+                <h6 class="text-primary">{{ bike.power }}</h6>
+              </b-card>
+            </b-col>
+            <b-col cols="6" md="4" sm="6" class="my-2">
+              <b-card class="text-center bg-light">
+                <i class="fa-solid fa-gauge-high fa-xl"></i>
+                <div class="font-weight-bold">Top Speed</div>
+                <h6 class="text-primary">{{ bike.speed }}</h6>
+              </b-card>
+            </b-col>
+            <b-col cols="6" md="4" sm="6" class="my-2">
+              <b-card class="text-center bg-light">
+                <i class="fa-solid fa-droplet fa-xl"></i>
+                <div class="font-weight-bold">Fuel Capacity</div>
+                <h6 class="text-primary">{{ bike.fuelcapacity }}</h6>
+              </b-card>
+            </b-col>
+            <b-col cols="6" md="4" sm="6" class="my-2">
+              <b-card class="text-center bg-light">
+                <i class="fa-solid fa-battery-full fa-xl"></i>
+                <div class="font-weight-bold">Mileage</div>
+                <h6 class="text-primary">{{ bike.mileage }}</h6>
+              </b-card>
+            </b-col>
+          </b-row>
+        </b-col>
+        <b-col cols="12" lg="6">
+          <b-img class="my-4" :src="bike.image" :alt="bike.name" fluid></b-img>
         </b-col>
       </b-row>
 
@@ -166,10 +228,26 @@ export default {
       phoneNumber: "917079812442", // Your WhatsApp number
       isModalVisible: false,
       shareOptions: [
-        { label: 'Share on WhatsApp', icon: 'whatsapp', method: this.shareOnWhatsApp },
-        { label: 'Share on Facebook', icon: 'facebook', method: this.shareOnFacebook },
-        { label: 'Share on Twitter', icon: 'twitter', method: this.shareOnTwitter },
-        { label: 'Share via Email', icon: 'envelope', method: this.shareOnEmail },
+        {
+          label: "Share on WhatsApp",
+          icon: "whatsapp",
+          method: this.shareOnWhatsApp,
+        },
+        {
+          label: "Share on Facebook",
+          icon: "facebook",
+          method: this.shareOnFacebook,
+        },
+        {
+          label: "Share on Twitter",
+          icon: "twitter",
+          method: this.shareOnTwitter,
+        },
+        {
+          label: "Share via Email",
+          icon: "envelope",
+          method: this.shareOnEmail,
+        },
       ],
     };
   },
@@ -193,33 +271,43 @@ export default {
     shareOnWhatsApp() {
       const pageUrl = window.location.href;
       const message = "Check out this bike:\n";
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message + pageUrl)}`;
-      window.open(whatsappUrl, '_blank');
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+        message + pageUrl
+      )}`;
+      window.open(whatsappUrl, "_blank");
     },
     shareOnFacebook() {
       const pageUrl = window.location.href;
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-      window.open(facebookUrl, '_blank');
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        pageUrl
+      )}`;
+      window.open(facebookUrl, "_blank");
     },
     shareOnTwitter() {
       const pageUrl = window.location.href;
       const message = "Check out this bike!";
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(pageUrl)}`;
-      window.open(twitterUrl, '_blank');
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        message
+      )}&url=${encodeURIComponent(pageUrl)}`;
+      window.open(twitterUrl, "_blank");
     },
     shareOnEmail() {
       const pageUrl = window.location.href;
       const subject = "Check out this bike!";
       const body = `I found this bike you might like: ${pageUrl}`;
-      const emailUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const emailUrl = `mailto:?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
       window.open(emailUrl);
     },
     chatOnWhatsApp(bike) {
       const message = `Hii, I'm interested in the bike: ${bike.name}`;
-      const whatsappUrl = `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent(message)}`;
-      
+      const whatsappUrl = `https://wa.me/${
+        this.phoneNumber
+      }?text=${encodeURIComponent(message)}`;
+
       // Open WhatsApp chat with the message
-      window.open(whatsappUrl, '_blank');
+      window.open(whatsappUrl, "_blank");
     },
     fetchBikeDetails(id) {
       // Fetch the bike details from your data source using the bike ID
@@ -236,6 +324,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "Honda Shine is one of the most popular bikes in the 125cc segment, known for its excellent blend of performance and fuel efficiency. The Shine features a refined engine and advanced features for a comfortable ride. Its robust design and reliability make it a favorite choice for daily commuting.",
+          displacement: "123.94",
+          ignition: "Self / Kick Start",
+          power: "10.59bhp",
+          speed: "100kmph",
+          fuelcapacity: "10.5l",
+          mileage: "65kmpl",
         },
         {
           id: 2,
@@ -249,6 +345,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 2, // Only One Left
+          about:
+            "Hero Passion Pro is a highly regarded bike in the 110cc commuter segment, offering a balance of good performance and fuel efficiency. It comes with modern features and a stylish design that makes it a popular choice among daily riders.",
+          displacement: "113.2",
+          ignition: "Self / Kick Start",
+          power: "9.02bhp",
+          speed: "85kmph",
+          fuelcapacity: "10l",
+          mileage: "68kmpl",
         },
         {
           id: 3,
@@ -262,6 +366,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "Bajaj categorizes CT100 as the jackpot bike offering superior mileage and low maintenance. Bajaj CT100 is layered with a new decal design. The SNS (Spring in Spring Suspension) technology aids in conquering the most challenging road conditions. It has a long padded seat delivering a high level of comfort and making the commute on rougher terrains easier. The powerful engine helps in extracting the maximum efficiency.",
+          displacement: "102",
+          ignition: "Kick Start",
+          power: "7.79bhp",
+          speed: "90kmph",
+          fuelcapacity: "10.5l",
+          mileage: "75kmpl",
         },
         {
           id: 4,
@@ -275,6 +387,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "Bajaj Platina 100 is known for its outstanding fuel efficiency and comfortable ride, designed for long-distance commuters. It features a sturdy build, advanced suspension for smoother rides, and low maintenance, making it ideal for daily use.",
+          displacement: "102",
+          ignition: "Kick Start",
+          power: "7.9bhp",
+          speed: "90kmph",
+          fuelcapacity: "11l",
+          mileage: "75kmpl",
         },
         {
           id: 5,
@@ -288,6 +408,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "Hero Splendor Plus is one of the best-selling commuter bikes in India, known for its reliability, excellent fuel efficiency, and low maintenance. With a robust build and proven performance, it's ideal for daily commuting.",
+          displacement: "97.2",
+          ignition: "Self / Kick Start",
+          power: "7.91bhp",
+          speed: "87kmph",
+          fuelcapacity: "9.8l",
+          mileage: "70kmpl",
         },
         {
           id: 6,
@@ -301,6 +429,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 2, // Only One Left
+          about:
+            "TVS Star City is known for its impressive combination of style, comfort, and fuel efficiency. Designed for city commuting, it features a refined engine and modern aesthetics, making it a popular choice for daily riders.",
+          displacement: "109.7",
+          ignition: "Self / Kick Start",
+          power: "8.08bhp",
+          speed: "90kmph",
+          fuelcapacity: "10l",
+          mileage: "70kmpl",
         },
         {
           id: 7,
@@ -314,6 +450,14 @@ export default {
           highMileage: false,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "TVS Apache RTR 160 is a popular sportbike in the 160cc segment, offering a blend of power, performance, and aggressive styling. Equipped with advanced features and a strong engine, it appeals to riders looking for an exciting riding experience.",
+          displacement: "159.7",
+          ignition: "Self / Kick Start",
+          power: "15.31bhp",
+          speed: "114kmph",
+          fuelcapacity: "12l",
+          mileage: "45kmpl",
         },
         {
           id: 8,
@@ -327,6 +471,14 @@ export default {
           highMileage: true,
           highDemand: false,
           status: 3, // Out of Stock
+          about:
+            "Yamaha Saluto is designed for riders seeking a balance of style, comfort, and efficiency. With its lightweight design and smooth performance, it's an excellent choice for city commuting, providing a comfortable ride without compromising on mileage.",
+          displacement: "125",
+          ignition: "Self / Kick Start",
+          power: "8.2bhp",
+          speed: "95kmph",
+          fuelcapacity: "7.6l",
+          mileage: "78kmpl",
         },
         // Add more bikes as needed
         {
