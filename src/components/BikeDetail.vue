@@ -321,8 +321,9 @@ export default {
           ratingCount: 469,
           price: 3999,
           originalPrice: 4500,
-          highMileage: true,
+          highMileage: false,
           highDemand: true,
+          bestSeller: true,
           status: 1, // Summer Days Sale
           about:
             "Honda Shine is one of the most popular bikes in the 125cc segment, known for its excellent blend of performance and fuel efficiency. The Shine features a refined engine and advanced features for a comfortable ride. Its robust design and reliability make it a favorite choice for daily commuting.",
@@ -449,6 +450,7 @@ export default {
           originalPrice: 4500,
           highMileage: false,
           highDemand: true,
+          bestSeller: true,
           status: 1, // Summer Days Sale
           about:
             "TVS Apache RTR 160 is a popular sportbike in the 160cc segment, offering a blend of power, performance, and aggressive styling. Equipped with advanced features and a strong engine, it appeals to riders looking for an exciting riding experience.",
@@ -470,6 +472,7 @@ export default {
           originalPrice: 3100,
           highMileage: true,
           highDemand: false,
+          bestSeller: true,
           status: 3, // Out of Stock
           about:
             "Yamaha Saluto is designed for riders seeking a balance of style, comfort, and efficiency. With its lightweight design and smooth performance, it's an excellent choice for city commuting, providing a comfortable ride without compromising on mileage.",

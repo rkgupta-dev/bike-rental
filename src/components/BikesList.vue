@@ -131,8 +131,9 @@ export default {
           rating: 4.8,
           price: 3999,
           originalPrice: 4500,
-          highMileage: true,
+          highMileage: false,
           highDemand: true,
+          bestSeller: true,
           status: 1, // Summer Days Sale
         },
         {
@@ -205,6 +206,7 @@ export default {
           originalPrice: 4500,
           highMileage: false,
           highDemand: true,
+          bestSeller: true,
           status: 1, // Summer Days Sale
         },
         {
@@ -217,6 +219,7 @@ export default {
           originalPrice: 3100,
           highMileage: true,
           highDemand: false,
+          bestSeller: true,
           status: 3, // Out of Stock
         },
       ],
