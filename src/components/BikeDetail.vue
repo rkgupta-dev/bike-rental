@@ -679,6 +679,14 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 1, // Summer Days Sale
+          about:
+            "Honda Activa 6G is a popular scooter known for its reliable performance, comfortable ride, and efficient mileage. With updated features and a refined engine, it offers a smooth commuting experience, making it a favorite choice among riders.",
+          displacement: "109.51",
+          ignition: "Electronic Start",
+          power: "7.79bhp",
+          speed: "65kmph",
+          fuelcapacity: "5.3l",
+          mileage: "45-60kmpl",
         },
         {
           id: 18,
@@ -693,6 +701,14 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 2, // Only One Left
+          about:
+            "TVS Jupiter is a well-rounded scooter that offers a perfect blend of performance, comfort, and convenience. With its stylish design and fuel-efficient engine, it is ideal for daily commuting and provides a smooth riding experience.",
+          displacement: "109.7",
+          ignition: "Electronic Start",
+          power: "7.88bhp",
+          speed: "85kmph",
+          fuelcapacity: "6l",
+          mileage: "50-62kmpl",
         },
         {
           id: 19,
@@ -707,6 +723,14 @@ export default {
           highDemand: false,
           bestSeller: true,
           status: 1, // Summer Days Sale
+          about:
+            "Hero Duet is a versatile scooter that offers a blend of style, comfort, and practicality. With its spacious storage options and fuel-efficient engine, it is designed for urban commuting and provides a reliable riding experience.",
+          displacement: "110.9",
+          ignition: "Electronic Start",
+          power: "8.31bhp",
+          speed: "90kmph",
+          fuelcapacity: "5.5l",
+          mileage: "45-50kmpl",
         },
         {
           id: 20,
@@ -721,6 +745,14 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 2, // Only One Left
+          about:
+            "Suzuki Access 125 is a stylish and powerful scooter that offers excellent performance and comfort. With its refined engine and spacious storage, it is perfect for daily commuting and provides a smooth riding experience.",
+          displacement: "124",
+          ignition: "Electronic Start",
+          power: "8.7bhp",
+          speed: "92kmph",
+          fuelcapacity: "5l",
+          mileage: "50-55kmpl",
         },
         {
           id: 21,
@@ -735,12 +767,20 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 1, // Summer Days Sale
+          about:
+            "Yamaha Fascino 125 combines stylish design with impressive performance. With its lightweight chassis and efficient engine, it offers a smooth and comfortable ride, making it a popular choice among urban commuters.",
+          displacement: "125",
+          ignition: "Electronic Start",
+          power: "8.2bhp",
+          speed: "92kmph",
+          fuelcapacity: "5.2l",
+          mileage: "50-55kmpl",
         },
         {
           id: 22,
-          name: "Bajaj Chetak",
+          name: "Hero Pleasure +",
           image:
-            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/--blue-29031725625957138.jpg?q=80",
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/hero-select-model-sport-red-1707151003981.png?q=80",
           rating: 4.4,
           ratingCount: 280,
           price: 4800,
@@ -749,6 +789,14 @@ export default {
           highDemand: false,
           bestSeller: true,
           status: 2, // Only One Left
+          about:
+            "Hero Pleasure + is a lightweight and stylish scooter that is easy to handle and perfect for city commuting. With its efficient engine and sleek design, it offers a comfortable and enjoyable ride for daily use.",
+          displacement: "110.9",
+          ignition: "Electronic Start",
+          power: "8bhp",
+          speed: "77kmph",
+          fuelcapacity: "4.8l",
+          mileage: "50-55kmpl",
         },
         {
           id: 23,
@@ -763,6 +811,14 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 1, // Summer Days Sale
+          about:
+            "TVS Ntorq 125 is a feature-packed scooter designed for the young and dynamic riders. With its sporty design, powerful engine, and advanced connectivity features, it delivers a thrilling riding experience and practicality for daily commuting.",
+          displacement: "124.8",
+          ignition: "Electronic Start",
+          power: "9.1bhp",
+          speed: "95kmph",
+          fuelcapacity: "5.8l",
+          mileage: "45-50kmpl",
         },
         {
           id: 24,
@@ -777,6 +833,14 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 1, // Summer Days Sale
+          about:
+            "Honda Dio is a stylish and lightweight scooter that offers a perfect combination of performance and convenience. With its sporty design and efficient engine, it is ideal for urban commuting, providing a fun and comfortable ride.",
+          displacement: "109.51",
+          ignition: "Electronic Start",
+          power: "7.79bhp",
+          speed: "85kmph",
+          fuelcapacity: "5.3l",
+          mileage: "50-55kmpl",
         },
         {
           id: 25,
@@ -791,6 +855,14 @@ export default {
           highDemand: false,
           bestSeller: true,
           status: 3, // Out of Stock
+          about:
+            "Hero Xoom is a stylish scooter designed for urban riders looking for performance and comfort. With its sporty design, advanced features, and fuel-efficient engine, it offers a smooth riding experience for daily commuting.",
+          displacement: "110",
+          ignition: "Electronic Start",
+          power: "8.2bhp",
+          speed: "90kmph",
+          fuelcapacity: "5l",
+          mileage: "45-50kmpl",
         },
         {
           id: 26,
@@ -805,8 +877,16 @@ export default {
           highDemand: true,
           bestSeller: false,
           status: 2, // Only One Left
+          about:
+            "Mahindra Gusto is a feature-rich scooter that offers a blend of comfort and convenience. With its adjustable seat height and peppy engine, it provides a smooth ride, making it suitable for both city commuting and longer rides.",
+          displacement: "109.6",
+          ignition: "Electronic Start",
+          power: "8bhp",
+          speed: "85kmph",
+          fuelcapacity: "6l",
+          mileage: "45-50kmpl",
         },
-         // ############################ Added Cruiser form here ##################################>
+        // ############################ Added Cruiser form here ##################################>
       ];
       this.bike = bikeData.find((bike) => bike.id === parseInt(id)); // Find the bike by ID
     },

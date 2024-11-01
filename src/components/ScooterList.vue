@@ -190,9 +190,9 @@ export default {
         },
         {
           id: 22,
-          name: "Bajaj Chetak",
+          name: "Hero Pleasure +",
           image:
-            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/--blue-29031725625957138.jpg?q=80",
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/hero-select-model-sport-red-1707151003981.png?q=80",
           rating: 4.4,
           price: 4800,
           originalPrice: 5000,
