@@ -36,15 +36,27 @@
             text-variant="white"
             outlined
           >
-            <h1 class="ml-2">Monthly Rentals</h1>
-            <p class="ml-2">
-              Rent a bike for a month in Bangalore starting at ₹ 3,999.00 only.
-            </p>
-            <b-button class="ml-2" variant="light" href="/bikes"
-              >Rent Now</b-button
-            >
-          </b-card></b-col
-        >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h1 class="ml-2">Monthly Rentals</h1>
+                <p class="ml-2">
+                  Rent a bike for a month starting at ₹ 2,999.00 only.
+                </p>
+                <b-button class="ml-2" variant="light" href="/bikes"
+                  >Rent Now</b-button
+                >
+              </div>
+              <div>
+                <img
+                  src="https://cdni.iconscout.com/illustration/premium/thumb/online-food-delivery-in-pandemic-illustration-download-svg-png-gif-file-formats--order-service-pack-e-commerce-shopping-illustrations-4161852.png?f=webp"
+                  alt="Bike Rental"
+                  class="img-fluid"
+                  style="max-height: 200px"
+                />
+              </div>
+            </div>
+          </b-card>
+        </b-col>
       </b-row>
       <h2 class="text-center mb-4">Rent by Categories</h2>
       <b-row>

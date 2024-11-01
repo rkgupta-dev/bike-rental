@@ -5,10 +5,37 @@
         <b-col cols="12" lg="6">
           <h2>{{ bike.name }}</h2>
           <div class="d-flex flex-column align-items-start">
-            <b-button variant="light" size="sm" class="p-2">
+            <b-button variant="light" size="sm" @click="isModalVisible = true">
               <b-icon icon="share-fill" size="25" variant="primary"></b-icon>
             </b-button>
-            <b-button variant="light" size="sm" class="p-2 my-2">
+
+            <b-modal
+              v-model="isModalVisible"
+              title="Share this link"
+              hide-footer
+            >
+              <p>Where do you want to share this link?</p>
+              <b-list-group>
+                <b-list-group-item
+                  v-for="(option, index) in shareOptions"
+                  :key="index"
+                  @click="share(option)"
+                >
+                  <b-icon :icon="option.icon" class="mr-2" /> {{ option.label }}
+                </b-list-group-item>
+              </b-list-group>
+              <template #modal-footer>
+                <b-button variant="secondary" @click="isModalVisible = false"
+                  >Close</b-button
+                >
+              </template>
+            </b-modal>
+            <b-button
+              variant="light"
+              size="sm"
+              class="p-2 my-2"
+              @click="chatOnWhatsApp(bike)"
+            >
               <b-icon icon="whatsapp" size="25" variant="success"></b-icon>
             </b-button>
           </div>
@@ -108,7 +135,7 @@
           </div>
           <div class="row text-center mt-4">
             <b-col cols="12" md="6" class="my-2">
-              <b-button squared variant="outline-success" class="w-100">
+              <b-button squared variant="outline-success" class="w-100" @click="chatOnWhatsApp(bike)">
                 <i class="fa-brands fa-whatsapp"></i> Get Enquiry
               </b-button>
             </b-col>
@@ -136,6 +163,14 @@ export default {
   data() {
     return {
       bike: {},
+      phoneNumber: "917079812442", // Your WhatsApp number
+      isModalVisible: false,
+      shareOptions: [
+        { label: 'Share on WhatsApp', icon: 'whatsapp', method: this.shareOnWhatsApp },
+        { label: 'Share on Facebook', icon: 'facebook', method: this.shareOnFacebook },
+        { label: 'Share on Twitter', icon: 'twitter', method: this.shareOnTwitter },
+        { label: 'Share via Email', icon: 'envelope', method: this.shareOnEmail },
+      ],
     };
   },
   created() {
@@ -151,6 +186,41 @@ export default {
       // Logic for handling rent now
       alert("Rent Now button clicked!");
     },
+    share(option) {
+      option.method(); // Call the respective share method
+      this.isModalVisible = false; // Close the modal after sharing
+    },
+    shareOnWhatsApp() {
+      const pageUrl = window.location.href;
+      const message = "Check out this bike:\n";
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message + pageUrl)}`;
+      window.open(whatsappUrl, '_blank');
+    },
+    shareOnFacebook() {
+      const pageUrl = window.location.href;
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+      window.open(facebookUrl, '_blank');
+    },
+    shareOnTwitter() {
+      const pageUrl = window.location.href;
+      const message = "Check out this bike!";
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(pageUrl)}`;
+      window.open(twitterUrl, '_blank');
+    },
+    shareOnEmail() {
+      const pageUrl = window.location.href;
+      const subject = "Check out this bike!";
+      const body = `I found this bike you might like: ${pageUrl}`;
+      const emailUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(emailUrl);
+    },
+    chatOnWhatsApp(bike) {
+      const message = `Hii, I'm interested in the bike: ${bike.name}`;
+      const whatsappUrl = `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent(message)}`;
+      
+      // Open WhatsApp chat with the message
+      window.open(whatsappUrl, '_blank');
+    },
     fetchBikeDetails(id) {
       // Fetch the bike details from your data source using the bike ID
       const bikeData = [
@@ -158,9 +228,9 @@ export default {
           id: 1,
           name: "Honda Shine",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-decent-blue-metallic-2023-1687260642123.png?q=80",
           rating: 4.8,
-          ratingCount: 634,
+          ratingCount: 469,
           price: 3999,
           originalPrice: 4500,
           highMileage: true,
@@ -169,44 +239,94 @@ export default {
         },
         {
           id: 2,
-          name: "Passion PRO",
+          name: "Hero Passion Pro",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/bw/models/hero-passion-pro-2018.jpg?20190103151915&q=80",
           rating: 4.6,
-          ratingCount: 545,
+          ratingCount: 469,
           price: 3000,
           originalPrice: 3500,
-          highMileage: false,
+          highMileage: true,
           highDemand: true,
-          bestSeller: true,
           status: 2, // Only One Left
         },
         {
           id: 3,
-          name: "Passion PRO",
+          name: "Bajaj CT 100",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
-          rating: 4.6,
-          ratingCount: 234,
-          price: 2999,
-          originalPrice: 3499,
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-ebony-black-with-red-decals-1669291918239.png?q=80",
+          rating: 4.5,
+          ratingCount: 469,
+          price: 2499,
+          originalPrice: 2800,
           highMileage: true,
-          highDemand: false,
-          bestSeller: true,
-          status: 3, // Out of Stock
+          highDemand: true,
+          status: 1, // Summer Days Sale
         },
         {
           id: 4,
-          name: "Passion PRO",
+          name: "Bajaj Platina 100",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-black--blue-1671529556548.png?q=80",
+          rating: 4.4,
+          ratingCount: 469,
+          price: 2600,
+          originalPrice: 3000,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 5,
+          name: "Hero Splendor Plus",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/hero-select-model-blue-black-1706531445236.png?q=80",
           rating: 4.6,
           ratingCount: 469,
-          price: 3499,
-          originalPrice: 4000,
+          price: 3100,
+          originalPrice: 3600,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 6,
+          name: "TVS Star City",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/113179/star-city-right-side-view-2.png?isig=0&q=80",
+          rating: 4.3,
+          ratingCount: 469,
+          price: 2900,
+          originalPrice: 3300,
+          highMileage: true,
+          highDemand: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 7,
+          name: "TVS Apache RTR 160",
+          image:
+            "https://imgd.aeplcdn.com/1056x594/n/bw/models/colors/undefined-matte-blue-1611036120368.jpg?q=80",
+          rating: 4.5,
+          ratingCount: 469,
+          price: 4000,
+          originalPrice: 4500,
           highMileage: false,
           highDemand: true,
           status: 1, // Summer Days Sale
+        },
+        {
+          id: 8,
+          name: "Yamaha Saluto",
+          image:
+            "https://imgd.aeplcdn.com/664x374/bw/models/yamaha-saluto.jpg?20190103151915&q=80",
+          rating: 4.2,
+          ratingCount: 469,
+          price: 2700,
+          originalPrice: 3100,
+          highMileage: true,
+          highDemand: false,
+          status: 3, // Out of Stock
         },
         // Add more bikes as needed
         {
@@ -215,6 +335,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
           rating: 4.8,
+          ratingCount: 469,
           price: 10999,
           originalPrice: 12000,
           highMileage: true,
@@ -227,6 +348,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/kawasaki-select-model-mirror-coated-matte-spark-black-1676442407791.png?q=80",
           rating: 4.6,
+          ratingCount: 469,
           price: 14999,
           originalPrice: 16000,
           highMileage: false,
@@ -240,6 +362,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/suzuki-gsx-r1000.jpg?20190103151915&q=80",
           rating: 4.9,
+          ratingCount: 469,
           price: 10099,
           originalPrice: 11000,
           highMileage: false,
@@ -252,6 +375,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ktm-select-model-gp-editiond-1670826275682.png?q=80",
           rating: 4.7,
+          ratingCount: 469,
           price: 13999,
           originalPrice: 15000,
           highMileage: true,
@@ -264,6 +388,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/triumph-daytona-675r-standard-532.jpg?20190103151915&q=80",
           rating: 4.6,
+          ratingCount: 469,
           price: 15000,
           originalPrice: 16000,
           highMileage: true,
@@ -276,6 +401,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ducati-select-model-white-riosso-livery-1598428332689.jpg?q=80",
           rating: 4.8,
+          ratingCount: 469,
           price: 12000,
           originalPrice: 12500,
           highMileage: false,
@@ -288,6 +414,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bmw-select-model-black-storm-metallic-1677058621251.jpg?q=80",
           rating: 4.9,
+          ratingCount: 469,
           price: 15000,
           originalPrice: 15500,
           highMileage: false,
@@ -301,6 +428,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
           rating: 4.8,
+          ratingCount: 469,
           price: 16000,
           originalPrice: 16500,
           highMileage: false,

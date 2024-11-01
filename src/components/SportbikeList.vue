@@ -3,7 +3,7 @@
     <NavBar />
     <b-container>
       <div class="my-4">
-        <h1 class="text-center mb-4">Sports Bikes Lists</h1>
+        <h4 class="text-center mb-4">"High-Performance Sportbikes"</h4>
         <b-row no-gutters>
           <b-col
             v-for="bike in bikes"
@@ -26,7 +26,12 @@
                 :class="{ 'out-of-stock': bike.status === 3 }"
               >
                 <div>
-                  <b-img class="my-4" :src="bike.image" :alt="bike.name" fluid></b-img>
+                  <b-img
+                    class="my-4"
+                    :src="bike.image"
+                    :alt="bike.name"
+                    fluid
+                  ></b-img>
                   <div
                     class="position-absolute d-flex"
                     style="top: 0.5rem; right: 0.5rem"
@@ -216,7 +221,6 @@ export default {
           highDemand: true,
           status: 3, // Out of Stock
         },
-       
       ],
     };
   },
