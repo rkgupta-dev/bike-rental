@@ -480,7 +480,7 @@ export default {
           fuelcapacity: "7.6l",
           mileage: "78kmpl",
         },
-        // Add more bikes as needed
+        // ############################ Added Sports Bike form here ##################################>
         {
           id: 9,
           name: "Yamaha R15",
@@ -493,6 +493,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "Yamaha R15 is a premium sportbike that offers an exhilarating riding experience with its sharp styling and advanced technology. Known for its performance, agility, and superior handling, the R15 is a favorite among enthusiasts looking for a thrilling ride.",
+          displacement: "155",
+          ignition: "Electronic Start",
+          power: "18.6bhp",
+          speed: "136kmph",
+          fuelcapacity: "11l",
+          mileage: "45kmpl",
         },
         {
           id: 10,
@@ -507,6 +515,14 @@ export default {
           highDemand: true,
           bestSeller: true,
           status: 2, // Only One Left
+          about:
+            "Kawasaki Ninja H2R is a track-focused superbike that embodies cutting-edge technology and extreme performance. With its supercharged engine and aerodynamic design, it delivers mind-blowing speed and agility, making it one of the fastest motorcycles in the world.",
+          displacement: "998",
+          ignition: "Electronic Start",
+          power: "310bhp",
+          speed: "400kmph",
+          fuelcapacity: "17l",
+          mileage: "8-10kmpl",
         },
         {
           id: 11,
@@ -520,6 +536,14 @@ export default {
           highMileage: false,
           highDemand: true,
           status: 1, // Summer Days Sale
+          about:
+            "Suzuki GSX-R1000 is a high-performance sportbike that combines power, speed, and agility. Equipped with advanced technology and a powerful engine, it offers an exhilarating riding experience, making it a top choice among motorcycle enthusiasts.",
+          displacement: "999",
+          ignition: "Electronic Start",
+          power: "199bhp",
+          speed: "300kmph",
+          fuelcapacity: "16l",
+          mileage: "14-16kmpl",
         },
         {
           id: 12,
@@ -533,6 +557,14 @@ export default {
           highMileage: true,
           highDemand: true,
           status: 2, // Only One Left
+          about:
+            "KTM RC 390 is a premium sports bike that offers a thrilling riding experience with its sharp handling and powerful engine. Designed for performance enthusiasts, it features an aggressive design and cutting-edge technology, making it suitable for both street and track use.",
+          displacement: "373.2",
+          ignition: "Electronic Start",
+          power: "43bhp",
+          speed: "179kmph",
+          fuelcapacity: "9.5l",
+          mileage: "25kmpl",
         },
         {
           id: 13,
@@ -546,6 +578,14 @@ export default {
           highMileage: true,
           highDemand: false,
           status: 1, // Summer Days Sale
+          about:
+            "Triumph Daytona 675R is a renowned sports bike celebrated for its precise handling, powerful performance, and distinctive styling. With a high-revving engine and advanced features, it offers an exhilarating ride on both the road and the racetrack.",
+          displacement: "675",
+          ignition: "Electronic Start",
+          power: "126bhp",
+          speed: "250kmph",
+          fuelcapacity: "17.4l",
+          mileage: "20-25kmpl",
         },
         {
           id: 14,
@@ -559,6 +599,14 @@ export default {
           highMileage: false,
           highDemand: true,
           status: 2, // Only One Left
+          about:
+            "Ducati Panigale V2 is a premium sports motorcycle that combines race-inspired performance with everyday usability. With its powerful twin-cylinder engine and advanced electronics, it delivers an exhilarating riding experience, embodying Ducati's legacy of speed and style.",
+          displacement: "955",
+          ignition: "Electronic Start",
+          power: "155bhp",
+          speed: "270kmph",
+          fuelcapacity: "17l",
+          mileage: "15-17kmpl",
         },
         {
           id: 15,
@@ -573,6 +621,14 @@ export default {
           highDemand: true,
           bestSeller: true,
           status: 3, // Out of Stock
+          about:
+            "The BMW S1000RR is a cutting-edge superbike that epitomizes performance and technology. With its high-revving inline-four engine and advanced electronics, it offers exhilarating acceleration and handling, making it a top choice for sportbike enthusiasts.",
+          displacement: "999",
+          ignition: "Electronic Start",
+          power: "205bhp",
+          speed: "299kmph",
+          fuelcapacity: "17.5l",
+          mileage: "15-20kmpl",
         },
         {
           id: 16,
@@ -586,7 +642,16 @@ export default {
           highMileage: false,
           highDemand: true,
           status: 3, // Out of Stock
+          about:
+            "Yamaha R15 V4 is a premium sportbike that combines cutting-edge design with advanced technology. It features a refined engine, aggressive styling, and enhanced aerodynamics, providing a thrilling riding experience for both street and track.",
+          displacement: "155",
+          ignition: "Electronic Start",
+          power: "18.4bhp",
+          speed: "136kmph",
+          fuelcapacity: "11l",
+          mileage: "40-45kmpl",
         },
+        // ############################ Added Scooter form here ##################################>
       ];
       this.bike = bikeData.find((bike) => bike.id === parseInt(id)); // Find the bike by ID
     },
