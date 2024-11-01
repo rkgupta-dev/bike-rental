@@ -133,6 +133,7 @@ export default {
           originalPrice: 12000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
         },
         {
@@ -158,6 +159,7 @@ export default {
           originalPrice: 11000,
           highMileage: false,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
         },
         {
@@ -170,6 +172,7 @@ export default {
           originalPrice: 15000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
         },
         {
@@ -182,6 +185,7 @@ export default {
           originalPrice: 16000,
           highMileage: true,
           highDemand: false,
+          bestSeller: true,
           status: 1, // Summer Days Sale
         },
         {
@@ -194,6 +198,7 @@ export default {
           originalPrice: 12500,
           highMileage: false,
           highDemand: true,
+          bestSeller: true,
           status: 2, // Only One Left
         },
         {
@@ -219,6 +224,7 @@ export default {
           originalPrice: 16500,
           highMileage: false,
           highDemand: true,
+          bestSeller: false,
           status: 3, // Out of Stock
         },
       ],

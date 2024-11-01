@@ -345,6 +345,7 @@ export default {
           originalPrice: 3500,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
           about:
             "Hero Passion Pro is a highly regarded bike in the 110cc commuter segment, offering a balance of good performance and fuel efficiency. It comes with modern features and a stylish design that makes it a popular choice among daily riders.",
@@ -366,6 +367,7 @@ export default {
           originalPrice: 2800,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
           about:
             "Bajaj categorizes CT100 as the jackpot bike offering superior mileage and low maintenance. Bajaj CT100 is layered with a new decal design. The SNS (Spring in Spring Suspension) technology aids in conquering the most challenging road conditions. It has a long padded seat delivering a high level of comfort and making the commute on rougher terrains easier. The powerful engine helps in extracting the maximum efficiency.",
@@ -387,6 +389,7 @@ export default {
           originalPrice: 3000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
           about:
             "Bajaj Platina 100 is known for its outstanding fuel efficiency and comfortable ride, designed for long-distance commuters. It features a sturdy build, advanced suspension for smoother rides, and low maintenance, making it ideal for daily use.",
@@ -408,6 +411,7 @@ export default {
           originalPrice: 3600,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
           about:
             "Hero Splendor Plus is one of the best-selling commuter bikes in India, known for its reliability, excellent fuel efficiency, and low maintenance. With a robust build and proven performance, it's ideal for daily commuting.",
@@ -429,6 +433,7 @@ export default {
           originalPrice: 3300,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
           about:
             "TVS Star City is known for its impressive combination of style, comfort, and fuel efficiency. Designed for city commuting, it features a refined engine and modern aesthetics, making it a popular choice for daily riders.",
@@ -495,6 +500,7 @@ export default {
           originalPrice: 12000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
           about:
             "Yamaha R15 is a premium sportbike that offers an exhilarating riding experience with its sharp styling and advanced technology. Known for its performance, agility, and superior handling, the R15 is a favorite among enthusiasts looking for a thrilling ride.",
@@ -538,6 +544,7 @@ export default {
           originalPrice: 11000,
           highMileage: false,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
           about:
             "Suzuki GSX-R1000 is a high-performance sportbike that combines power, speed, and agility. Equipped with advanced technology and a powerful engine, it offers an exhilarating riding experience, making it a top choice among motorcycle enthusiasts.",
@@ -559,6 +566,7 @@ export default {
           originalPrice: 15000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
           about:
             "KTM RC 390 is a premium sports bike that offers a thrilling riding experience with its sharp handling and powerful engine. Designed for performance enthusiasts, it features an aggressive design and cutting-edge technology, making it suitable for both street and track use.",
@@ -580,6 +588,7 @@ export default {
           originalPrice: 16000,
           highMileage: true,
           highDemand: false,
+          bestSeller: true,
           status: 1, // Summer Days Sale
           about:
             "Triumph Daytona 675R is a renowned sports bike celebrated for its precise handling, powerful performance, and distinctive styling. With a high-revving engine and advanced features, it offers an exhilarating ride on both the road and the racetrack.",
@@ -601,6 +610,7 @@ export default {
           originalPrice: 12500,
           highMileage: false,
           highDemand: true,
+          bestSeller: true,
           status: 2, // Only One Left
           about:
             "Ducati Panigale V2 is a premium sports motorcycle that combines race-inspired performance with everyday usability. With its powerful twin-cylinder engine and advanced electronics, it delivers an exhilarating riding experience, embodying Ducati's legacy of speed and style.",
@@ -644,6 +654,7 @@ export default {
           originalPrice: 16500,
           highMileage: false,
           highDemand: true,
+          bestSeller: false,
           status: 3, // Out of Stock
           about:
             "Yamaha R15 V4 is a premium sportbike that combines cutting-edge design with advanced technology. It features a refined engine, aggressive styling, and enhanced aerodynamics, providing a thrilling riding experience for both street and track.",
@@ -666,6 +677,7 @@ export default {
           originalPrice: 4500,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
         },
         {
@@ -679,6 +691,7 @@ export default {
           originalPrice: 4000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
         },
         {
@@ -706,6 +719,7 @@ export default {
           originalPrice: 4700,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
         },
         {
@@ -719,6 +733,7 @@ export default {
           originalPrice: 3900,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
         },
         {
@@ -746,6 +761,7 @@ export default {
           originalPrice: 5000,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
         },
         {
@@ -759,6 +775,7 @@ export default {
           originalPrice: 4100,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 1, // Summer Days Sale
         },
         {
@@ -786,6 +803,7 @@ export default {
           originalPrice: 3600,
           highMileage: true,
           highDemand: true,
+          bestSeller: false,
           status: 2, // Only One Left
         },
          // ############################ Added Cruiser form here ##################################>
