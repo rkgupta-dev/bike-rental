@@ -13,7 +13,8 @@
             </b-button>
           </div>
           <!--if you want to set fixed image size -- style="width: 500px; height: 300px;"  -->
-          <b-img :src="bike.image" :alt="bike.name" fluid></b-img>
+          <b-img class="my-4" :src="bike.image" :alt="bike.name" fluid></b-img>
+          <br />
           <small class="extra-small">
             Images are for representation purposes only. Actual products
             delivered may differ from the images displayed on the website.
@@ -68,7 +69,15 @@
             >
           </div>
           <div>
-            <p class="text-success">{{ getStatusText(bike.status) }}</p>
+            <div v-if="bike.status === 1" class="text-success my-2">
+              Summer Days Sale
+            </div>
+            <div v-else-if="bike.status === 2" class="text-warning my-2">
+              Only One Left
+            </div>
+            <div v-else-if="bike.status === 3" class="text-danger my-2">
+              Out of Stock
+            </div>
             <CountDown />
           </div>
           <div>
@@ -200,6 +209,104 @@ export default {
           status: 1, // Summer Days Sale
         },
         // Add more bikes as needed
+        {
+          id: 9,
+          name: "Yamaha R15",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
+          rating: 4.8,
+          price: 10999,
+          originalPrice: 12000,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 10,
+          name: "Kawasaki Ninja H2R",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/kawasaki-select-model-mirror-coated-matte-spark-black-1676442407791.png?q=80",
+          rating: 4.6,
+          price: 14999,
+          originalPrice: 16000,
+          highMileage: false,
+          highDemand: true,
+          bestSeller: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 11,
+          name: "Suzuki GSX-R1000",
+          image:
+            "https://imgd.aeplcdn.com/664x374/bw/models/suzuki-gsx-r1000.jpg?20190103151915&q=80",
+          rating: 4.9,
+          price: 10099,
+          originalPrice: 11000,
+          highMileage: false,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 12,
+          name: "KTM RC 390",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ktm-select-model-gp-editiond-1670826275682.png?q=80",
+          rating: 4.7,
+          price: 13999,
+          originalPrice: 15000,
+          highMileage: true,
+          highDemand: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 13,
+          name: "Triumph Daytona 675R",
+          image:
+            "https://imgd.aeplcdn.com/664x374/bw/models/triumph-daytona-675r-standard-532.jpg?20190103151915&q=80",
+          rating: 4.6,
+          price: 15000,
+          originalPrice: 16000,
+          highMileage: true,
+          highDemand: false,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 14,
+          name: "Ducati Panigale V2",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ducati-select-model-white-riosso-livery-1598428332689.jpg?q=80",
+          rating: 4.8,
+          price: 12000,
+          originalPrice: 12500,
+          highMileage: false,
+          highDemand: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 15,
+          name: "BMW S1000RR",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bmw-select-model-black-storm-metallic-1677058621251.jpg?q=80",
+          rating: 4.9,
+          price: 15000,
+          originalPrice: 15500,
+          highMileage: false,
+          highDemand: true,
+          bestSeller: true,
+          status: 3, // Out of Stock
+        },
+        {
+          id: 16,
+          name: "Yamaha R15 V4",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
+          rating: 4.8,
+          price: 16000,
+          originalPrice: 16500,
+          highMileage: false,
+          highDemand: true,
+          status: 3, // Out of Stock
+        },
       ];
       this.bike = bikeData.find((bike) => bike.id === parseInt(id)); // Find the bike by ID
     },
