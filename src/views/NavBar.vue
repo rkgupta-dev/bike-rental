@@ -1,7 +1,7 @@
 <template>
     <div>
       <b-navbar toggleable="lg" type="dark" variant="primary" sticky="top">
-        <b-navbar-brand href="#">BikeOntrack</b-navbar-brand>
+        <b-navbar-brand to="/">BikeOntrack</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

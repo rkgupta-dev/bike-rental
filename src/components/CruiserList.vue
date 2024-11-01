@@ -127,7 +127,7 @@ export default {
           id: 27,
           name: "Royal Enfield Classic 350",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/royalenfield-classic-350-heritage1725274941405.jpg?q=80",
           rating: 4.7,
           price: 5000,
           originalPrice: 5500,
@@ -140,7 +140,7 @@ export default {
           id: 28,
           name: "Harley-Davidson Street 750",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/bw/models/harleydavidson-street-750-standard20200616012038.jpg?q=80",
           rating: 4.6,
           price: 8000,
           originalPrice: 8500,
@@ -153,11 +153,11 @@ export default {
           id: 29,
           name: "Bajaj Avenger Cruise 220",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-auburn-black-1669289946200.png?q=80",
           rating: 4.5,
           price: 4000,
           originalPrice: 4500,
-          highMileage: false,
+          highMileage: true,
           highDemand: false,
           bestSeller: true,
           status: 1, // Summer Days Sale
@@ -166,7 +166,7 @@ export default {
           id: 30,
           name: "Kawasaki Vulcan S",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/--standard1728554869402.jpg?q=80",
           rating: 4.8,
           price: 9000,
           originalPrice: 9500,
@@ -179,7 +179,7 @@ export default {
           id: 31,
           name: "Benelli 502C",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/benelli-select-model-glossy-black-1645507335732.png?q=80",
           rating: 4.6,
           price: 7000,
           originalPrice: 7500,
@@ -192,12 +192,12 @@ export default {
           id: 32,
           name: "Yamaha VMAX",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/bw/models/yamaha-vmax-standard-180.jpg?20190103151915&q=80",
           rating: 4.9,
           price: 12000,
           originalPrice: 12500,
           highMileage: true,
-          highDemand: false,
+          highDemand: true,
           bestSeller: false,
           status: 2, // Only One Left
         },
@@ -205,7 +205,7 @@ export default {
           id: 33,
           name: "Harley-Davidson Iron 883",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/harleydavidson-iron-883-standard1677237126841.jpg?q=80",
           rating: 4.7,
           price: 11000,
           originalPrice: 11500,
@@ -218,7 +218,7 @@ export default {
           id: 34,
           name: "KTM 790 Duke",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/ktm-duke-200-standard1727961894099.jpg?q=80",
           rating: 4.4,
           price: 9000,
           originalPrice: 9500,
@@ -231,7 +231,7 @@ export default {
           id: 35,
           name: "Suzuki Intruder 150",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
+            "https://imgd.aeplcdn.com/664x374/bw/models/suzuki-intruder-150-standard--bs-vi20200320182536.jpg?q=80",
           rating: 4.3,
           price: 3500,
           originalPrice: 4000,
@@ -242,16 +242,16 @@ export default {
         },
         {
           id: 36,
-          name: "Honda Rebel 500",
+          name: "Triumph Bonneville Bobber",
           image:
-            "https://on-track-jarvis.s3.ap-south-1.amazonaws.com/monthly-rental/rent-TVS-sport-bangalore-min.webp",
-          rating: 4.5,
-          price: 6500,
-          originalPrice: 7000,
-          highMileage: true,
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/triumph-select-model-jet-black--ash-gray-1698486184857.png?q=80",
+          rating: 4.8,
+          price: 7500,
+          originalPrice: 8000,
+          highMileage: false,
           highDemand: true,
-          bestSeller: false,
-          status: 1, // Summer Days Sale
+          bestSeller: true,
+          status: 2, // Only One Left
         },
       ],
     };
