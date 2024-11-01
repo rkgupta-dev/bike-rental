@@ -318,7 +318,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-decent-blue-metallic-2023-1687260642123.png?q=80",
           rating: 4.8,
-          ratingCount: 469,
+          ratingCount: 459,
           price: 3999,
           originalPrice: 4500,
           highMileage: false,
@@ -340,7 +340,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/hero-passion-pro-2018.jpg?20190103151915&q=80",
           rating: 4.6,
-          ratingCount: 469,
+          ratingCount: 349,
           price: 3000,
           originalPrice: 3500,
           highMileage: true,
@@ -361,7 +361,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-ebony-black-with-red-decals-1669291918239.png?q=80",
           rating: 4.5,
-          ratingCount: 469,
+          ratingCount: 345,
           price: 2499,
           originalPrice: 2800,
           highMileage: true,
@@ -382,7 +382,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-black--blue-1671529556548.png?q=80",
           rating: 4.4,
-          ratingCount: 469,
+          ratingCount: 756,
           price: 2600,
           originalPrice: 3000,
           highMileage: true,
@@ -403,7 +403,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/hero-select-model-blue-black-1706531445236.png?q=80",
           rating: 4.6,
-          ratingCount: 469,
+          ratingCount: 234,
           price: 3100,
           originalPrice: 3600,
           highMileage: true,
@@ -445,7 +445,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/1056x594/n/bw/models/colors/undefined-matte-blue-1611036120368.jpg?q=80",
           rating: 4.5,
-          ratingCount: 469,
+          ratingCount: 264,
           price: 4000,
           originalPrice: 4500,
           highMileage: false,
@@ -467,7 +467,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/yamaha-saluto.jpg?20190103151915&q=80",
           rating: 4.2,
-          ratingCount: 469,
+          ratingCount: 534,
           price: 2700,
           originalPrice: 3100,
           highMileage: true,
@@ -490,7 +490,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
           rating: 4.8,
-          ratingCount: 469,
+          ratingCount: 343,
           price: 10999,
           originalPrice: 12000,
           highMileage: true,
@@ -511,7 +511,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/kawasaki-select-model-mirror-coated-matte-spark-black-1676442407791.png?q=80",
           rating: 4.6,
-          ratingCount: 469,
+          ratingCount: 153,
           price: 14999,
           originalPrice: 16000,
           highMileage: false,
@@ -533,7 +533,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/suzuki-gsx-r1000.jpg?20190103151915&q=80",
           rating: 4.9,
-          ratingCount: 469,
+          ratingCount: 342,
           price: 10099,
           originalPrice: 11000,
           highMileage: false,
@@ -554,7 +554,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ktm-select-model-gp-editiond-1670826275682.png?q=80",
           rating: 4.7,
-          ratingCount: 469,
+          ratingCount: 155,
           price: 13999,
           originalPrice: 15000,
           highMileage: true,
@@ -575,7 +575,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/triumph-daytona-675r-standard-532.jpg?20190103151915&q=80",
           rating: 4.6,
-          ratingCount: 469,
+          ratingCount: 278,
           price: 15000,
           originalPrice: 16000,
           highMileage: true,
@@ -596,7 +596,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ducati-select-model-white-riosso-livery-1598428332689.jpg?q=80",
           rating: 4.8,
-          ratingCount: 469,
+          ratingCount: 308,
           price: 12000,
           originalPrice: 12500,
           highMileage: false,
@@ -617,7 +617,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bmw-select-model-black-storm-metallic-1677058621251.jpg?q=80",
           rating: 4.9,
-          ratingCount: 469,
+          ratingCount: 333,
           price: 15000,
           originalPrice: 15500,
           highMileage: false,
@@ -639,7 +639,7 @@ export default {
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
           rating: 4.8,
-          ratingCount: 469,
+          ratingCount: 245,
           price: 16000,
           originalPrice: 16500,
           highMileage: false,
@@ -655,6 +655,140 @@ export default {
           mileage: "40-45kmpl",
         },
         // ############################ Added Scooter form here ##################################>
+        {
+          id: 17,
+          name: "Honda Activa 6G",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-black-1674535477895.png?q=80",
+          rating: 4.7,
+          ratingCount: 469,
+          price: 4000,
+          originalPrice: 4500,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 18,
+          name: "TVS Jupiter",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/tvs-jupiter-drum1725609174080.jpg?q=80",
+          rating: 4.6,
+          ratingCount: 546,
+          price: 3500,
+          originalPrice: 4000,
+          highMileage: true,
+          highDemand: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 19,
+          name: "Hero Duet",
+          image:
+            "https://imgd.aeplcdn.com/664x374/bw/models/hero-duet-lx20190722133839.jpg?q=80",
+          rating: 4.5,
+          ratingCount: 676,
+          price: 3300,
+          originalPrice: 3700,
+          highMileage: true,
+          highDemand: false,
+          bestSeller: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 20,
+          name: "Suzuki Access 125",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/suzuki-select-model-metallic-mattee-black-std-1679635807338.png?q=80",
+          rating: 4.8,
+          ratingCount: 335,
+          price: 4200,
+          originalPrice: 4700,
+          highMileage: true,
+          highDemand: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 21,
+          name: "Yamaha Fascino 125",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-white--drum-1712697907928.png?q=80",
+          rating: 4.6,
+          ratingCount: 389,
+          price: 3400,
+          originalPrice: 3900,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 22,
+          name: "Bajaj Chetak",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/--blue-29031725625957138.jpg?q=80",
+          rating: 4.4,
+          ratingCount: 280,
+          price: 4800,
+          originalPrice: 5000,
+          highMileage: true,
+          highDemand: false,
+          bestSeller: true,
+          status: 2, // Only One Left
+        },
+        {
+          id: 23,
+          name: "TVS Ntorq 125",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/tvs-ntorq-125-disc1725629749318.jpg?q=80",
+          rating: 4.7,
+          ratingCount: 460,
+          price: 4500,
+          originalPrice: 5000,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 24,
+          name: "Honda Dio",
+          image:
+            "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-jazzy-blue-metallic-1686570017642.png?q=80",
+          rating: 4.5,
+          ratingCount: 250,
+          price: 3700,
+          originalPrice: 4100,
+          highMileage: true,
+          highDemand: true,
+          status: 1, // Summer Days Sale
+        },
+        {
+          id: 25,
+          name: "Hero Xoom",
+          image:
+            "https://imgd.aeplcdn.com/310x174/n/cw/ec/130411/xoom-right-side-view-11.png?isig=0&q=80",
+          rating: 4.2,
+          ratingCount: 756,
+          price: 2900,
+          originalPrice: 3200,
+          highMileage: true,
+          highDemand: false,
+          bestSeller: true,
+          status: 3, // Out of Stock
+        },
+        {
+          id: 26,
+          name: "Mahindra Gusto",
+          image:
+            "https://imgd.aeplcdn.com/664x374/bw/models/mahindra-gusto-dx--cbs20190731111612.jpg?q=80",
+          rating: 4.3,
+          ratingCount: 469,
+          price: 3100,
+          originalPrice: 3600,
+          highMileage: true,
+          highDemand: true,
+          status: 2, // Only One Left
+        },
+         // ############################ Added Cruiser form here ##################################>
       ];
       this.bike = bikeData.find((bike) => bike.id === parseInt(id)); // Find the bike by ID
     },
