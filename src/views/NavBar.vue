@@ -11,8 +11,8 @@
             <b-nav-item-dropdown text="RENT BY CATEGORIES">
               <b-dropdown-item to="/bikes">Bikes</b-dropdown-item>
               <b-dropdown-item to="/sportsbike">Sportbikes</b-dropdown-item>
-              <b-dropdown-item href="#">Scooters</b-dropdown-item>
-              <b-dropdown-item href="#">Cruisers</b-dropdown-item>
+              <b-dropdown-item to="/scooter">Scooters</b-dropdown-item>
+              <b-dropdown-item to="/cruiser">Cruisers</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
 

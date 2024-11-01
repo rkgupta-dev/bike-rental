@@ -102,12 +102,14 @@ export default {
         },
         {
           title: "Scooters",
+          link: "/scooter",
           description: "Convenient scooters for city travel.",
           image:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6ohZgU1Ggj1wK6e28vxZQrRIPVm5rA1h1Fw&s",
         },
         {
           title: "Cruisers",
+          link: "/cruiser",
           description: "Comfortable cruisers for long rides.",
           image:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXYNkuHEnJhaGiApOo_hgCcjXrx9vDo01TaQ&s",

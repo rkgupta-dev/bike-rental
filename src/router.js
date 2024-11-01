@@ -5,6 +5,9 @@ import LandingPage from '@/components/LandingPage.vue';
 import BikesList from './components/BikesList.vue';
 import BikeDetail from './components/BikeDetail.vue';
 import SportbikeList from './components/SportbikeList.vue';
+import RentPage from './views/RentPage.vue';
+import ScooterList from './components/ScooterList.vue';
+import CruiserList from './components/CruiserList.vue';
 
 Vue.use(Router);
 
@@ -17,6 +20,11 @@ export default new Router({
       component: LandingPage,
     },
     {
+      path: '/rent',
+      name: 'rent',
+      component: RentPage,
+    },
+    {
       path: '/bikes',
       name: 'bikeslists',
       component: BikesList,
@@ -25,6 +33,16 @@ export default new Router({
       path: '/sportsbike',
       name: 'sportbikelist',
       component: SportbikeList,
+    },
+    {
+      path: '/scooter',
+      name: 'scooter',
+      component: ScooterList,
+    },
+    {
+      path: '/cruiser',
+      name: 'cruiser',
+      component: CruiserList,
     },
     {
       path: '/bike/:id/:name', // Use a dynamic route for bike details
