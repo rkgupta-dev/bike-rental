@@ -73,16 +73,19 @@
         </b-col>
       </b-row>
     </b-container>
+    <FooterPage/>
   </div>
 </template>
 
 <script>
+import FooterPage from "@/views/FooterPage.vue";
 import NavBar from "@/views/NavBar.vue";
 
 export default {
   name: "LandingPage",
   components: {
     NavBar,
+    FooterPage
   },
   data() {
     return {
