@@ -47,19 +47,40 @@
       </b-row>
     </div>
 
-     <!-- Testimonials Section -->
-     <div class="container my-5">
-      <h2 class="text-center mb-4">What Our Customers Say</h2>
-      <b-row>
-        <b-col md="4" v-for="testimonial in testimonials" :key="testimonial.name">
-          <b-card>
-            <b-card-text>"{{ testimonial.comment }}"</b-card-text>
-            <footer class="blockquote-footer">{{ testimonial.name }}</footer>
-          </b-card>
-        </b-col>
-      </b-row>
+    <!-- Testimonials Section -->
+    <div class="container my-5">
+      <h2 class="text-center my-5">What Our Customers Say</h2>
+      <div class="overflow-auto">
+        <b-row class="flex-nowrap">
+          <b-col
+            md="3"
+            sm="6"
+            class="ml-2"
+            v-for="testimonial in testimonials"
+            :key="testimonial.name"
+            style="flex: 0 0 auto"
+          >
+            <b-card
+              class=" d-flex  align-items-center"
+              style="width: 16rem; height: 16rem"
+            >
+              <b-img
+                :src="testimonial.image"
+                alt="Customer Image"
+                
+                class="ml-4"
+                style="width: 150px; height: 100px"
+              ></b-img>
+              <b-card-text class="text-center">{{
+                testimonial.name
+              }}</b-card-text>
+              <footer class="blockquote-footer">{{ testimonial.comment }}</footer>
+            </b-card>
+          </b-col>
+        </b-row>
+      </div>
     </div>
-    
+
     <!-- Promotional Section -->
     <div class="container text-center my-5">
       <h2>Special Promotion!</h2>
@@ -79,14 +100,32 @@ export default {
         {
           comment: "Amazing experience! The bike was in perfect condition.",
           name: "John Doe",
+          image: "",
         },
         {
           comment: "Best rental service I've ever used! Highly recommended!",
           name: "Jane Smith",
+          image: "",
         },
         {
           comment: "Great selection and friendly staff!",
           name: "Emily Johnson",
+          image: "",
+        },
+        {
+          comment: "Amazing experience! The bike was in perfect condition.",
+          name: "John Doe",
+          image: "",
+        },
+        {
+          comment: "Best rental service I've ever used! Highly recommended!",
+          name: "Jane Smith",
+          image: "",
+        },
+        {
+          comment: "Great selection and friendly staff!",
+          name: "Emily Johnson",
+          image: "",
         },
       ],
       categories: [

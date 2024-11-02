@@ -32,7 +32,8 @@
         <b-col style="padding-top: 60px"
           ><b-card
             class="my-5"
-            bg-variant="primary"
+            style="
+        background-image: linear-gradient( 288deg,  rgba(0,85,255,1) 1.5%, rgba(4,56,115,1) 91.6% );"
             text-variant="white"
             outlined
           >
