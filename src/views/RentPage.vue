@@ -62,12 +62,11 @@
           >
             <b-card
               class=" d-flex  align-items-center"
-              style="width: 16rem; height: 16rem"
+              style="width: 16rem; height: 10rem"
             >
               <b-img
                 :src="testimonial.image"
                 alt="Customer Image"
-                
                 class="ml-4"
                 style="width: 150px; height: 100px"
               ></b-img>
