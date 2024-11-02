@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <NavBar/> -->
     <!-- Banner Section -->
     <b-jumbotron
       header="Bike Rental Service"
@@ -92,7 +93,12 @@
 </template>
 
 <script>
+// import NavBar from './NavBar.vue';
+
 export default {
+  components: {
+    // NavBar,
+  },
   data() {
     return {
       testimonials: [

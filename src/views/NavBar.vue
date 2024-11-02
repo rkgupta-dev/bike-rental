@@ -16,7 +16,10 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto custom-navbar">
-          <b-nav-item href="#">Rentals</b-nav-item>
+          <b-nav-item-dropdown text="Rentals">
+            <b-dropdown-item to="/all-model">Fleet</b-dropdown-item>
+            <b-dropdown-item to="/how-it-works">How it works</b-dropdown-item>
+          </b-nav-item-dropdown>
           <b-nav-item href="#">Blog</b-nav-item>
           <b-nav-item href="#">FAQ</b-nav-item>
           <b-nav-item href="#">Support</b-nav-item>

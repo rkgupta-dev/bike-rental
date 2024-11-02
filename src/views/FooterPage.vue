@@ -17,7 +17,7 @@
         <b-col md="3">
           <h5 class="text-uppercase">Quick Links</h5>
           <ul class="list-unstyled">
-            <li><b-link to="/">Home</b-link></li>
+            <li><b-link href="/">Home</b-link></li>
             <li><b-link to="/rent">Rent</b-link></li>
             <li><b-link to="/about-us">About Us</b-link></li>
             <li><b-link to="/contacts">Contact</b-link></li>

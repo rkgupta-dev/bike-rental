@@ -33,7 +33,7 @@
           ><b-card
             class="my-5"
             style="
-        background-image: linear-gradient( 288deg,  rgba(0,85,255,1) 1.5%, rgba(4,56,115,1) 91.6% );"
+              background-image: linear-gradient(288deg,rgba(0, 85, 255, 1) 1.5%,rgba(4, 56, 115, 1) 91.6%);"
             text-variant="white"
             outlined
           >
@@ -63,7 +63,7 @@
       <b-row>
         <b-col md="3" v-for="category in categories" :key="category.title">
           <b-card class="text-center my-2">
-            <b-img :src="category.image" alt="Image" class="my-2" fluid/>
+            <b-img :src="category.image" alt="Image" class="my-2" fluid />
             <b-card-title>{{ category.title }}</b-card-title>
             <b-card-text>
               {{ category.description }}
@@ -73,7 +73,43 @@
         </b-col>
       </b-row>
     </b-container>
-    <FooterPage/>
+    <br>
+    <br>
+    <b-card class="my-4">
+      <b-card-text class="text-center">
+        
+        <h5><b-img
+          style="width: 70px; height: 60px;"
+          src="https://cdn-icons-gif.flaticon.com/14951/14951482.gif"
+        ></b-img>Trusted by over 5 lakh+ riders across Bangalore, Hyderabad, Delhi and
+          Mumbai.</h5>
+      </b-card-text>
+    </b-card>
+  
+     <b-card class="my-5" style="
+              background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );">
+     <b-container>
+      <b-row>
+        <b-col
+          v-for="(feature, index) in features"
+          :key="index"
+          cols="12"
+          md="6"
+          lg="4"
+          class="d-flex flex-column align-items-center text-center mb-4"
+        >
+          <div class="mb-3 p-3 rounded-circle bg-light text-primary">
+            <i :class="feature.icon + ' fa-2xl'"></i>
+          </div>
+          <h3 class="h5 mb-2">{{ feature.title }}</h3>
+          <p class="text-muted">{{ feature.description }}</p>
+        </b-col>
+      </b-row>
+     </b-container>
+
+     </b-card>
+
+    <FooterPage />
   </div>
 </template>
 
@@ -85,7 +121,7 @@ export default {
   name: "LandingPage",
   components: {
     NavBar,
-    FooterPage
+    FooterPage,
   },
   data() {
     return {
@@ -119,6 +155,42 @@ export default {
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/royalenfield-classic-350-heritage1725274941405.jpg?q=80",
         },
       ],
+      features: [
+        {
+          icon: "fa-solid fa-shield", // Font Awesome class for shield
+          title: "Zero Security Deposit",
+          description: "We only ask you for the rental amount and nothing else",
+        },
+        {
+          icon: "fa-solid fa-motorcycle",
+          title: "Doorstep Delivery",
+          description: "We provide home delivery at your doorstep",
+        },
+        {
+          icon: "fa-solid fa-stopwatch",
+          title: "Unrestricted KM",
+          description:
+            "We give you the flexibility to travel freely without any kilometre limit.",
+        },
+        {
+          icon: "fa-solid fa-tools",
+          title: "Maintenance Covered",
+          description:
+            "Our pricing is inclusive of one periodic service/maintenance per rental",
+        },
+        {
+          icon: "fa-solid fa-shield",
+          title: "Insurance Covered",
+          description:
+            "Commercial comprehensive insurance at no extra cost which covers accidents.",
+        },
+        {
+          icon: "fa-solid fa-hard-hat",
+          title: "Helmet Available",
+          description:
+            "ISI Marked helmet available during checkout for your safety.",
+        },
+      ],
     };
   },
   methods: {
@@ -130,6 +202,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
