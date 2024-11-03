@@ -124,8 +124,28 @@ export default {
       // This can be left empty if you only want the computed properties to handle price updates
     },
     proceedToPayment() {
-      // Logic for proceeding to payment
-      alert(`Proceeding to payment... Total: ₹ ${this.totalPrice}`);
+      // Format the payment details for WhatsApp
+      const paymentDetails = `
+        Booking Details:
+        - Bike: ${this.bike.name}
+        - Original Price: ₹${this.bike.originalPrice}
+        - Discounted Price: - ₹${this.discountedPrice}
+        ${this.selectedAddonPrice > 0 ? `- Add-on Price: ₹${this.selectedAddonPrice}` : ""}
+        ---------------------
+        Total Price: ₹${this.totalPrice}
+        
+        UPI ID for Payment: your-upi-id@bank
+      `.trim();
+
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(paymentDetails);
+
+      // Create the WhatsApp link
+      const whatsappLink = `https://wa.me/919901362369?text=${encodedMessage}`;
+
+
+      // Open WhatsApp in a new tab
+      window.open(whatsappLink, "_blank");
     },
   },
 };
