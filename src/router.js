@@ -10,6 +10,8 @@ import ScooterList from './components/ScooterList.vue';
 import CruiserList from './components/CruiserList.vue';
 import AllModel from './components/AllModel.vue';
 import HowItWorks from './views/HowItWorks.vue';
+import BlogPage from './views/BlogPage.vue';
+
 
 Vue.use(Router);
 
@@ -57,8 +59,13 @@ export default new Router({
       component: HowItWorks,
     },
     {
+      path: '/blogs',
+      name: 'blog',
+      component: BlogPage,
+    },
+    {
       path: '/bike/:id/:name', // Use a dynamic route for bike details
-      name: 'BikeDetail',
+      name: 'bike-detail',
       component: BikeDetail,
     },
   ],
