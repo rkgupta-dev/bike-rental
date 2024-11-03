@@ -65,7 +65,7 @@ export default new Router({
     },
     {
       path: '/bike/:id/:name', // Use a dynamic route for bike details
-      name: 'bike-detail',
+      name: 'BikeDetail',
       component: BikeDetail,
     },
   ],
