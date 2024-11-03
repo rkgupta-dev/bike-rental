@@ -103,19 +103,19 @@
       </b-container>
     </b-card>
 
-    <FooterPage />
+    <FooterSection/>
   </div>
 </template>
 
 <script>
-import FooterPage from "@/views/FooterPage.vue";
+import FooterSection from "@/views/FooterSection.vue";
 import NavBar from "@/views/NavBar.vue";
 
 export default {
   name: "LandingPage",
   components: {
     NavBar,
-    FooterPage,
+    FooterSection,
   },
   data() {
     return {
