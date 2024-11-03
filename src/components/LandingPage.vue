@@ -82,7 +82,7 @@
       </b-card-text>
     </b-card>
 
-    <b-card class="my-5 gradient-bg">
+    <b-card class="mt-5 gradient-bg">
       <b-container>
         <b-row>
           <b-col
@@ -103,7 +103,77 @@
       </b-container>
     </b-card>
 
-    <FooterSection/>
+    <!-- App Download Section -->
+    <b-container class="bg-gradient-primary" fluid>
+      <b-row>
+        <b-col md="6" class="my-5 d-flex justify-content-center">
+          <div class="phone-mockup-wrapper text-center">
+            <b-img
+              src="https://img.freepik.com/free-vector/people-using-their-mobile-phones-news_52683-39976.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid"
+              alt="Ontrack App Interface"
+              fluid
+              class="phone-mockup my-5"
+            ></b-img>
+          </div>
+        </b-col>
+        <!-- Download Form Column -->
+        <b-col md="6">
+          <div class="download-content text-white">
+            <h1 class="display-4 my-2 font-weight-bold">
+              Get the <span class="text-highlight">BikeOntrack App</span>
+            </h1>
+            <p class="lead mb-5">
+              We'll send you a magic link. Open it on your phone to download the
+              app and start your journey!
+            </p>
+
+            <!-- Phone Input Form -->
+            <b-form @submit.prevent="sendLink" class="my-4 w-75">
+              <b-form-group>
+                <b-input-group class="">
+                  <b-form-input
+                    v-model="phoneNumber"
+                    placeholder="Enter your phone number"
+                    type="tel"
+                    class=""
+                  ></b-form-input>
+                  <b-input-group-append>
+                    <b-button variant="primary" type="submit" class="">
+                      Get Link
+                    </b-button>
+                  </b-input-group-append>
+                </b-input-group>
+              </b-form-group>
+            </b-form>
+
+            <!-- Download Links -->
+            <div>
+              <p class="text-light">Download app from</p>
+              <div class="d-flex my-5">
+                <b-button
+                  size="sm"
+                  href="#"
+                  variant="light"
+                  class="store-button d-flex align-items-center justify-content-center mr-4"
+                >
+                  <i class="fa-brands fa-google-play"> Google Play</i>
+                </b-button>
+                <b-button
+                  size="sm"
+                  href="#"
+                  variant="light"
+                  class="store-button d-flex align-items-center justify-content-center"
+                >
+                  <i class="fa-brands fa-app-store-ios"> App Store</i>
+                </b-button>
+              </div>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+
+    <FooterSection />
   </div>
 </template>
 
@@ -210,5 +280,31 @@ export default {
     rgba(0, 85, 255, 1) 1.5%,
     rgba(4, 56, 115, 1) 91.6%
   );
+}
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+.phone-mockup-wrapper {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  animation: float 6s ease-in-out infinite;
+}
+
+.phone-mockup {
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 </style>
