@@ -1,11 +1,13 @@
 <template>
   <div>
     <NavBar />
-    <b-container>
-      <div class="my-4">
-        <h4 class="text-center mb-4">
+    <h4 class="text-center my-4">
           BikeOntrack - Your Trusted Bike Rental Service
         </h4>
+        <hr/>
+    <b-container>
+      <div class="my-4">
+        
         <b-row no-gutters>
           <b-col
             v-for="bike in bikes"
