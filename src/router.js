@@ -1,71 +1,76 @@
 // src/router.js
-import Vue from 'vue';
-import Router from 'vue-router';
-import LandingPage from '@/components/LandingPage.vue';
-import BikesList from './components/BikesList.vue';
-import BikeDetail from './components/BikeDetail.vue';
-import SportbikeList from './components/SportbikeList.vue';
-import RentPage from './views/RentPage.vue';
-import ScooterList from './components/ScooterList.vue';
-import CruiserList from './components/CruiserList.vue';
-import AllModel from './components/AllModel.vue';
-import HowItWorks from './views/HowItWorks.vue';
-import BlogPage from './views/BlogPage.vue';
-
+import Vue from "vue";
+import Router from "vue-router";
+import LandingPage from "@/components/LandingPage.vue";
+import BikesList from "./components/BikesList.vue";
+import BikeDetail from "./components/BikeDetail.vue";
+import SportbikeList from "./components/SportbikeList.vue";
+import RentPage from "./views/RentPage.vue";
+import ScooterList from "./components/ScooterList.vue";
+import CruiserList from "./components/CruiserList.vue";
+import AllModel from "./components/AllModel.vue";
+import HowItWorks from "./views/HowItWorks.vue";
+import BlogPage from "./views/BlogPage.vue";
+import CheckOut from "./components/CheckOut.vue";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history', // Use 'history' mode for clean URLs
+  mode: "history", // Use 'history' mode for clean URLs
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: LandingPage,
     },
     {
-      path: '/rent',
-      name: 'rent',
+      path: "/rent",
+      name: "rent",
       component: RentPage,
     },
     {
-      path: '/bikes',
-      name: 'bikeslists',
+      path: "/bikes",
+      name: "bikeslists",
       component: BikesList,
     },
     {
-      path: '/sportsbike',
-      name: 'sportbikelist',
+      path: "/sportsbike",
+      name: "sportbikelist",
       component: SportbikeList,
     },
     {
-      path: '/scooter',
-      name: 'scooter',
+      path: "/scooter",
+      name: "scooter",
       component: ScooterList,
     },
     {
-      path: '/cruiser',
-      name: 'cruiser',
+      path: "/cruiser",
+      name: "cruiser",
       component: CruiserList,
     },
     {
-      path: '/all-model',
-      name: 'all-model',
+      path: "/all-model",
+      name: "all-model",
       component: AllModel,
     },
     {
-      path: '/how-it-works',
-      name: 'how-it-works',
+      path: "/checkout",
+      name: "Checkout",
+      component: CheckOut,
+    },
+    {
+      path: "/how-it-works",
+      name: "how-it-works",
       component: HowItWorks,
     },
     {
-      path: '/blogs',
-      name: 'blog',
+      path: "/blogs",
+      name: "blog",
       component: BlogPage,
     },
     {
-      path: '/bike/:id/:name', // Use a dynamic route for bike details
-      name: 'BikeDetail',
+      path: "/bike/:id/:name", // Use a dynamic route for bike details
+      name: "BikeDetail",
       component: BikeDetail,
     },
   ],

@@ -145,7 +145,12 @@
               </b-button>
             </b-col>
             <b-col cols="12" md="6" class="my-2">
-              <b-button squared variant="primary" class="w-100">
+              <b-button
+                squared
+                variant="primary"
+                class="w-100"
+                @click="goToCheckout"
+              >
                 <i class="fa-solid fa-bicycle"></i> Rent Now
               </b-button>
             </b-col>
@@ -260,9 +265,16 @@ export default {
       // Logic for handling enquiry
       alert("Enquiry button clicked!");
     },
-    handleRentNow() {
-      // Logic for handling rent now
-      alert("Rent Now button clicked!");
+    goToCheckout() {
+      this.$router.push({
+        name: "Checkout",
+        query: {
+          name: this.bike.name,
+          image: this.bike.image,
+          price: this.bike.price,
+          originalPrice: this.bike.originalPrice,
+        },
+      });
     },
     share(option) {
       option.method(); // Call the respective share method
