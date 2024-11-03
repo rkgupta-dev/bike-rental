@@ -30,13 +30,7 @@
 
       <b-row>
         <b-col style="padding-top: 60px"
-          ><b-card
-            class="my-5"
-            style="
-              background-image: linear-gradient(288deg,rgba(0, 85, 255, 1) 1.5%,rgba(4, 56, 115, 1) 91.6%);"
-            text-variant="white"
-            outlined
-          >
+          ><b-card class="my-5 gradient-card" text-variant="white" outlined>
             <div class="d-flex justify-content-between align-items-center">
               <div>
                 <h1 class="ml-2">Monthly Rentals</h1>
@@ -73,41 +67,41 @@
         </b-col>
       </b-row>
     </b-container>
-    <br>
-    <br>
+    <br />
+    <br />
     <b-card class="my-4">
       <b-card-text class="text-center">
-        
-        <h5><b-img
-          style="width: 70px; height: 60px;"
-          src="https://cdn-icons-gif.flaticon.com/14951/14951482.gif"
-        ></b-img>Trusted by over 5 lakh+ riders across Bangalore, Hyderabad, Delhi and
-          Mumbai.</h5>
+        <h5>
+          <b-img
+            style="width: 70px; height: 60px"
+            src="https://cdn-icons-gif.flaticon.com/14951/14951482.gif"
+          ></b-img
+          >Trusted by over 5 lakh+ riders across Bangalore, Hyderabad, Delhi and
+          Mumbai.
+        </h5>
       </b-card-text>
     </b-card>
-  
-     <b-card class="my-5" style="
-              background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );">
-     <b-container>
-      <b-row>
-        <b-col
-          v-for="(feature, index) in features"
-          :key="index"
-          cols="12"
-          md="6"
-          lg="4"
-          class="d-flex flex-column align-items-center text-center mb-4"
-        >
-          <div class="mb-3 p-3 rounded-circle bg-light text-primary">
-            <i :class="feature.icon + ' fa-2xl'"></i>
-          </div>
-          <h3 class="h5 mb-2">{{ feature.title }}</h3>
-          <p class="text-muted">{{ feature.description }}</p>
-        </b-col>
-      </b-row>
-     </b-container>
 
-     </b-card>
+    <b-card class="my-5 gradient-bg">
+      <b-container>
+        <b-row>
+          <b-col
+            v-for="(feature, index) in features"
+            :key="index"
+            cols="12"
+            md="6"
+            lg="4"
+            class="d-flex flex-column align-items-center text-center mb-4"
+          >
+            <div class="mb-3 p-3 rounded-circle bg-light text-primary">
+              <i :class="feature.icon + ' fa-2xl'"></i>
+            </div>
+            <h3 class="h5 mb-2">{{ feature.title }}</h3>
+            <p class="text-muted">{{ feature.description }}</p>
+          </b-col>
+        </b-row>
+      </b-container>
+    </b-card>
 
     <FooterPage />
   </div>
@@ -202,4 +196,19 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.gradient-bg {
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+}
+.gradient-card {
+  background-image: linear-gradient(
+    288deg,
+    rgba(0, 85, 255, 1) 1.5%,
+    rgba(4, 56, 115, 1) 91.6%
+  );
+}
+</style>

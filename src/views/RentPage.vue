@@ -5,9 +5,7 @@
     <b-jumbotron
       header="Bike Rental Service"
       sub-header="Ride Your Dream"
-      class="text-white"
-      style="
-        background-image: linear-gradient(358.4deg,rgba(249, 151, 119, 1) -2.1%,rgba(98, 58, 162, 1) 90%);"
+      class="text-white gradient-bg"
     >
       <template>
         <h1 class="display-5">Discover Your Perfect Ride!</h1>
@@ -62,7 +60,7 @@
             style="flex: 0 0 auto"
           >
             <b-card
-              class=" d-flex  align-items-center"
+              class="d-flex align-items-center"
               style="width: 16rem; height: 10rem"
             >
               <b-img
@@ -74,7 +72,9 @@
               <b-card-text class="text-center">{{
                 testimonial.name
               }}</b-card-text>
-              <footer class="blockquote-footer">{{ testimonial.comment }}</footer>
+              <footer class="blockquote-footer">
+                {{ testimonial.comment }}
+              </footer>
             </b-card>
           </b-col>
         </b-row>
@@ -168,4 +168,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.gradient-bg {
+  background-image: linear-gradient(
+    358.4deg,
+    rgba(249, 151, 119, 1) -2.1%,
+    rgba(98, 58, 162, 1) 90%
+  );
+}
+</style>
