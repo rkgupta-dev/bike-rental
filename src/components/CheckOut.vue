@@ -279,7 +279,7 @@ export default {
           ---------------------
           Total Price: ₹${this.totalPrice}
           
-          UPI ID for Payment: your-upi-id@bank
+          UPI ID for Payment: bikeontrack@oksbi
         `.trim();
 
       const encodedMessage = encodeURIComponent(paymentDetails);
