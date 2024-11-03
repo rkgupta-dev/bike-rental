@@ -9,6 +9,7 @@ import RentPage from './views/RentPage.vue';
 import ScooterList from './components/ScooterList.vue';
 import CruiserList from './components/CruiserList.vue';
 import AllModel from './components/AllModel.vue';
+import HowItWorks from './views/HowItWorks.vue';
 
 Vue.use(Router);
 
@@ -49,6 +50,11 @@ export default new Router({
       path: '/all-model',
       name: 'all-model',
       component: AllModel,
+    },
+    {
+      path: '/how-it-works',
+      name: 'how-it-works',
+      component: HowItWorks,
     },
     {
       path: '/bike/:id/:name', // Use a dynamic route for bike details
