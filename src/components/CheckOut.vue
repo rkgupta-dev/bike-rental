@@ -126,7 +126,13 @@
               <p class="mb-1">
                 <i class="fa-solid fa-box text-info"></i> Add-on Price:
               </p>
-              <p class="mb-1 text-info">₹ {{ selectedAddonPrice }}</p>
+              <p class="mb-1 text-info">+ ₹ {{ selectedAddonPrice }}</p>
+            </div>
+            <div v-if="isDelivery" class="d-flex justify-content-between">
+              <p class="mb-1">
+                <i class="fa-solid fa-motorcycle text-danger"></i> Delivery Charge:
+              </p>
+              <p class="mb-1 text-danger">+ ₹ 500</p>
             </div>
             <hr />
             <div class="d-flex justify-content-between">
@@ -199,7 +205,9 @@
         return this.selectedAddon || 0;
       },
       totalPrice() {
-        return this.bike.price + this.selectedAddonPrice;
+        // Include delivery charge if delivery is selected
+        const deliveryCharge = this.isDelivery ? 500 : 0;
+        return this.bike.price + this.selectedAddonPrice + deliveryCharge;
       },
       formattedDate() {
         if (this.selectedDate) {
@@ -244,6 +252,7 @@
           - Price: ₹${this.bike.originalPrice}
           - Discounted Price: - ₹${this.discountedPrice}
           ${this.selectedAddonPrice > 0 ? `- Add-on Price: ₹${this.selectedAddonPrice}` : ""}
+          ${this.isDelivery ? `- Delivery Charge: ₹500` : ""}
           ---------------------
           Total Price: ₹${this.totalPrice}
           
