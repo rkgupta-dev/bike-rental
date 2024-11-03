@@ -37,7 +37,7 @@
                 <p class="ml-2">
                   Rent a bike for a month starting at ₹ 2,499.00 only.
                 </p>
-                <b-button class="ml-2" variant="light" href="/bikes"
+                <b-button class="ml-2" variant="light" to="/all-model"
                   >Rent Now</b-button
                 >
               </div>
