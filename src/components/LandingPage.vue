@@ -151,7 +151,6 @@
               <p class="text-light">Download app from</p>
               <div class="d-flex my-5">
                 <b-button
-                  size="sm"
                   href="#"
                   variant="light"
                   class="store-button d-flex align-items-center justify-content-center mr-4"
@@ -159,7 +158,6 @@
                   <i class="fa-brands fa-google-play"> Google Play</i>
                 </b-button>
                 <b-button
-                  size="sm"
                   href="#"
                   variant="light"
                   class="store-button d-flex align-items-center justify-content-center"
@@ -265,15 +263,15 @@ export default {
       // Logic to view the category, e.g., redirecting to a category page
       console.log(`Viewing ${title}`);
     },
-    sendLink(){
+    sendLink() {
       const Link = {
         phoneNumber: this.formData.phoneNumber,
-      }
-      alert(`Link Successfully sent to ${Link.phoneNumber}`)
+      };
+      alert(`Link Successfully sent to ${Link.phoneNumber}`);
       this.formData = {
         phoneNumber: "",
-      }
-    }
+      };
+    },
   },
 };
 </script>
