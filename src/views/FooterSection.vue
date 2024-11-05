@@ -1,16 +1,14 @@
 <template>
-    <div>
-  <!-- Footer Section -->
-  <b-container fluid class="bg-dark text-light pt-4">
+  <div>
+    <!-- Footer Section -->
+    <b-container fluid class="bg-dark text-light pt-4">
       <b-row>
         <!-- Column 1: Company Info -->
         <b-col md="3">
           <h5 class="text-warning">
             <i class="fa-solid fa-motorcycle"></i> BIKEONTRACK
           </h5>
-          <p>
-            Explore Your City with Our Bike Rentals.
-          </p>
+          <p>Explore Your City with Our Bike Rentals.</p>
         </b-col>
 
         <!-- Column 2: Quick Links -->
@@ -32,7 +30,9 @@
             <li><b-link to="/terms&condition">Terms & Conditions</b-link></li>
             <li><b-link to="/privacy-policy">Privacy Policy</b-link></li>
             <li><b-link to="/shipping-returns">Disclaimer Policy</b-link></li>
-            <li><b-link to="/shipping-returns">Copyright Guidelines</b-link></li>
+            <li>
+              <b-link to="/shipping-returns">Copyright Guidelines</b-link>
+            </li>
           </ul>
         </b-col>
 
@@ -44,7 +44,7 @@
             <b-input-group>
               <b-form-input
                 placeholder="Enter your email"
-                v-model="email"
+                v-model="formData.email"
                 type="email"
                 required
               ></b-form-input>
@@ -83,15 +83,30 @@
         </b-col>
       </b-row>
     </b-container>
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {
+  data() {
+    return {
+      formData: {
+        email: "",
+      },
+    };
+  },
+  methods: {
+    subscribe() {
+      const user = {
+        email: this.formData.email,
+      };
+      alert(`Thank You for subscribing with ${user.email}`);
+      this.formData = {
+        email: "",
+      };
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

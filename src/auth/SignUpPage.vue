@@ -59,16 +59,13 @@
     },
     methods: {
       handleSignup() {
-        if (this.name && this.email && this.phone && this.password) {
-          // Handle signup logic here
-          console.log('Name:', this.name);
-          console.log('Email:', this.email);
-          console.log('Phone:', this.phone);
-          console.log('Password:', this.password);
-          alert('Signup submitted!');
-        } else {
-          alert('Please fill in all fields.');
-        }
+       const SignupData = {
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        password: this.password,
+       }
+       console.log(SignupData);
       },
     },
   };

@@ -132,9 +132,9 @@
               <b-form-group>
                 <b-input-group class="">
                   <b-form-input
-                    v-model="phoneNumber"
+                    v-model="formData.phoneNumber"
                     placeholder="Enter your phone number"
-                    type="tel"
+                    type="number"
                     class=""
                   ></b-form-input>
                   <b-input-group-append>
@@ -189,6 +189,9 @@ export default {
   },
   data() {
     return {
+      formData: {
+        phoneNumber: "",
+      },
       categories: [
         {
           title: "Bikes",
@@ -262,6 +265,15 @@ export default {
       // Logic to view the category, e.g., redirecting to a category page
       console.log(`Viewing ${title}`);
     },
+    sendLink(){
+      const Link = {
+        phoneNumber: this.formData.phoneNumber,
+      }
+      alert(`Link Successfully sent to ${Link.phoneNumber}`)
+      this.formData = {
+        phoneNumber: "",
+      }
+    }
   },
 };
 </script>
