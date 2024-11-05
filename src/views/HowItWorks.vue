@@ -71,7 +71,7 @@ export default {
             "Choose a bike that fits your persona. Make your commute easy, comfortable, and fun!",
           image:
             "https://img.freepik.com/free-vector/vehicle-sale-concept-illustration_114360-2082.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
-          icon: "fas fa-bicycle", // Font Awesome icon for Rent
+          icon: "fas fa-key", // Font Awesome icon for Rent
         },
         {
           id: "Step-03",
