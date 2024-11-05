@@ -2,7 +2,7 @@
     <b-container class="d-flex justify-content-center align-items-center vh-100">
       <b-card class="p-4" title="Sign Up" style="max-width: 400px; width: 100%;">
         <b-form @submit.prevent="handleSignup">
-          <b-form-group label="Name" label-for="name-input" class="mb-3">
+          <b-form-group label="Name" label-for="name-input" class="my-4">
             <b-form-input
               id="name-input"
               v-model="name"

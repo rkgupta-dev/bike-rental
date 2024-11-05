@@ -1,8 +1,8 @@
 <template>
   <b-container class="d-flex justify-content-center align-items-center vh-100">
-    <b-card class="p-4" title="Login" style="max-width: 400px; width: 100%">
+    <b-card class="p-4" title="Welcome to BikeOntrack" style="max-width: 380px; width: 100%">
       <b-form @submit.prevent="handleLogin">
-        <b-form-group label="Phone Number" label-for="phone-input" class="mb-3">
+        <b-form-group label="Phone Number" label-for="phone-input" class="my-4">
           <b-form-input
             id="phone-input"
             v-model="phone"
