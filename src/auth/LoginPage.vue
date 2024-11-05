@@ -1,0 +1,61 @@
+<template>
+    <b-container class="d-flex justify-content-center align-items-center vh-100">
+      <b-card class="p-4" title="Login" style="max-width: 400px; width: 100%;">
+        <b-form @submit.prevent="handleLogin">
+          <b-form-group label="Phone Number" label-for="phone-input" class="mb-3">
+            <b-form-input
+              id="phone-input"
+              v-model="phone"
+              type="tel"
+              placeholder="Enter your phone number"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group label="Password" label-for="password-input" class="mb-3">
+            <b-form-input
+              id="password-input"
+              v-model="password"
+              type="password"
+              placeholder="Enter your password"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-button type="submit" variant="primary" block>Login</b-button>
+        </b-form>
+        <div class="text-left mt-3">
+          <b-link href="/forgot-password">Forgot Password?</b-link>
+        </div>
+        <div class="text-left mt-2">
+          <b-link href="/signup">Don't have an account? Sign Up</b-link>
+        </div>
+      </b-card>
+    </b-container>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        phone: '',
+        password: '',
+      };
+    },
+    methods: {
+      handleLogin() {
+        if (this.phone && this.password) {
+          // Handle login logic here
+          console.log('Phone:', this.phone);
+          console.log('Password:', this.password);
+          alert('Login submitted!');
+        } else {
+          alert('Please fill in both fields.');
+        }
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  /* No additional styles needed since you prefer not to use custom CSS */
+  </style>
+  

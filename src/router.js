@@ -12,6 +12,8 @@ import AllModel from "./components/AllModel.vue";
 import HowItWorks from "./views/HowItWorks.vue";
 import BlogPage from "./views/BlogPage.vue";
 import CheckOut from "./components/CheckOut.vue";
+import LoginPage from "./auth/LoginPage.vue";
+import SignUpPage from "./auth/SignUpPage.vue";
 
 Vue.use(Router);
 
@@ -22,6 +24,16 @@ export default new Router({
       path: "/",
       name: "home",
       component: LandingPage,
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: LoginPage,
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: SignUpPage,
     },
     {
       path: "/rent",
