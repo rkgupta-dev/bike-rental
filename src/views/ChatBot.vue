@@ -7,7 +7,8 @@
       class="chat-btn"
       aria-label="Chat with us"
     >
-      <i class="fa fa-comments"></i> Chat
+    <i class="fa fa-comments chat-icon"></i> Chat
+
     </b-button>
 
     <!-- Sidebar -->
@@ -17,6 +18,7 @@
       title="AI Assistant"
       id="chatbot-sidebar"
       bg-variant="light"
+      shadow
     >
       <!-- Chatbot dialog inside sidebar -->
       <div class="chatbot-dialog">
@@ -39,13 +41,13 @@
                     :text="message.sender === 'user' ? 'U' : 'AI'"
                     size="sm"
                     :variant="
-                      message.sender === 'user' ? 'primary' : 'secondary'
+                      message.sender === 'user' ? 'primary' : 'success'
                     "
                     class="mr-2"
                   ></b-avatar>
                   <div
                     :class="{
-                      'bg-primary text-white': message.sender === 'user',
+                      'bg-light text-dark': message.sender === 'user',
                       'bg-light': message.sender === 'ai',
                     }"
                     class="message-bubble p-2 rounded"
@@ -85,7 +87,7 @@ export default {
   name: "ChatBot",
   data() {
     return {
-      sidebarWidth: "500px",
+      sidebarWidth: "450px",
       isSidebarVisible: false,
       messages: [
         {
@@ -284,4 +286,32 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+.chat-icon {
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.chat-icon:hover {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 </style>
