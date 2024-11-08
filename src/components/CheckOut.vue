@@ -283,7 +283,7 @@ export default {
         `.trim();
 
       const encodedMessage = encodeURIComponent(paymentDetails);
-      const whatsappLink = `https://wa.me/919901362369?text=${encodedMessage}`;
+      const whatsappLink = `https://wa.me/917079812442?text=${encodedMessage}`;
       window.open(whatsappLink, "_blank");
     },
   },
