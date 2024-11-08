@@ -14,6 +14,7 @@ import BlogPage from "./views/BlogPage.vue";
 import CheckOut from "./components/CheckOut.vue";
 import LoginPage from "./auth/LoginPage.vue";
 import SignUpPage from "./auth/SignUpPage.vue";
+import PageNotFound from "./views/PageNotFound.vue";
 
 Vue.use(Router);
 
@@ -86,6 +87,12 @@ export default new Router({
       path: "/bike/:id/:name", // Use a dynamic route for bike details
       name: "BikeDetail",
       component: BikeDetail,
+    },
+    {
+      path: "*",
+      name: "404",
+      component: PageNotFound,
+      meta: { hideChatBot: true },
     },
   ],
   scrollBehavior(to, from, savedPosition) {
