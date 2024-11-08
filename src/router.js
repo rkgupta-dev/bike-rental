@@ -29,11 +29,13 @@ export default new Router({
       path: "/login",
       name: "login",
       component: LoginPage,
+      meta: { hideChatBot: true },
     },
     {
       path: "/signup",
       name: "signup",
       component: SignUpPage,
+      meta: { hideChatBot: true },
     },
     {
       path: "/rent",

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <ChatBot />
+    <div v-if="!$route.meta.hideChatBot">
+      <ChatBot />
+    </div>
   </div>
 </template>
 
