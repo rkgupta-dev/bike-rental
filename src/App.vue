@@ -1,13 +1,18 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <ChatBot />
   </div>
 </template>
 
 <script>
+import ChatBot from "./views/ChatBot.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    ChatBot,
+  },
 };
 </script>
 
