@@ -109,7 +109,7 @@
 <script>
 export default {
   components: {
-    NavBar,
+   
   },
   name: "ContactUs",
   data() {
