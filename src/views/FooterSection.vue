@@ -21,8 +21,9 @@
           <ul class="list-unstyled">
             <li><b-link href="/">Home</b-link></li>
             <li><b-link to="/rent">Rent</b-link></li>
+            <li><b-link to="/blogs">Blogs</b-link></li>
             <li><b-link to="/about-us">About Us</b-link></li>
-            <li><b-link to="/contacts">Contact</b-link></li>
+            <li><b-link to="/contact-us">Contact</b-link></li>
           </ul>
         </b-col>
 

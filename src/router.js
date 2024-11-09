@@ -17,6 +17,7 @@ import SignUpPage from "./auth/SignUpPage.vue";
 import PageNotFound from "./views/PageNotFound.vue";
 import ComplainsPage from "./views/support/ComplainsPage.vue";
 import FaqPage from "./views/support/FaqPage.vue";
+import AboutUsPage from "./views/support/AboutUsPage.vue";
 
 Vue.use(Router);
 
@@ -99,6 +100,11 @@ export default new Router({
       path: "/frequently-asked-questions",
       name: "frequently-asked-questions",
       component: FaqPage,
+    },
+    {
+      path: "/about-us",
+      name: "about-us",
+      component: AboutUsPage,
     },
     {
       path: "*",
