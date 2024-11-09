@@ -18,6 +18,7 @@ import PageNotFound from "./views/PageNotFound.vue";
 import ComplainsPage from "./views/support/ComplainsPage.vue";
 import FaqPage from "./views/support/FaqPage.vue";
 import AboutUsPage from "./views/support/AboutUsPage.vue";
+import ContactUsPage from "./views/support/ContactUsPage.vue";
 
 Vue.use(Router);
 
@@ -105,6 +106,11 @@ export default new Router({
       path: "/about-us",
       name: "about-us",
       component: AboutUsPage,
+    },
+    {
+      path: "/contact-us",
+      name: "contact-us",
+      component: ContactUsPage,
     },
     {
       path: "*",
