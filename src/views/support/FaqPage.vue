@@ -14,7 +14,7 @@
             <h6>Address</h6>
             <p>
               BikeOntrack Techno Pvt. Ltd. 123, Track Avenue, Unit No. 45,
-              Ground Floor, Bengalore - 560026, Maharashtra, India.
+              Ground Floor, Giridih - 815314, Jharkhand, India.
             </p>
           </b-card>
           <b-card class="my-4">
