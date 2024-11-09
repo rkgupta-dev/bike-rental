@@ -21,11 +21,11 @@
             <b-dropdown-item to="/how-it-works">How it works</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item to="/blogs">Blogs</b-nav-item>
-          <b-nav-item href="#">FAQ</b-nav-item>
+          <b-nav-item to="/frequently-asked-questions">FAQ</b-nav-item>
           <b-nav-item-dropdown text="Support" right>
             <b-dropdown-item to="/complaint-form">Complains</b-dropdown-item>
-            <b-dropdown-item href="#">FAQ?</b-dropdown-item>
-            <b-dropdown-item href="#">Terms and Conditions</b-dropdown-item>
+            <b-dropdown-item to="/frequently-asked-questions">FAQ?</b-dropdown-item>
+            <b-dropdown-item to="/frequently-asked-questions">Terms and Conditions</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <div class="text-center">
               <a

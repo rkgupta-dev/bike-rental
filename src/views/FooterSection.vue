@@ -26,12 +26,12 @@
         <b-col md="3">
           <h5 class="text-uppercase">Customer Service</h5>
           <ul class="list-unstyled">
-            <li><b-link to="/faqs">FAQs</b-link></li>
-            <li><b-link to="/terms&condition">Terms & Conditions</b-link></li>
-            <li><b-link to="/privacy-policy">Privacy Policy</b-link></li>
-            <li><b-link to="/shipping-returns">Disclaimer Policy</b-link></li>
+            <li><b-link to="/frequently-asked-questions">FAQs</b-link></li>
+            <li><b-link to="/frequently-asked-questions">Terms & Conditions</b-link></li>
+            <li><b-link to="/frequently-asked-questions">Privacy Policy</b-link></li>
+            <li><b-link to="/frequently-asked-questions">Disclaimer Policy</b-link></li>
             <li>
-              <b-link to="/shipping-returns">Copyright Guidelines</b-link>
+              <b-link to="/frequently-asked-questions">Copyright Guidelines</b-link>
             </li>
           </ul>
         </b-col>

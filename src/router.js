@@ -16,6 +16,7 @@ import LoginPage from "./auth/LoginPage.vue";
 import SignUpPage from "./auth/SignUpPage.vue";
 import PageNotFound from "./views/PageNotFound.vue";
 import ComplainsPage from "./views/support/ComplainsPage.vue";
+import FaqPage from "./views/support/FaqPage.vue";
 
 Vue.use(Router);
 
@@ -93,6 +94,11 @@ export default new Router({
       path: "/complaint-form",
       name: "complaint",
       component: ComplainsPage,
+    },
+    {
+      path: "/frequently-asked-questions",
+      name: "frequently-asked-questions",
+      component: FaqPage,
     },
     {
       path: "*",
