@@ -24,7 +24,7 @@
                 :key="support"
                 @click="selectItem(support)"
                 class="d-flex justify-content-between align-items-center"
-                variant="warning"
+                variant="primary"
               >
                 {{ support }}
                 <b-badge variant="dark">
