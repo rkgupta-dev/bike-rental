@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <b-container fluid class="bg-dark text-light py-4 mt-5">
+  <div>
+    <b-container fluid class="bg-dark text-light py-4 mt-5">
       <b-row>
         <b-col md="3">
           <h5 class="text-warning">
@@ -68,15 +68,11 @@
         </b-col>
       </b-row>
     </b-container>
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

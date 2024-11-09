@@ -135,15 +135,14 @@
         If you have any questions or need more information, feel free to reach
         out to us!
       </p>
-      <b-button variant="primary" to="/contact-us"
-        >Contact Us</b-button
-      >
+      <b-button variant="primary" to="/contact-us">Contact Us</b-button>
     </b-container>
   </div>
 </template>
 
 <script>
 export default {
+  components: {},
   name: "AboutUs",
 };
 </script>

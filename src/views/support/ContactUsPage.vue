@@ -108,9 +108,7 @@
 
 <script>
 export default {
-  components: {
-   
-  },
+  components: {},
   name: "ContactUs",
   data() {
     return {
