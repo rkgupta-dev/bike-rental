@@ -22,7 +22,27 @@
           </b-nav-item-dropdown>
           <b-nav-item to="/blogs">Blogs</b-nav-item>
           <b-nav-item href="#">FAQ</b-nav-item>
-          <b-nav-item href="#">Support</b-nav-item>
+          <b-nav-item-dropdown text="Support" right>
+            <b-dropdown-item to="/complaint-form">Complains</b-dropdown-item>
+            <b-dropdown-item href="#">FAQ?</b-dropdown-item>
+            <b-dropdown-item href="#">Terms and Conditions</b-dropdown-item>
+            <b-dropdown-divider></b-dropdown-divider>
+            <div class="text-center">
+              <a
+                href="https://wa.me/7079812442"
+                target="_blank"
+                class="text-success mx-3"
+              >
+                <i class="fab fa-whatsapp fa-lg"></i>
+              </a>
+              <a href="tel:7079812442" class="text-primary mx-3">
+                <i class="fas fa-phone fa-lg"></i>
+              </a>
+              <a href="mailto:bikeontrack@support.com" class="text-danger mx-3">
+                <i class="fas fa-envelope fa-lg"></i>
+              </a>
+            </div>
+          </b-nav-item-dropdown>
           <b-nav-item>
             <b-badge pill variant="light">
               <i class="fa-solid fa-phone"></i> +91 7079812442
