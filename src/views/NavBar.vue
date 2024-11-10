@@ -24,8 +24,14 @@
           <b-nav-item to="/frequently-asked-questions">FAQ</b-nav-item>
           <b-nav-item-dropdown text="Support" right>
             <b-dropdown-item to="/complaint-form">Complains</b-dropdown-item>
-            <b-dropdown-item to="/frequently-asked-questions">FAQ?</b-dropdown-item>
-            <b-dropdown-item to="/frequently-asked-questions">Terms and Conditions</b-dropdown-item>
+            <b-dropdown-item to="/frequently-asked-questions"
+              >FAQ?</b-dropdown-item
+            >
+            <b-dropdown-item to="/about-us">About Us</b-dropdown-item>
+            <b-dropdown-item to="/contact-us">Contact Us</b-dropdown-item>
+            <b-dropdown-item to="/frequently-asked-questions"
+              >Terms and Conditions</b-dropdown-item
+            >
             <b-dropdown-divider></b-dropdown-divider>
             <div class="text-center">
               <a

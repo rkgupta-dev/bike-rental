@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavBar/>
     <!-- Contact Us Header Section -->
     <b-container class="my-4 text-center">
       <h2 class="font-weight-bold text-primary">Contact Us</h2>
@@ -103,12 +104,19 @@
         </b-col>
       </b-row>
     </b-container>
+    <FooterSectionA/>
   </div>
 </template>
 
 <script>
+import FooterSectionA from '../FooterSectionA.vue';
+import NavBar from '../NavBar.vue';
+
 export default {
-  components: {},
+  components: {
+    NavBar,
+    FooterSectionA
+  },
   name: "ContactUs",
   data() {
     return {

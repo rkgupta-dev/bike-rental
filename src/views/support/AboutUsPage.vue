@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavBar />
     <!-- Introduction Section -->
     <b-container fluid class="intro-section">
       <b-row class="text-center text-white py-5">
@@ -137,12 +138,19 @@
       </p>
       <b-button variant="primary" to="/contact-us">Contact Us</b-button>
     </b-container>
+    <FooterSectionA />
   </div>
 </template>
 
 <script>
+import FooterSectionA from "../FooterSectionA.vue";
+import NavBar from "../NavBar.vue";
+
 export default {
-  components: {},
+  components: {
+    NavBar,
+    FooterSectionA,
+  },
   name: "AboutUs",
 };
 </script>
