@@ -20,6 +20,7 @@ import FaqPage from "./views/support/FaqPage.vue";
 import AboutUsPage from "./views/support/AboutUsPage.vue";
 import ContactUsPage from "./views/support/ContactUsPage.vue";
 import DocumentVerification from "./components/DocumentVerification.vue";
+import NotificationPage from "./views/NotificationPage.vue";
 
 Vue.use(Router);
 
@@ -117,6 +118,11 @@ export default new Router({
       path: "/contact-us",
       name: "contact-us",
       component: ContactUsPage,
+    },
+    {
+      path: "/notifications",
+      name: "notifications",
+      component: NotificationPage,
     },
     {
       path: "*",

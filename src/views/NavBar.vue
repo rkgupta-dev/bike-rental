@@ -97,10 +97,10 @@
         <b-list-group-item href="#" @click="navigateTo('paymentMethods')">
           <i class="fa-solid fa-credit-card text-success"></i> Payment Methods
         </b-list-group-item>
-        <b-list-group-item href="#" @click="navigateTo('notifications')">
+        <b-list-group-item to="/notifications" @click="navigateTo('notifications')">
           <i class="fa-solid fa-bell text-danger"></i> Notifications
         </b-list-group-item>
-        <b-list-group-item href="#" @click="navigateTo('support')">
+        <b-list-group-item to="/contact-us" @click="navigateTo('support')">
           <i class="fa-solid fa-headset text-info"></i> Support
         </b-list-group-item>
         <b-list-group-item to="/login" @click="navigateTo('logout')">
