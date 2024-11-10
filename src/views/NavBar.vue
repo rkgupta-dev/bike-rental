@@ -23,15 +23,22 @@
           <b-nav-item to="/blogs">Blogs</b-nav-item>
           <b-nav-item to="/frequently-asked-questions">FAQ</b-nav-item>
           <b-nav-item-dropdown text="Support" right>
-            <b-dropdown-item to="/complaint-form">Complains</b-dropdown-item>
-            <b-dropdown-item to="/frequently-asked-questions"
-              >FAQ?</b-dropdown-item
-            >
-            <b-dropdown-item to="/about-us">About Us</b-dropdown-item>
-            <b-dropdown-item to="/contact-us">Contact Us</b-dropdown-item>
-            <b-dropdown-item to="/frequently-asked-questions"
-              >Terms and Conditions</b-dropdown-item
-            >
+            <b-dropdown-item to="/complaint-form">
+              <i class="fa fa-exclamation-circle text-secondary"></i> Complaints
+            </b-dropdown-item>
+            <b-dropdown-item to="/frequently-asked-questions">
+              <i class="fa fa-question-circle text-secondary"></i> FAQ?
+            </b-dropdown-item>
+            <b-dropdown-item to="/about-us">
+              <i class="fa fa-info-circle text-secondary"></i> About Us
+            </b-dropdown-item>
+            <b-dropdown-item to="/contact-us">
+              <i class="fa fa-phone text-secondary"></i> Contact Us
+            </b-dropdown-item>
+            <b-dropdown-item to="/frequently-asked-questions">
+              <i class="fa fa-file-contract text-secondary"></i> Terms and
+              Conditions
+            </b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <div class="text-center">
               <a
