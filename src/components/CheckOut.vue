@@ -161,22 +161,18 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container fluid class="bg-dark text-light py-4 mt-5">
-      <b-row>
-        <b-col class="text-center">
-          &copy; 2023 BikeOntrack. All rights reserved.
-        </b-col>
-      </b-row>
-    </b-container>
+   <FooterSectionA/>
   </div>
 </template>
 
 <script>
+import FooterSectionA from "@/views/FooterSectionA.vue";
 import NavBar from "@/views/NavBar.vue";
 
 export default {
   components: {
     NavBar,
+    FooterSectionA
   },
   props: {
     bike: {

@@ -114,15 +114,18 @@
         </b-row>
       </div>
     </b-container>
+    <FooterSectionA/>
   </div>
 </template>
 
 <script>
+import FooterSectionA from "@/views/FooterSectionA.vue";
 import NavBar from "@/views/NavBar.vue";
 
 export default {
   components: {
     NavBar,
+    FooterSectionA
   },
   data() {
     return {

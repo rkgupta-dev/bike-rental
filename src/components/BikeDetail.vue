@@ -1,6 +1,7 @@
 <template>
-  <b-container>
-    <div class="mt-4">
+  <div>
+    <NavBar />
+    <b-container class="my-4">
       <b-row>
         <b-col cols="12" lg="6">
           <h2>{{ bike.name }}</h2>
@@ -216,16 +217,21 @@
       </b-row>
 
       <!-- Add any additional details or features here -->
-    </div>
-  </b-container>
+    </b-container>
+    <FooterSectionA />
+  </div>
 </template>
 
 <script>
 import CountDown from "@/views/CountDown.vue";
+import FooterSectionA from "@/views/FooterSectionA.vue";
+import NavBar from "@/views/NavBar.vue";
 
 export default {
   components: {
     CountDown,
+    FooterSectionA,
+    NavBar,
   },
   data() {
     return {
