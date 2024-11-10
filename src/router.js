@@ -19,6 +19,7 @@ import ComplainsPage from "./views/support/ComplainsPage.vue";
 import FaqPage from "./views/support/FaqPage.vue";
 import AboutUsPage from "./views/support/AboutUsPage.vue";
 import ContactUsPage from "./views/support/ContactUsPage.vue";
+import DocumentVerification from "./components/DocumentVerification.vue";
 
 Vue.use(Router);
 
@@ -91,6 +92,11 @@ export default new Router({
       path: "/bike/:id/:name", // Use a dynamic route for bike details
       name: "BikeDetail",
       component: BikeDetail,
+    },
+    {
+      path: "/verification", // Use a dynamic route for bike details
+      name: "verification",
+      component: DocumentVerification,
     },
     {
       path: "/complaint-form",

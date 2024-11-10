@@ -267,7 +267,7 @@ export default {
     },
     goToCheckout() {
       this.$router.push({
-        name: "Checkout",
+        name: "verification",
         query: {
           name: this.bike.name,
           image: this.bike.image,
