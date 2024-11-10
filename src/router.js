@@ -24,6 +24,7 @@ import NotificationPage from "./views/NotificationPage.vue";
 import PaymentMethod from "./views/PaymentMethod.vue";
 import AccountSettings from "./views/AccountSettings.vue";
 import RentalHistory from "./views/RentalHistory.vue";
+import MyBookings from "./views/MyBookings.vue";
 
 Vue.use(Router);
 
@@ -141,6 +142,11 @@ export default new Router({
       path: "/rental-history",
       name: "rental-history",
       component: RentalHistory,
+    },
+    {
+      path: "/my-bookings",
+      name: "my-bookings",
+      component: MyBookings,
     },
     {
       path: "*",

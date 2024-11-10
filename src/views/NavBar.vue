@@ -80,7 +80,7 @@
         <b-list-group-item class="bg-light" to="/rent">
           <b-avatar></b-avatar> Rohit Kr. Gupta
         </b-list-group-item>
-        <b-list-group-item to="/rent">
+        <b-list-group-item to="/my-bookings">
           <i class="fa-solid fa-calendar-check text-success"></i> Bookings
         </b-list-group-item>
         <b-list-group-item to="/rental-history">
