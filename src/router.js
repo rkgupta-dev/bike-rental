@@ -23,6 +23,7 @@ import DocumentVerification from "./components/DocumentVerification.vue";
 import NotificationPage from "./views/NotificationPage.vue";
 import PaymentMethod from "./views/PaymentMethod.vue";
 import AccountSettings from "./views/AccountSettings.vue";
+import RentalHistory from "./views/RentalHistory.vue";
 
 Vue.use(Router);
 
@@ -135,6 +136,11 @@ export default new Router({
       path: "/account-settings",
       name: "account-settings",
       component: AccountSettings,
+    },
+    {
+      path: "/rental-history",
+      name: "rental-history",
+      component: RentalHistory,
     },
     {
       path: "*",

@@ -83,7 +83,7 @@
         <b-list-group-item to="/rent">
           <i class="fa-solid fa-calendar-check text-success"></i> Bookings
         </b-list-group-item>
-        <b-list-group-item href="#">
+        <b-list-group-item to="/rental-history">
           <i class="fa-solid fa-clock-rotate-left text-warning"></i> Rental
           History
         </b-list-group-item>
