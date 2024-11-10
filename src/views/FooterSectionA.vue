@@ -64,7 +64,7 @@
       <hr />
       <b-row>
         <b-col class="text-center">
-          &copy; 2023 BikeOntrack. All rights reserved.
+          <p>&copy; {{ currentYear }} BikeOntrack. All Rights Reserved.</p>
         </b-col>
       </b-row>
     </b-container>
@@ -72,7 +72,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      currentYear: new Date().getFullYear(),
+    };
+  },
+};
 </script>
 
 <style scoped></style>

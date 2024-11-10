@@ -96,7 +96,7 @@
 
         <!-- Footer Credits -->
         <b-col md="6" class="text-md-right">
-          <p>&copy; 2024 BikeOntrack - All Rights Reserved</p>
+          <p>&copy; {{ currentYear }} BikeOntrack. All Rights Reserved.</p>
         </b-col>
       </b-row>
     </b-container>
@@ -107,6 +107,7 @@
 export default {
   data() {
     return {
+      currentYear: new Date().getFullYear(),
       formData: {
         email: "",
       },

@@ -110,6 +110,13 @@
         </b-row>
       </div>
     </b-container>
+    <b-container fluid class="bg-dark text-light py-4 mt-5">
+      <b-row>
+        <b-col class="text-center">
+          &copy; {{ currentYear }} BikeOntrack. All rights reserved.
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -122,6 +129,7 @@ export default {
   },
   data() {
     return {
+      currentYear: new Date().getFullYear(),
       bikes: [
         {
           id: 9,
