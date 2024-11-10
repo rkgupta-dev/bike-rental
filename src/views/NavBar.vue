@@ -77,33 +77,29 @@
     </b-navbar>
     <b-sidebar v-model="isSidebarOpen" title="My Profile" shadow>
       <b-list-group>
-        <b-list-group-item
-          class="bg-light"
-          to="/rent"
-          @click="navigateTo('bookings')"
-        >
+        <b-list-group-item class="bg-light" to="/rent">
           <b-avatar></b-avatar> Rohit Kr. Gupta
         </b-list-group-item>
-        <b-list-group-item to="/rent" @click="navigateTo('bookings')">
+        <b-list-group-item to="/rent">
           <i class="fa-solid fa-calendar-check text-success"></i> Bookings
         </b-list-group-item>
-        <b-list-group-item href="#" @click="navigateTo('rentalHistory')">
+        <b-list-group-item href="#">
           <i class="fa-solid fa-clock-rotate-left text-warning"></i> Rental
           History
         </b-list-group-item>
-        <b-list-group-item href="#" @click="navigateTo('accountSettings')">
+        <b-list-group-item href="#">
           <i class="fa-solid fa-user-cog text-primary"></i> Account Settings
         </b-list-group-item>
-        <b-list-group-item href="#" @click="navigateTo('paymentMethods')">
+        <b-list-group-item to="/payment-methods">
           <i class="fa-solid fa-credit-card text-success"></i> Payment Methods
         </b-list-group-item>
-        <b-list-group-item to="/notifications" @click="navigateTo('notifications')">
+        <b-list-group-item to="/notifications">
           <i class="fa-solid fa-bell text-danger"></i> Notifications
         </b-list-group-item>
-        <b-list-group-item to="/contact-us" @click="navigateTo('support')">
+        <b-list-group-item to="/contact-us">
           <i class="fa-solid fa-headset text-info"></i> Support
         </b-list-group-item>
-        <b-list-group-item to="/login" @click="navigateTo('logout')">
+        <b-list-group-item to="/login">
           <i class="fa-solid fa-right-from-bracket text-danger"></i> Logout
         </b-list-group-item>
       </b-list-group>

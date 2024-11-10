@@ -21,6 +21,7 @@ import AboutUsPage from "./views/support/AboutUsPage.vue";
 import ContactUsPage from "./views/support/ContactUsPage.vue";
 import DocumentVerification from "./components/DocumentVerification.vue";
 import NotificationPage from "./views/NotificationPage.vue";
+import PaymentMethod from "./views/PaymentMethod.vue";
 
 Vue.use(Router);
 
@@ -123,6 +124,11 @@ export default new Router({
       path: "/notifications",
       name: "notifications",
       component: NotificationPage,
+    },
+    {
+      path: "/payment-methods",
+      name: "payment-methods",
+      component: PaymentMethod,
     },
     {
       path: "*",
