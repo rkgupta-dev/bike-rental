@@ -87,7 +87,7 @@
           <i class="fa-solid fa-clock-rotate-left text-warning"></i> Rental
           History
         </b-list-group-item>
-        <b-list-group-item href="#">
+        <b-list-group-item to="/account-settings">
           <i class="fa-solid fa-user-cog text-primary"></i> Account Settings
         </b-list-group-item>
         <b-list-group-item to="/payment-methods">

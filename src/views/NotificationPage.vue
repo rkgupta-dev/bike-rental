@@ -4,7 +4,7 @@
     <b-container>
       <b-row>
         <b-col lg="10" class="mx-auto">
-          <h1 class="my-4">Notifications</h1>
+          <h2 class="my-4">Notifications</h2>
           <b-card no-body>
             <b-tabs pills card horizontal>
               <!-- All Notifications Tab -->

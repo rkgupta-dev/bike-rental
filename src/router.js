@@ -22,6 +22,7 @@ import ContactUsPage from "./views/support/ContactUsPage.vue";
 import DocumentVerification from "./components/DocumentVerification.vue";
 import NotificationPage from "./views/NotificationPage.vue";
 import PaymentMethod from "./views/PaymentMethod.vue";
+import AccountSettings from "./views/AccountSettings.vue";
 
 Vue.use(Router);
 
@@ -129,6 +130,11 @@ export default new Router({
       path: "/payment-methods",
       name: "payment-methods",
       component: PaymentMethod,
+    },
+    {
+      path: "/account-settings",
+      name: "account-settings",
+      component: AccountSettings,
     },
     {
       path: "*",
