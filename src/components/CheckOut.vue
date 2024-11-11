@@ -161,7 +161,7 @@
         </b-col>
       </b-row>
     </b-container>
-   <FooterSectionA/>
+    <FooterSectionA />
   </div>
 </template>
 
@@ -172,7 +172,7 @@ import NavBar from "@/views/NavBar.vue";
 export default {
   components: {
     NavBar,
-    FooterSectionA
+    FooterSectionA,
   },
   props: {
     bike: {
@@ -281,6 +281,8 @@ export default {
       const encodedMessage = encodeURIComponent(paymentDetails);
       const whatsappLink = `https://wa.me/917079812442?text=${encodedMessage}`;
       window.open(whatsappLink, "_blank");
+
+      this.$router.push("/payment-success");
     },
   },
 };

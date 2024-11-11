@@ -26,6 +26,7 @@ import AccountSettings from "./views/AccountSettings.vue";
 import RentalHistory from "./views/RentalHistory.vue";
 import MyBookings from "./views/MyBookings.vue";
 import ForgotPassword from "./auth/ForgotPassword.vue";
+import PaymentSuccess from "./views/PaymentSuccess.vue";
 
 Vue.use(Router);
 
@@ -89,6 +90,11 @@ export default new Router({
       path: "/checkout",
       name: "Checkout",
       component: CheckOut,
+    },
+    {
+      path: "/payment-success",
+      name: "payment-success",
+      component: PaymentSuccess,
     },
     {
       path: "/how-it-works",
