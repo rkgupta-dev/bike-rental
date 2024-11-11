@@ -42,11 +42,21 @@ export default {
   },
   methods: {
     handleLogin() {
-      const loginData = {
-        phone: this.phone,
-        password: this.password,
-      };
-      console.log(loginData);
+      // Retrieve the user data from localStorage
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      // Check if the user exists and if the entered credentials match
+      if (user && user.phone === this.phone && user.password === this.password) {
+        // Optionally, store the logged-in user's info in localStorage or a global state
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+        alert(`Hii ${user.name}! You are LoggedIn.`)
+        // Redirect to the dashboard or a protected route
+        this.$router.push("/");
+      } else {
+        // Show an alert if the login credentials are incorrect
+        alert("Invalid phone number or password.");
+      }
     },
   },
 };

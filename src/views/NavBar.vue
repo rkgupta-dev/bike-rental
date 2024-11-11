@@ -62,7 +62,9 @@
             </b-badge>
           </b-nav-item>
           <b-nav-item-dropdown right>
-            <template #button-content> Hii, <em>Rohit Kr. Gupta</em> </template>
+            <template #button-content>
+              Hii, <em v-if="user">{{ user.name }}</em>
+            </template>
             <b-dropdown-item href="#" @click="toggleSidebar"
               ><i class="fa-solid fa-user-cog text-primary"></i>
               Profile</b-dropdown-item
@@ -77,8 +79,11 @@
     </b-navbar>
     <b-sidebar v-model="isSidebarOpen" title="My Profile" shadow>
       <b-list-group>
-        <b-list-group-item class="bg-light" to="/rent">
-          <b-avatar></b-avatar> Rohit Kr. Gupta
+        <b-list-group-item class="bg-light" v-if="user">
+          <b-avatar></b-avatar> {{ user.name }}
+        </b-list-group-item>
+        <b-list-group-item class="bg-light" to="/signup" v-else>
+          <a>SignUp or Login</a>
         </b-list-group-item>
         <b-list-group-item to="/my-bookings">
           <i class="fa-solid fa-calendar-check text-success"></i> Bookings
@@ -112,7 +117,17 @@ export default {
   data() {
     return {
       isSidebarOpen: false,
+      user: null, // Store user data
     };
+  },
+  mounted() {
+    // Get the logged-in user from localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    // If a user is logged in, set the user data
+    if (loggedInUser) {
+      this.user = loggedInUser;
+    }
   },
   methods: {
     toggleSidebar() {

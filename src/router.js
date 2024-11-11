@@ -25,6 +25,7 @@ import PaymentMethod from "./views/PaymentMethod.vue";
 import AccountSettings from "./views/AccountSettings.vue";
 import RentalHistory from "./views/RentalHistory.vue";
 import MyBookings from "./views/MyBookings.vue";
+import ForgotPassword from "./auth/ForgotPassword.vue";
 
 Vue.use(Router);
 
@@ -46,6 +47,12 @@ export default new Router({
       path: "/signup",
       name: "signup",
       component: SignUpPage,
+      meta: { hideChatBot: true },
+    },
+    {
+      path: "/forgot-password",
+      name: "forgot-password",
+      component: ForgotPassword,
       meta: { hideChatBot: true },
     },
     {
