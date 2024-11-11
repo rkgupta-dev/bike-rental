@@ -151,14 +151,14 @@
               <p class="text-light">Download app from</p>
               <div class="d-flex my-5">
                 <b-button
-                  href="#"
+                  href="https://play.google.com/store/games?hl=en"
                   variant="light"
                   class="store-button d-flex align-items-center justify-content-center mr-4"
                 >
                   <i class="fa-brands fa-google-play"> Google Play</i>
                 </b-button>
                 <b-button
-                  href="#"
+                  href="https://www.apple.com/in/app-store/"
                   variant="light"
                   class="store-button d-flex align-items-center justify-content-center"
                 >
