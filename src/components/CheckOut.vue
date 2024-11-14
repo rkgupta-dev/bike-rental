@@ -168,6 +168,8 @@
 <script>
 import FooterSectionA from "@/views/FooterSectionA.vue";
 import NavBar from "@/views/NavBar.vue";
+import { loadStripe } from "@stripe/stripe-js";
+
 
 export default {
   components: {
@@ -260,30 +262,42 @@ export default {
     updatePrice() {
       // Method can be enhanced to dynamically calculate price updates if needed
     },
-    proceedToPayment() {
-      const paymentDetails = `
-          Booking Details:
-          - Bike: ${this.bike.name}
-          - Price: ₹${this.bike.originalPrice}
-          - Discounted Price: - ₹${this.discountedPrice}
-          ${
-            this.selectedAddonPrice > 0
-              ? `- Add-on Price: ₹${this.selectedAddonPrice}`
-              : ""
-          }
-          ${this.isDelivery ? `- Delivery Charge: ₹500` : ""}
-          ---------------------
-          Total Price: ₹${this.totalPrice}
-          
-          UPI ID for Payment: bikeontrack@oksbi
-        `.trim();
+    async proceedToPayment() {
+  const stripe = await loadStripe('pk_test_51QKasuB0AVnVwjeaYjRl1QzYIlQrqMohBCut4q5fUCJeBBie4PpQpIJifo0GXKYznbtAFDdr9zK3T4kKQbR9G3lR00yYbo2zJM'); // Your Stripe Publishable Key
 
-      const encodedMessage = encodeURIComponent(paymentDetails);
-      const whatsappLink = `https://wa.me/917079812442?text=${encodedMessage}`;
-      window.open(whatsappLink, "_blank");
+  const paymentDetails = {
+    bookingDetails: `
+        ${this.bike.image}
+        Bike: ${this.bike.name} 
+        Price: ₹${this.bike.originalPrice}
+        Discounted Price: - ₹${this.discountedPrice}
+        ${this.selectedAddonPrice > 0 ? `Add-on Price: ₹${this.selectedAddonPrice}` : ""}
+        ${this.isDelivery ? `Delivery Charge: ₹500` : ""}
+        ---------------------
+        Total Price: ₹${this.totalPrice}
+    `,
+    amount: this.totalPrice, // Amount to be charged in INR
+  };
 
-      this.$router.push("/payment-success");
-    },
+  try {
+    console.log(paymentDetails)
+    // Call the backend to create the Stripe session
+    const response = await fetch("http://localhost:8080/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paymentDetails),
+    });
+
+    const { sessionId } = await response.json();
+
+    // Redirect to Stripe Checkout
+    await stripe.redirectToCheckout({ sessionId });
+  } catch (error) {
+    console.error("Error during payment:", error);
+  }
+}
   },
 };
 </script>
