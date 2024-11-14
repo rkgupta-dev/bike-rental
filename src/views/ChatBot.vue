@@ -38,7 +38,7 @@
                 >
                   <b-avatar
                     src="/placeholder.svg?height=32&width=32"
-                    :text="message.sender === 'user' ? 'U' : 'AI'"
+                    :text="message.sender === 'user' ? 'You' : 'AI'"
                     size="sm"
                     :variant="
                       message.sender === 'user' ? 'primary' : 'success'
