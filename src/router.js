@@ -27,6 +27,7 @@ import RentalHistory from "./views/RentalHistory.vue";
 import MyBookings from "./views/MyBookings.vue";
 import ForgotPassword from "./auth/ForgotPassword.vue";
 import PaymentSuccess from "./views/PaymentSuccess.vue";
+import PaymentCancel from "./views/PaymentCancel.vue";
 
 Vue.use(Router);
 
@@ -95,6 +96,11 @@ export default new Router({
       path: "/payment-success",
       name: "payment-success",
       component: PaymentSuccess,
+    },
+    {
+      path: "/payment-cancelled",
+      name: "payment-cancelled",
+      component: PaymentCancel,
     },
     {
       path: "/how-it-works",
