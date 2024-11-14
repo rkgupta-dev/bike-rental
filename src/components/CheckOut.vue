@@ -267,7 +267,6 @@ export default {
 
       const paymentDetails = {
         bookingDetails: `
-        ${this.bike.image}
         Bike: ${this.bike.name} 
         Price: ₹${this.bike.originalPrice}
         Discounted Price: - ₹${this.discountedPrice}

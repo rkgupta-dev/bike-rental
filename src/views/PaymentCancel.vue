@@ -47,7 +47,7 @@
               </b-list-group> -->
 
             <div class="text-center mt-4">
-              <b-button variant="primary" @click="retryPayment">
+              <b-button variant="success" @click="retryPayment">
                 <b-icon icon="arrow-repeat" class="mr-2" />
                 Retry Payment
               </b-button>
