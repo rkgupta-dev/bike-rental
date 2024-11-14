@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <h4 class="text-center my-4">Complaints and Feedback</h4>
+    <h4 class="text-center" style="margin-top: 4rem;">Complaints and Feedback</h4>
     <hr />
     <!-- Main Content -->
     <b-container>

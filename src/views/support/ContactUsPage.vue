@@ -2,7 +2,7 @@
   <div>
     <NavBar/>
     <!-- Contact Us Header Section -->
-    <b-container class="my-4 text-center">
+    <b-container class="text-center" style="margin-top: 4rem;">
       <h2 class="font-weight-bold text-primary">Contact Us</h2>
       <p class="lead text-muted">
         Have questions or want to reach out? We're here to assist you with

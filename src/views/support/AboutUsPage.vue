@@ -2,7 +2,7 @@
   <div>
     <NavBar />
     <!-- Introduction Section -->
-    <b-container fluid class="intro-section">
+    <b-container fluid class="intro-section my-5">
       <b-row class="text-center text-white py-5">
         <b-col>
           <h2 class="display-4 font-weight-bold mb-4">
@@ -21,7 +21,7 @@
     <b-container id="mission" class="my-5">
       <b-row class="text-center">
         <b-col md="6">
-          <b-card class="h-100 border-0 shadow-sm p-0">
+          <b-card class="h-100 border-0 shadow-lg p-0">
             <b-img
               src="https://img.freepik.com/free-vector/rockers-concept-illustration_114360-9841.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid"
               alt="Step illustration"

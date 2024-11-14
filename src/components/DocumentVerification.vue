@@ -1,10 +1,12 @@
 <template>
   <div>
     <NavBar />
-    <h2 class="text-center my-4 header-title">Document Verification</h2>
+    <h2 class="text-center header-title" style="margin-top: 5rem">
+      Document Verification
+    </h2>
     <b-container>
       <b-row>
-        <b-col md="6" class="mb-4">
+        <b-col md="6" class="my-4">
           <b-card title="Submit Document for Verification" class="h-100">
             <b-form @submit.prevent="submitDocument">
               <b-form-group
@@ -91,7 +93,7 @@
           </b-card>
         </b-col>
 
-        <b-col md="6">
+        <b-col md="6" class="my-4">
           <b-card title="Verification Status" class="h-100">
             <div v-if="verificationStatus">
               <b-alert :variant="verificationStatus.variant" show>

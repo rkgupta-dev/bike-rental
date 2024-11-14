@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container class="my-5">
+    <b-container class="" style="margin-top: 6rem;">
       <b-row>
         <b-col lg="7" class="my-4 text-center mt-5">
           <h1 class="mb-3">Rent it Out to</h1>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container class="my-4">
+    <b-container style="margin-top: 4rem;">
       <b-row>
         <b-col cols="12" lg="6">
           <h2>{{ bike.name }}</h2>

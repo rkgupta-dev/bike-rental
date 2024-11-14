@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container>
+    <b-container style="margin-top: 4rem;">
       <b-row>
         <b-col lg="10" class="mx-auto">
           <h2 class="my-4">Notifications</h2>

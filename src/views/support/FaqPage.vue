@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <h4 class="text-center my-4">Help and Support</h4>
+    <h4 class="text-center" style="margin-top: 4rem;">Help and Support</h4>
     <hr />
     <!-- Main Content -->
     <b-container>
