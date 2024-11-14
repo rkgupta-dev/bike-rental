@@ -1,9 +1,11 @@
 <template>
   <div>
     <NavBar />
+    <h4 class="text-center" style="margin-top: 4rem;">"Scooters: Fun and Easy Travel"</h4>
+    <hr>
     <b-container>
       <div class="my-4">
-        <h4 class="text-center mb-4">"Scooters: Fun and Easy Travel"</h4>
+       
         <b-row no-gutters>
           <b-col
             v-for="bike in bikes"

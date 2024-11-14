@@ -1,9 +1,12 @@
 <template>
   <div>
     <NavBar />
+    <h4 class="text-center" style="margin-top: 4rem">
+      "High-Performance Sportbikes"
+    </h4>
+    <hr />
     <b-container>
       <div class="my-4">
-        <h4 class="text-center mb-4">"High-Performance Sportbikes"</h4>
         <b-row no-gutters>
           <b-col
             v-for="bike in bikes"

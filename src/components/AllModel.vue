@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <h4 class="text-center my-4">
+    <h4 class="text-center" style="margin-top: 4rem;">
           BikeOntrack - Your Trusted Bike Rental Service
         </h4>
         <hr/>

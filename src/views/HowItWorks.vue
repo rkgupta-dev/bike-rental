@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <h3 class="text-center my-4 header-title">How It Works</h3>
+    <h3 class="text-center header-title" style="margin-top: 4rem;">How It Works</h3>
     <hr />
     <b-container>
       <b-row
