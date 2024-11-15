@@ -74,7 +74,7 @@
         <h5>
           <b-img
             style="width: 70px; height: 60px"
-            src="https://cdn-icons-gif.flaticon.com/14951/14951482.gif"
+            src="https://cdn-icons-gif.flaticon.com/17904/17904906.gif"
           ></b-img
           >Trusted by over 5 lakh+ riders across Bangalore, Hyderabad, Delhi and
           Mumbai.

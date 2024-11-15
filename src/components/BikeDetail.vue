@@ -150,6 +150,7 @@
                 squared
                 variant="primary"
                 class="w-100"
+                :disabled="bike.status === 3"
                 @click="goToCheckout"
               >
                 <i class="fa-solid fa-bicycle"></i> Rent Now
