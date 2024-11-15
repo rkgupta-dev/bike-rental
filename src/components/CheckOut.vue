@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container style="margin-top: 4rem;">
+    <b-container style="margin-top: 4rem">
       <h2 class="text-center my-2">Booking Details</h2>
       <b-row>
         <b-col cols="12" md="6">
@@ -281,6 +281,21 @@ export default {
     `,
         amount: this.totalPrice, // Amount to be charged in INR
       };
+
+      const bookingDetails = {
+        bikeName: this.bike.name,
+        originalPrice: this.bike.originalPrice,
+        discountedPrice: this.discountedPrice,
+        addonPrice: this.selectedAddonPrice,
+        deliveryCharge: this.isDelivery ? 500 : 0,
+        totalPrice: this.totalPrice,
+        selectedAddon: this.addonOptions.find(
+          (option) => option.value === this.selectedAddon
+        )?.text,
+      };
+
+      // Save booking details to localStorage
+      localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
 
       try {
         console.log(paymentDetails);

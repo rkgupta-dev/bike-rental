@@ -96,11 +96,13 @@ export default new Router({
       path: "/payment-success",
       name: "payment-success",
       component: PaymentSuccess,
+      meta: { hideChatBot: true },
     },
     {
       path: "/payment-cancelled",
       name: "payment-cancelled",
       component: PaymentCancel,
+      meta: { hideChatBot: true },
     },
     {
       path: "/how-it-works",

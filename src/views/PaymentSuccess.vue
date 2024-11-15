@@ -12,11 +12,12 @@
                 variant="success"
                 class="mb-3 animated-icon large-icon"
               />
-              <h1 class="mt-3 mb-2">Payment Successful!</h1>
+              <h2 class="mt-3 mb-2">Payment Successful!</h2>
               <p class="text-muted">
-                Thank you for your purchase. Your order has been processed
-                successfully.
+                Thank you for choosing BikeOntrack! Your booking is confirmed,
+                and your ride awaits you soon.
               </p>
+              <strong class="text-muted">{{ formattedDateTime }}</strong>
             </div>
 
             <b-list-group flush>
@@ -26,30 +27,29 @@
                 <span>Order ID:</span>
                 <strong>#{{ orderId }}</strong>
               </b-list-group-item>
-              <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-              >
-                <span>Amount Paid:</span>
-                <strong>{{ formatCurrency(amount) }}</strong>
-              </b-list-group-item>
+              
               <b-list-group-item
                 class="d-flex justify-content-between align-items-center"
               >
                 <span>Payment Method:</span>
-                <strong>{{ paymentMethod }}</strong>
-              </b-list-group-item>
-              <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-              >
-                <span>Date:</span>
-                <strong>{{ formatDate(date) }}</strong>
+                <strong>Credit Card</strong>
               </b-list-group-item>
             </b-list-group>
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+              >
+                <span>Amount Paid:</span>
+                <strong>₹ {{ bookingDetails.totalPrice }}/-</strong>
+              </b-list-group-item>
 
             <div class="text-center mt-4">
-              <b-button variant="primary" to="/">
+              <b-button variant="primary" to="/" class="my-2 mr-2">
                 <b-icon icon="house" class="mr-2" />
-                Back to Home
+                Home
+              </b-button>
+              <b-button variant="success" @click="downloadReceipt">
+                <b-icon icon="download" class="mr-2" />
+                Receipt
               </b-button>
             </div>
           </b-card>
@@ -60,42 +60,47 @@
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
-  name: "PaymentSuccessPage",
-  components: {},
-  setup() {
-    const orderId = ref("ORD-12345");
-    const amount = ref(99.99);
-    const paymentMethod = ref("Credit Card");
-    const date = ref(new Date());
-
-    const formatCurrency = (value) => {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value);
-    };
-
-    const formatDate = (date) => {
-      return new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      }).format(date);
-    };
-
+  data() {
     return {
-      orderId,
-      amount,
-      paymentMethod,
-      date,
-      formatCurrency,
-      formatDate,
+      bookingDetails: {},
+      formattedDateTime: "",
+      orderId: "",
     };
+  },
+  created() {
+    // Retrieve booking details from localStorage
+    const details = localStorage.getItem("bookingDetails");
+    if (details) {
+      this.bookingDetails = JSON.parse(details);
+    }
+
+    // Get current date and time
+    const now = new Date();
+    const date = now.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    this.formattedDateTime = `${date} - ${time}`;
+
+    // Generate a random order ID
+    this.orderId = this.generateOrderId();
+  },
+  methods: {
+    generateOrderId() {
+      // Generate a random 8-digit number
+      return Math.floor(10000000 + Math.random() * 90000000);
+    },
+    downloadReceipt(){
+      alert("Your Recipt Downloding.......")
+    }
+
   },
 };
 </script>

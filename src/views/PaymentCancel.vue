@@ -12,10 +12,9 @@
                 variant="danger"
                 class="mb-3 animated-icon large-icon"
               />
-              <h1 class="mt-3 mb-2 text-danger">Payment Cancelled</h1>
+              <h2 class="mt-3 mb-2 text-danger">Payment Cancelled</h2>
               <p class="text-muted">
-                Your payment was not completed. Please try again or contact
-                support if you need assistance.
+                Payment failed! Please try again or contact support if you need help.
               </p>
             </div>
 
@@ -46,14 +45,14 @@
                 </b-list-group-item>
               </b-list-group> -->
 
-            <div class="text-center mt-4">
-              <b-button variant="success" @click="retryPayment">
+            <div class="d-flex justify-content-center align-items-center mt-4">
+              <b-button variant="success" @click="retryPayment" class="my-2">
                 <b-icon icon="arrow-repeat" class="mr-2" />
-                Retry Payment
+                Retry
               </b-button>
               <b-button variant="secondary" to="/" class="ml-2">
                 <b-icon icon="house" class="mr-2" />
-                Back to Home
+                Home
               </b-button>
             </div>
           </b-card>
