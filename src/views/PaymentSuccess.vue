@@ -98,8 +98,7 @@ export default {
       const doc = new jsPDF();
 
       // Add logo on the left
-      const logoUrl =
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk0GP76agvcc9ML2IjYlq9HRr6crKsHAIc4Q&s"; // Replace with your logo URL or base64
+      const logoUrl = require("@/assets/BikeOntrackLogo.png"); // Replace with your logo URL or base64
       doc.addImage(logoUrl, "PNG", 10, 10, 30, 30); // Position logo at (10, 10), 30x30 size
 
       // Add company address on the right
