@@ -2,22 +2,21 @@
   <div>
     <!-- Chat with us button -->
     <b-button
-      variant="primary"
+      variant="warning"
       @click="toggleSidebar"
       class="chat-btn"
       aria-label="Chat with us"
     >
-    <i class="fa fa-comments chat-icon"></i> Chat
-
+      <i class="fa fa-comments chat-icon"></i> Chat
     </b-button>
 
     <!-- Sidebar -->
     <b-sidebar
       :width="sidebarWidth"
       v-model="isSidebarVisible"
-      title="AI Assistant"
+      title="BikeOntrack!"
       id="chatbot-sidebar"
-      bg-variant="light"
+      bg-variant="warning"
       shadow
     >
       <!-- Chatbot dialog inside sidebar -->
@@ -37,12 +36,14 @@
                   }"
                 >
                   <b-avatar
-                    src="/placeholder.svg?height=32&width=32"
-                    :text="message.sender === 'user' ? 'You' : 'AI'"
-                    size="sm"
-                    :variant="
-                      message.sender === 'user' ? 'primary' : 'success'
+                    :src="
+                      message.sender === 'user'
+                        ? '/user-placeholder.svg'
+                        : 'https://cdn-icons-png.flaticon.com/128/10817/10817417.png'
                     "
+                    :text="message.sender === 'user' ? 'You' : ''"
+                    size="sm"
+                    :variant="message.sender === 'user' ? 'info' : 'warning'"
                     class="mr-2"
                   ></b-avatar>
                   <div
@@ -70,7 +71,7 @@
                 aria-label="Type your message"
                 class="mr-2"
               ></b-form-input>
-              <b-button type="submit" variant="primary">
+              <b-button type="submit" variant="warning">
                 <b-icon icon="cursor" aria-hidden="true"></b-icon>
                 <span class="sr-only">Send message</span>
               </b-button>
@@ -92,7 +93,7 @@ export default {
       messages: [
         {
           id: 1,
-          text: "Hello! How can I assist you today? Do you want to rent a bike?",
+          text: "Welcome to BikeOntrack, how can we assist you today?",
           sender: "ai",
           timestamp: new Date(),
         },
@@ -133,8 +134,18 @@ export default {
     },
     generateBotResponse(message) {
       const userMessage = message.toLowerCase();
-
-      if (userMessage.includes("rent")) {
+      if (
+        userMessage.toLowerCase().includes("hii") ||
+        userMessage.toLowerCase().includes("hi")
+      ) {
+        return `Hello! How can I assist you with your bike rental today? 
+    Here are some options for you:
+    1. New Booking
+    2. Booking Extension
+    3. Document Approval
+    4. Payment Information
+    5. Contact Support`;
+      } else if (userMessage.includes("rent")) {
         return "Are you interested in renting a bike? I can help you with the process.";
       } else if (userMessage.includes("yes")) {
         return "Sure! What type of bike would you like to rent? We have Sportsbikes, Scooters, and Cruisers.";
@@ -143,7 +154,7 @@ export default {
       } else if (userMessage.includes("30 days")) {
         return "Okay! We have multiple Sports Bikes, if you want know the price of Sports Bikes then go to Category and select Sports Bike";
       } else if (userMessage.includes("bike")) {
-        return "good";
+        return "Awesome! Good Choice. Now, let me know how long you'd like to rent it for (in days).";
       } else if (userMessage.includes("price")) {
         return "Our bike rental prices vary based on the type of bike. Please let me know which bike you are interested in.";
       } else if (userMessage.includes("how to rent")) {
@@ -313,5 +324,4 @@ export default {
     transform: translateY(0);
   }
 }
-
 </style>
