@@ -1,11 +1,15 @@
 <template>
   <div>
     <NavBar />
-    <b-container class="" style="margin-top: 6rem;">
+    <b-container class="" style="margin-top: 6rem">
       <b-row>
         <b-col lg="7" class="my-4 text-center mt-5">
           <h1 class="mb-3">Rent it Out to</h1>
-          <h1 class="display-4 text-primary my-4">EXPLORE THE WORLD</h1>
+          <div class="text-center my-5">
+            <h1 class="display-4 text-primary my-2 responsive-heading">
+              <span id="typewriter-text"></span>
+            </h1>
+          </div>
           <h3 class="font-weight-bold my-4">
             India's favourite two-wheeler super app
           </h3>
@@ -258,6 +262,38 @@ export default {
       ],
     };
   },
+  mounted() {
+    const texts = ["EXPLORE THE WORLD", "EXPLORE MORE, PAY LESS"];
+    let index = 0;
+    let charIndex = 0;
+    const typingSpeed = 100;
+    const erasingSpeed = 50;
+    const delayBetweenTexts = 1500;
+    const typewriterText = document.getElementById("typewriter-text");
+
+    const type = () => {
+      if (charIndex < texts[index].length) {
+        typewriterText.textContent += texts[index].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingSpeed);
+      } else {
+        setTimeout(erase, delayBetweenTexts);
+      }
+    };
+
+    const erase = () => {
+      if (charIndex > 0) {
+        typewriterText.textContent = texts[index].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingSpeed);
+      } else {
+        index = (index + 1) % texts.length; // Cycle through texts
+        setTimeout(type, typingSpeed);
+      }
+    };
+
+    type();
+  },
   methods: {
     viewCategory(title) {
       // Logic to view the category, e.g., redirecting to a category page
@@ -305,6 +341,28 @@ export default {
 .phone-mockup {
   border-radius: 30px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+#typewriter-text {
+  display: inline-block;
+  border-right: 2px solid #0d0f0e;
+  animation: blink 0.7s step-end infinite;
+  font-weight: bold;
+  color: rgb(55, 43, 216);
+}
+.responsive-heading {
+  font-size: calc(
+    1.6rem + 1vw
+  ); /* Adjust font size dynamically based on viewport */
+  line-height: 1.2;
+}
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #007bff;
+  }
 }
 @keyframes float {
   0% {

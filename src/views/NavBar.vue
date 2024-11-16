@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="primary" fixed="top">
+    <b-navbar toggleable="lg" type="dark" variant="primary" class="shadow-sm" fixed="top">
       <b-navbar-brand to="/">BikeOntrack</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
