@@ -125,7 +125,7 @@
                   />
                 </b-list-group-item>
                 <b-list-group-item>
-                  <strong>Passport Photo:</strong><br />
+                  <strong>Passport-Size Photo:</strong><br />
                   <img
                     :src="form.passportPhoto"
                     alt="Passport Photo"
@@ -193,7 +193,7 @@ export default {
         { value: null, text: "Select document type" },
         { value: "passport", text: "Passport" },
         { value: "driverLicense", text: "Driver's License" },
-        { value: "nationalId", text: "National ID" },
+        { value: "nationalId", text: "Aadhar Card" },
       ],
       verificationStatus: null,
     };
@@ -227,7 +227,38 @@ export default {
         reader.readAsDataURL(file);
       }
     },
+    validateForm() {
+      const errors = [];
+
+      // Document Number Validation
+      if (!/^\d{10,}$/.test(this.form.documentNumber)) {
+        errors.push("Document Number must be at least 10 digits long.");
+      }
+
+      // Date of Birth Validation
+      const dob = new Date(this.form.dateOfBirth);
+      const today = new Date();
+      const age = today.getFullYear() - dob.getFullYear();
+      const ageCheck =
+        today.getMonth() > dob.getMonth() ||
+        (today.getMonth() === dob.getMonth() &&
+          today.getDate() >= dob.getDate());
+      if (age < 18 || (age === 18 && !ageCheck)) {
+        errors.push("You must be at least 18 years old.");
+      }
+
+      return errors;
+    },
     submitDocument() {
+      const errors = this.validateForm();
+      if (errors.length > 0) {
+        this.verificationStatus = {
+          variant: "danger",
+          message: errors.join(" "),
+        };
+        return;
+      }
+
       this.verificationStatus = {
         variant: "warning",
         message: "Verifying document...",
