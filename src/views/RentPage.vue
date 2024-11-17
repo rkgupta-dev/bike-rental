@@ -1,8 +1,9 @@
 <template>
   <div>
-    <!-- <NavBar/> -->
+    <NavBar />
     <!-- Banner Section -->
     <b-jumbotron
+      style="margin-top: 3rem"
       header="Bike Rental Service"
       sub-header="Ride Your Dream"
       class="text-white gradient-bg"
@@ -93,11 +94,11 @@
 </template>
 
 <script>
-// import NavBar from './NavBar.vue';
+import NavBar from "./NavBar.vue";
 
 export default {
   components: {
-    // NavBar,
+    NavBar,
   },
   data() {
     return {
