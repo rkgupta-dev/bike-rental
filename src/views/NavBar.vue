@@ -13,6 +13,7 @@
             <b-dropdown-item to="/scooter">Scooters</b-dropdown-item>
             <b-dropdown-item to="/cruiser">Cruisers</b-dropdown-item>
           </b-nav-item-dropdown>
+          <b-nav-item to="/daily-rent">Daily Rent</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto custom-navbar">

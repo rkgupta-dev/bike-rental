@@ -28,6 +28,8 @@ import MyBookings from "./views/MyBookings.vue";
 import ForgotPassword from "./auth/ForgotPassword.vue";
 import PaymentSuccess from "./views/PaymentSuccess.vue";
 import PaymentCancel from "./views/PaymentCancel.vue";
+import FirstPage from "./dailyRent/FirstPage.vue";
+import ModalPage from "./dailyRent/ModalPage.vue";
 
 Vue.use(Router);
 
@@ -168,6 +170,16 @@ export default new Router({
       path: "/my-bookings",
       name: "my-bookings",
       component: MyBookings,
+    },
+    {
+      path: "/daily-rent",
+      name: "daily-rent",
+      component: FirstPage,
+    },
+    {
+      path: "/model-page",
+      name: "model-page",
+      component: ModalPage,
     },
     {
       path: "*",
