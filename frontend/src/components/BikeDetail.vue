@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container style="margin-top: 4rem;">
+    <b-container style="margin-top: 4rem">
       <b-row>
         <b-col cols="12" lg="6">
           <h2>{{ bike.name }}</h2>
@@ -273,6 +273,13 @@ export default {
       alert("Enquiry button clicked!");
     },
     goToCheckout() {
+      // Check if the user is logged in
+      if (!this.isLoggedIn()) {
+        // Redirect to login page if not logged in
+        this.$router.push({ name: "login" });
+        return;
+      }
+      // Redirect to the verification page if logged in
       this.$router.push({
         name: "verification",
         query: {
@@ -283,6 +290,11 @@ export default {
         },
       });
     },
+    isLoggedIn() {
+      // Example check: Replace this with your actual authentication logic
+      return !!localStorage.getItem("loggedInUser"); // Assuming a token is stored on login
+    },
+
     share(option) {
       option.method(); // Call the respective share method
       this.isModalVisible = false; // Close the modal after sharing
