@@ -291,8 +291,7 @@ export default {
       });
     },
     isLoggedIn() {
-      // Example check: Replace this with your actual authentication logic
-      return !!localStorage.getItem("loggedInUser"); // Assuming a token is stored on login
+      return !!localStorage.getItem("loggedInUser");
     },
 
     share(option) {
