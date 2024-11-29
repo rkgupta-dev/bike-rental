@@ -291,7 +291,7 @@ export default {
       });
     },
     isLoggedIn() {
-      return !!localStorage.getItem("loggedInUser");
+      return !!localStorage.getItem("user");
     },
 
     share(option) {

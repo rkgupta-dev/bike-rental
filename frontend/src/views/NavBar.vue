@@ -123,7 +123,7 @@ export default {
   },
   mounted() {
     // Get the logged-in user from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
     // If a user is logged in, set the user data
     if (loggedInUser) {

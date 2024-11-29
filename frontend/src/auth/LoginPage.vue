@@ -48,7 +48,7 @@ export default {
       // Check if the user exists and if the entered credentials match
       if (user && user.phone === this.phone && user.password === this.password) {
         // Optionally, store the logged-in user's info in localStorage or a global state
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
 
         alert(`Hii ${user.name}! You are LoggedIn.`)
         // Redirect to the dashboard or a protected route
