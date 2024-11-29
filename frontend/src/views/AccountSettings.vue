@@ -34,7 +34,7 @@
               </b-tab>
 
               <!-- Personal Information Tab -->
-              <b-tab title="Personal Information" active>
+              <b-tab title="Update Info" active>
                 <b-card-text>
                   <b-form @submit.prevent="updatePersonalInfo">
                     <b-form-group label="Full Name" label-for="full-name">
