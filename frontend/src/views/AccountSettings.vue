@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container class="mt-4">
+    <b-container style="margin-top: 3rem">
       <b-row>
         <b-col lg="8" class="mx-auto">
           <h2 class="my-4">Account Settings</h2>
@@ -24,7 +24,7 @@
                     label="Choose a new profile picture"
                     class="mb-3"
                   ></b-form-file>
-                  <div>
+                  <div class="text-left">
                     <h4>{{ personalInfo.name }}</h4>
                     <p><strong>Email:</strong> {{ personalInfo.email }}</p>
                     <p><strong>Phone:</strong> {{ personalInfo.phone }}</p>
