@@ -3,7 +3,7 @@ const stripe = require("stripe")("sk_test_51QKasuB0AVnVwjea6J8NWGChD8Z2Hm9DgJsXW
 const cors = require('cors'); // For Cross-Origin Request Handling
 
 const app = express();
-const port = 8080;
+const port = 3000;
 
 // Middleware to parse JSON requests
 app.use(cors());
@@ -39,8 +39,8 @@ app.post("/create-checkout-session", async (req, res) => {
         },
       ],
       mode: "payment", // Payment mode (one-time payment)
-      success_url: `http://localhost:8081/payment-success?session_id={CHECKOUT_SESSION_ID}`, // Success URL after payment
-      cancel_url: `http://localhost:8081/payment-cancelled`, // Cancel URL if user cancels payment
+      success_url: `http://localhost:8080/payment-success?session_id={CHECKOUT_SESSION_ID}`, // Success URL after payment
+      cancel_url: `http://localhost:8080/payment-cancelled`, // Cancel URL if user cancels payment
     });
 
     // Send back the session ID to the frontend

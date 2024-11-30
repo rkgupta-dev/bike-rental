@@ -301,7 +301,7 @@ export default {
         console.log(paymentDetails);
         // Call the backend to create the Stripe session
         const response = await fetch(
-          "http://localhost:8080/create-checkout-session",
+          "http://localhost:3000/create-checkout-session",
           {
             method: "POST",
             headers: {
