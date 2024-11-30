@@ -1,6 +1,10 @@
 <template>
   <b-container class="d-flex justify-content-center align-items-center vh-100">
-    <b-card class="p-4" title="Welcome to BikeOntrack" style="max-width: 380px; width: 100%">
+    <b-card
+      class="p-4"
+      title="Welcome to BikeOntrack"
+      style="max-width: 380px; width: 100%"
+    >
       <b-form @submit.prevent="handleLogin">
         <b-form-group label="Phone Number" label-for="phone-input" class="my-4">
           <b-form-input
@@ -40,17 +44,29 @@ export default {
       password: "",
     };
   },
+  // created() {
+  //   // Check if the user is already logged in
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     // If the user is logged in, redirect to the home page
+  //     this.$router.push("/");
+  //   }
+  // },
   methods: {
     handleLogin() {
       // Retrieve the user data from localStorage
       const user = JSON.parse(localStorage.getItem("user"));
 
       // Check if the user exists and if the entered credentials match
-      if (user && user.phone === this.phone && user.password === this.password) {
+      if (
+        user &&
+        user.phone === this.phone &&
+        user.password === this.password
+      ) {
         // Optionally, store the logged-in user's info in localStorage or a global state
         localStorage.setItem("user", JSON.stringify(user));
 
-        alert(`Hii ${user.name}! You are LoggedIn.`)
+        alert(`Hii ${user.name}! You are LoggedIn.`);
         // Redirect to the dashboard or a protected route
         this.$router.push("/");
       } else {

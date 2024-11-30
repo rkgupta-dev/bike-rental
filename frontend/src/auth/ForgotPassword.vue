@@ -22,6 +22,9 @@
       <div class="text-center mt-3">
         <b-link href="/login">Remembered your password? Login</b-link>
       </div>
+      <!-- <div>
+        {{userData.password}}
+      </div> -->
     </b-card>
   </b-container>
 </template>

@@ -57,6 +57,14 @@ export default {
       password: '',
     };
   },
+  // created() {
+  //   // Check if the user is already sign up
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     // If the user is sing up, redirect to the home page
+  //     this.$router.push("/");
+  //   }
+  // },
   methods: {
     handleSignup() {
       // Validate if fields are filled
