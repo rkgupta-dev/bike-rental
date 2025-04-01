@@ -58,15 +58,38 @@
         </b-col>
       </b-row>
       <h2 class="text-center mb-4">Rent by Categories</h2>
-      <b-row>
-        <b-col md="3" v-for="category in categories" :key="category.title">
-          <b-card class="text-center my-2">
-            <b-img :src="category.image" alt="Image" class="my-2" fluid />
-            <b-card-title>{{ category.title }}</b-card-title>
-            <b-card-text>
-              {{ category.description }}
-            </b-card-text>
-            <b-button variant="primary" :to="category.link">View All</b-button>
+      <b-row class="justify-content-center">
+        <b-col
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+          v-for="category in categories"
+          :key="category.title"
+        >
+          <b-card
+            class="text-center shadow-sm border-1 rounded-lg my-4"
+            :to="category.link"
+            tag="router-link"
+            no-body
+          >
+            <b-img
+              :src="category.image"
+              alt="Image"
+              class="img-fluid rounded-top"
+            />
+            <b-card-body class="text-decoration-none">
+              <b-card-title
+                class="font-weight-bold d-inline-block w-100 text-dark hover-underline"
+              >
+                {{ category.title }}
+              </b-card-title>
+              <b-card-text
+                class="text-muted d-inline-block w-100 hover-underline"
+              >
+                {{ category.description }}
+              </b-card-text>
+            </b-card-body>
           </b-card>
         </b-col>
       </b-row>

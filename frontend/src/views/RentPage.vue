@@ -21,27 +21,38 @@
     <!-- Categories Section -->
     <div id="categories" class="container my-5">
       <h2 class="text-center mb-4">Our Categories</h2>
-      <b-row>
+      <b-row class="justify-content-center">
         <b-col
-          md="3"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
           v-for="category in categories"
           :key="category.title"
-          class="mb-4"
         >
           <b-card
-            :title="category.title"
-            :img-src="category.image"
-            img-alt="Category Image"
-            img-top
-            class="text-center"
-            style="height: 100%"
+            class="text-center shadow-sm border-1 rounded-lg my-4"
+            :to="category.link"
+            tag="router-link"
+            no-body
           >
-            <b-card-text>
-              {{ category.description }}
-            </b-card-text>
-            <b-button variant="primary" :href="category.link"
-              >View {{ category.title }}</b-button
-            >
+            <b-img
+              :src="category.image"
+              alt="Image"
+              class="img-fluid rounded-top"
+            />
+            <b-card-body class="text-decoration-none">
+              <b-card-title
+                class="font-weight-bold d-inline-block w-100 text-dark hover-underline"
+              >
+                {{ category.title }}
+              </b-card-title>
+              <b-card-text
+                class="text-muted d-inline-block w-100 hover-underline"
+              >
+                {{ category.description }}
+              </b-card-text>
+            </b-card-body>
           </b-card>
         </b-col>
       </b-row>
