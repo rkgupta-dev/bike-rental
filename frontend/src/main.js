@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import "@/assets/global.css";
 
 // Import Bootstrap and BootstrapVue CSS files
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
@@ -18,5 +18,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   router, // Add the router here
-  render: h => h(App),
-}).$mount('#app');
+  render: (h) => h(App),
+}).$mount("#app");
