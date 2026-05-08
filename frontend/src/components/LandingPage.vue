@@ -24,7 +24,7 @@
             </p>
 
             <div class="hero-actions mb-5">
-              <a href="/rent" class="btn-primary-app">
+              <a href="/all-model" class="btn-primary-app">
                 Rent Now
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
