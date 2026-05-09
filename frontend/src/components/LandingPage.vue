@@ -86,7 +86,7 @@
                     stroke-linecap="round"
                   />
                 </svg>
-                Free Doorstep Delivery
+                Doorstep Delivery
               </div>
             </div>
           </b-col>
