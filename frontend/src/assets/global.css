@@ -891,6 +891,8 @@ a.btn-dark-ghost {
 
 /* ─── Floating Cards (decorative) ───────────────────────── */
 .floating-card-app {
+  position: absolute;
+  z-index: 10;
   background: var(--color-white);
   border: 1px solid var(--color-gray-100);
   border-radius: var(--radius-lg);

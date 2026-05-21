@@ -30,6 +30,10 @@ import PaymentSuccess from "./views/PaymentSuccess.vue";
 import PaymentCancel from "./views/PaymentCancel.vue";
 import FirstPage from "./dailyRent/FirstPage.vue";
 import ModalPage from "./dailyRent/ModalPage.vue";
+import VerifyDocument from "./dailyRent/VerifyDocument.vue";
+import CheckoutPage from "./dailyRent/CheckoutPage.vue";
+import PaymentVerify from "./dailyRent/PaymentVerify.vue";
+import MyProfile from "./views/profile/MyProfile.vue";
 
 Vue.use(Router);
 
@@ -117,6 +121,12 @@ export default new Router({
       component: BlogPage,
     },
     {
+      path: "/blogs/:id",
+      name: "BlogDetails",
+      component: () => import("@/views/BlogDetails.vue"),
+      props: true,
+    },
+    {
       path: "/bike/:id/:name", // Use a dynamic route for bike details
       name: "BikeDetail",
       component: BikeDetail,
@@ -180,6 +190,28 @@ export default new Router({
       path: "/model-page",
       name: "model-page",
       component: ModalPage,
+    },
+    {
+      path: "/verify-document",
+      name: "verify-document",
+      component: VerifyDocument,
+    },
+    {
+      path: "/checkout-page",
+      name: "checkout-page",
+      component: CheckoutPage,
+    },
+    {
+      path: "/payment-verify",
+      name: "payment-verify",
+      component: PaymentVerify,
+    },
+
+    // Profile
+    {
+      path: "/my-profile",
+      name: "my-profile",
+      component: MyProfile,
     },
     {
       path: "*",

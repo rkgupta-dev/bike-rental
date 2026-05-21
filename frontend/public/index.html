@@ -1,21 +1,124 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
+    <!-- Basic -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="<%= BASE_URL %>logo-03.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>BikeOntrack - Online Bike Rental & Booking Platform</title>
+
+    <meta
+      name="description"
+      content="BikeOntrack is a modern online bike rental platform where users can rent bikes easily with secure booking, flexible pickup and drop, affordable pricing, and smooth online payments."
+    />
+
+    <meta
+      name="keywords"
+      content="BikeOntrack, bike rental, online bike booking, rent bikes, motorcycle rental, scooter rental, bike hire, rental bikes India, affordable bike rental"
+    />
+
+    <meta name="author" content="BikeOntrack" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#4f46e5" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bike-ontrack.web.app/" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="<%= BASE_URL %>logo-01.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:title"
+      content="BikeOntrack - Online Bike Rental Platform"
+    />
+
+    <meta
+      property="og:description"
+      content="Book bikes online with BikeOntrack. Easy rentals, affordable prices, secure payments, and smooth booking experience."
+    />
+
+    <meta
+      property="og:image"
+      content="https://bike-ontrack.web.app/logo-01.png"
+    />
+
+    <meta property="og:url" content="https://bike-ontrack.web.app/" />
+
+    <meta property="og:site_name" content="BikeOntrack" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta
+      name="twitter:title"
+      content="BikeOntrack - Online Bike Rental Platform"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Rent bikes online easily with BikeOntrack. Fast booking, affordable prices, and secure payments."
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://bike-ontrack.web.app/logo-01.png"
+    />
+
+    <!-- Google Search Console Verification -->
+    <meta
+      name="google-site-verification"
+      content="bWIPlMMVSNLVcaKK_1LMxYG4KfUfh8_DzzySjyAo5MI"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YLZKYTZ67Z"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-YLZKYTZ67Z");
+    </script>
+
+    <!-- Razorpay -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <title>BikeOntrack</title>
+
+    <!-- Structured Data SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BikeOntrack",
+        "url": "https://bike-ontrack.web.app",
+        "logo": "https://bike-ontrack.web.app/logo-01.png",
+        "sameAs": [
+          "https://facebook.com/BikeOntrack",
+          "https://instagram.com/BikeOntrack"
+        ]
+      }
+    </script>
   </head>
+
   <body>
     <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
+      <strong>
+        We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to continue.
+      </strong>
     </noscript>
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

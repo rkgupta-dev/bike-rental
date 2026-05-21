@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bike-ontrack.web.app/sitemap.xml
