@@ -41,8 +41,8 @@
               </router-link>
             </div>
 
-            <!-- Stats row -->
-            <div class="stat-row">
+            <!-- Stats row only in desktop -->
+            <div class="stat-row d-none d-md-flex">
               <div class="stat-row-item">
                 <span class="stat-row-number">5L+</span>
                 <span class="stat-row-label">Happy Riders</span>
@@ -63,21 +63,21 @@
           <!-- Right: Illustration -->
           <b-col lg="6" class="hero-image-col">
             <div class="hero-img-wrap">
-              <div class="floating-card-app fc-top">
+              <!-- <div class="floating-card-app fc-top">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b">
                   <path
                     d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
                   />
                 </svg>
                 4.9 Rating
-              </div>
+              </div> -->
               <b-img
                 fluid
-                src="https://img.freepik.com/free-vector/rockers-concept-illustration_114360-12698.jpg"
+                src="https://on-track-jarvis.s3.ap-south-1.amazonaws.com/works-1778685495987.png"
                 alt="Bike Rental Illustration"
                 class="hero-img"
               />
-              <div class="floating-card-app fc-bottom">
+              <!-- <div class="floating-card-app fc-bottom">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
@@ -87,7 +87,7 @@
                   />
                 </svg>
                 Doorstep Delivery
-              </div>
+              </div> -->
             </div>
           </b-col>
         </b-row>
@@ -172,7 +172,7 @@
       <b-container>
         <div class="trust-inner">
           <img
-            src="https://cdn-icons-gif.flaticon.com/17904/17904906.gif"
+            src="https://cdn-icons-png.flaticon.com/128/17146/17146950.png"
             alt="Trusted"
             class="trust-icon"
           />
@@ -223,7 +223,7 @@
             <div class="app-mockup animate-float">
               <b-img
                 fluid
-                src="https://img.freepik.com/free-vector/people-using-their-mobile-phones-news_52683-39976.jpg"
+                src="https://on-track-jarvis.s3.ap-south-1.amazonaws.com/Untitled_design__1_-removebg-preview-1778738748037.png"
                 alt="BikeOntrack App"
                 class="app-mockup-img"
               />
@@ -470,11 +470,12 @@ export default {
 }
 .hero-img-wrap {
   position: relative;
-  max-width: 500px;
+  max-width: 700px;
   margin: 0 auto;
 }
 .hero-img {
   filter: drop-shadow(0 20px 40px rgba(79, 70, 229, 0.15));
+  border-radius: var(--radius-2xl);
 }
 .fc-top {
   position: absolute;
@@ -549,6 +550,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-xl);
 }
 .cat-img {
   height: 135px;
@@ -570,6 +572,7 @@ export default {
   transition: opacity 0.3s ease;
   font-weight: 700;
   font-size: 0.95rem;
+  border-radius: var(--radius-xl);
 }
 .cat-card:hover .cat-overlay {
   opacity: 1;
@@ -602,7 +605,7 @@ export default {
   gap: 14px;
 }
 .trust-icon {
-  width: 44px;
+  width: 40px;
   height: 40px;
   flex-shrink: 0;
 }
@@ -642,6 +645,7 @@ export default {
   margin: 0 auto;
 }
 .app-mockup-img {
+  max-height: 400px;
   border-radius: 24px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
 }
