@@ -1,85 +1,67 @@
 <template>
-  <div>
-    <!-- Chat with us button -->
-    <b-button
-      variant="warning"
-      @click="toggleSidebar"
-      class="chat-btn"
-      aria-label="Chat with us"
-    >
-      <i class="fa fa-comments chat-icon"></i> Chat
-    </b-button>
+  <div class="chat-widget">
+    <!-- Floating Button -->
+    <button class="chat-toggle-btn" @click="toggleChat">
+      <i class="fa-solid fa-comments"></i>
+    </button>
 
-    <!-- Sidebar -->
-    <b-sidebar
-      :width="sidebarWidth"
-      v-model="isSidebarVisible"
-      title="BikeOntrack!"
-      id="chatbot-sidebar"
-      bg-variant="warning"
-      shadow
-    >
-      <!-- Chatbot dialog inside sidebar -->
-      <div class="chatbot-dialog">
-        <b-card no-body class="h-100 d-flex flex-column">
-          <b-card-body class="flex-grow-1 overflow-auto" ref="messageContainer">
-            <b-list-group flush>
-              <b-list-group-item
-                v-for="message in messages"
-                :key="message.id"
-                :class="{ 'text-right': message.sender === 'user' }"
-                class="border-0 py-1"
-              >
-                <div
-                  :class="{
-                    'd-flex flex-row-reverse': message.sender === 'user',
-                  }"
-                >
-                  <b-avatar
-                    :src="
-                      message.sender === 'user'
-                        ? '/user-placeholder.svg'
-                        : 'https://cdn-icons-png.flaticon.com/128/10817/10817417.png'
-                    "
-                    :text="message.sender === 'user' ? 'You' : ''"
-                    size="sm"
-                    :variant="message.sender === 'user' ? 'info' : 'warning'"
-                    class="mr-2"
-                  ></b-avatar>
-                  <div
-                    :class="{
-                      'bg-light text-dark': message.sender === 'user',
-                      'bg-light': message.sender === 'ai',
-                    }"
-                    class="message-bubble p-2 rounded"
-                  >
-                    <p class="mb-0">{{ message.text }}</p>
-                    <small class="text-muted">{{
-                      formatTime(message.timestamp)
-                    }}</small>
-                  </div>
-                </div>
-              </b-list-group-item>
-            </b-list-group>
-          </b-card-body>
+    <!-- Chat Box -->
+    <transition name="chat-fade">
+      <div v-if="showChat" class="chat-box">
+        <!-- Header -->
+        <div class="chat-header">
+          <div class="chat-user">
+            <div class="chat-avatar">
+              <i class="fa-solid fa-comment-dots"></i>
+            </div>
 
-          <b-card-footer>
-            <b-form @submit.prevent="sendMessage" class="d-flex">
+            <div>
+              <h6>BikeOntrack Support</h6>
+              <span>Online now</span>
+            </div>
+          </div>
+
+          <button class="close-btn" @click="showChat = false">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-body" ref="messageContainer">
+          <div
+            v-for="message in messages"
+            :key="message.id"
+            class="message-row"
+            :class="message.sender"
+          >
+            <div class="message-bubble">
+              {{ message.text }}
+
+              <small>
+                {{ formatTime(message.timestamp) }}
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="chat-footer">
+          <b-form @submit.prevent="sendMessage">
+            <div class="chat-input-wrap">
               <b-form-input
                 v-model="input"
-                placeholder="Type your message..."
-                aria-label="Type your message"
-                class="mr-2"
+                placeholder="Type a message..."
+                class="chat-input"
               ></b-form-input>
-              <b-button type="submit" variant="warning">
-                <b-icon icon="cursor" aria-hidden="true"></b-icon>
-                <span class="sr-only">Send message</span>
-              </b-button>
-            </b-form>
-          </b-card-footer>
-        </b-card>
+
+              <button type="submit" class="send-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </b-form>
+        </div>
       </div>
-    </b-sidebar>
+    </transition>
   </div>
 </template>
 
@@ -88,55 +70,60 @@ export default {
   name: "ChatBot",
   data() {
     return {
-      sidebarWidth: "450px",
-      isSidebarVisible: false,
+      showChat: false,
+      input: "",
       messages: [
         {
           id: 1,
-          text: "Welcome to BikeOntrack, how can we assist you today?",
+          text: "Welcome to BikeOntrack 👋 How can we help you today?",
           sender: "ai",
           timestamp: new Date(),
         },
       ],
-      input: "",
     };
   },
+
   methods: {
-    toggleSidebar() {
-      this.isSidebarVisible = !this.isSidebarVisible;
+    toggleChat() {
+      this.showChat = !this.showChat;
     },
+
     sendMessage() {
-      if (this.input.trim()) {
-        const userMessage = {
+      if (!this.input.trim()) return;
+
+      const userMessage = {
+        id: this.messages.length + 1,
+        text: this.input,
+        sender: "user",
+        timestamp: new Date(),
+      };
+
+      this.messages.push(userMessage);
+
+      const userText = this.input.toLowerCase();
+
+      this.input = "";
+
+      setTimeout(() => {
+        this.messages.push({
           id: this.messages.length + 1,
-          text: this.input.trim(),
-          sender: "user",
+          text: this.generateBotResponse(userText),
+          sender: "ai",
           timestamp: new Date(),
-        };
-        this.messages.push(userMessage);
-        this.input = "";
+        });
 
-        // Generate AI response based on user input
-        const aiResponse = this.generateBotResponse(userMessage.text);
-
-        // Add AI response
-        setTimeout(() => {
-          const aiMessage = {
-            id: this.messages.length + 1,
-            text: aiResponse,
-            sender: "ai",
-            timestamp: new Date(),
-          };
-          this.messages.push(aiMessage);
-          this.scrollToBottom();
-        }, 1000);
-      }
+        this.scrollToBottom();
+      }, 700);
     },
+
     generateBotResponse(message) {
-      const userMessage = message.toLowerCase();
+      const text = message.toLowerCase();
+
+      // 1. Greetings & Options
       if (
-        userMessage.toLowerCase().includes("hii") ||
-        userMessage.toLowerCase().includes("hi")
+        text.includes("hi") ||
+        text.includes("hii") ||
+        text.includes("hello")
       ) {
         return `Hello! How can I assist you with your bike rental today? 
     Here are some options for you:
@@ -145,183 +132,368 @@ export default {
     3. Document Approval
     4. Payment Information
     5. Contact Support`;
-      } else if (userMessage.includes("rent")) {
-        return "Are you interested in renting a bike? I can help you with the process.";
-      } else if (userMessage.includes("yes")) {
-        return "Sure! What type of bike would you like to rent? We have Sportsbikes, Scooters, and Cruisers.";
-      } else if (userMessage.includes("sportbike")) {
-        return "Awesome! Good Choice. Now, let me know how long you'd like to rent it for (in days).";
-      } else if (userMessage.includes("30 days")) {
-        return "Okay! We have multiple Sports Bikes, if you want know the price of Sports Bikes then go to Category and select Sports Bike";
-      } else if (userMessage.includes("bike")) {
-        return "Awesome! Good Choice. Now, let me know how long you'd like to rent it for (in days).";
-      } else if (userMessage.includes("price")) {
-        return "Our bike rental prices vary based on the type of bike. Please let me know which bike you are interested in.";
-      } else if (userMessage.includes("how to rent")) {
-        return "To rent a bike, simply choose the bike you want, provide your details, and make a payment. I'll guide you through the steps!";
-      } else if (userMessage.includes("process")) {
-        return "The rental process is simple: 1. Choose a bike. 2. Fill in your details. 3. Confirm your rental duration. 4. Make a payment. I'll assist you at each step.";
-      } else if (userMessage.includes("what is the process")) {
-        return "The process to rent a bike is as follows: 1. Select the bike you like. 2. Provide necessary details like your name and contact info. 3. Confirm rental duration. 4. Make the payment to finalize the booking.";
-      } else if (userMessage.includes("types of bikes")) {
-        return "We offer different types of bikes: Sportbikes, Cruisers, Scooters, and Standard Bikes. Which type are you interested in?";
-      } else if (userMessage.includes("how long can i rent a bike")) {
-        return "You can rent a bike for as short as 1 hour to as long as 30 days. Just let me know your rental duration!";
-      } else if (userMessage.includes("insurance")) {
-        return "Yes, we offer insurance for your rented bike. You can opt for it during the booking process.";
-      } else if (userMessage.includes("is insurance mandatory")) {
-        return "Insurance is optional, but we highly recommend it for your safety and peace of mind.";
-      } else if (userMessage.includes("availability")) {
-        return "Our bikes are available 24/7! Simply check availability for the bike of your choice and book it online.";
-      } else if (userMessage.includes("how to cancel booking")) {
-        return "To cancel a booking, simply log in to your account and visit the 'My Bookings' section to cancel or reschedule.";
-      } else if (userMessage.includes("late fee")) {
-        return "If you're late in returning the bike, a late fee will be charged based on the duration. Please return the bike as soon as possible to avoid extra charges.";
-      } else if (userMessage.includes("what if i damage the bike")) {
-        return "In case of any damages to the bike, you will be responsible for repair costs based on the extent of the damage. Please handle the bike with care.";
-      } else if (userMessage.includes("delivery service")) {
-        return "We offer delivery and pick-up services for an additional fee. Please check the 'Delivery Options' during the booking process.";
-      } else if (userMessage.includes("pickup location")) {
-        return "You can pick up your bike at our designated locations or choose delivery for convenience.";
-      } else if (userMessage.includes("payment methods")) {
-        return "We accept payments through credit/debit cards, net banking, and e-wallets. Choose the payment method that suits you during checkout.";
-      } else if (userMessage.includes("do you provide helmets")) {
-        return "Yes, we provide helmets with the rental. They are included in the bike rental package.";
-      } else if (userMessage.includes("can i extend the rental")) {
-        return "Yes, you can extend the rental period. Please contact our support team or update your booking online.";
-      } else if (userMessage.includes("age requirement")) {
-        return "You must be at least 18 years old to rent a bike. A valid ID will be required to verify your age.";
-      } else if (userMessage.includes("driving license")) {
-        return "A valid driving license is required to rent a bike. Ensure your license is valid for the type of bike you're renting.";
-      } else if (userMessage.includes("what if i lose the bike")) {
-        return "If you lose the bike, please contact our support immediately. You will be responsible for the cost of the bike as per our terms and conditions.";
-      } else if (userMessage.includes("what is the best bike for beginners")) {
-        return "For beginners, we recommend starting with a scooter or standard bike. They are easier to handle and perfect for learning.";
-      } else if (userMessage.includes("can i rent multiple bikes")) {
-        return "Yes, you can rent multiple bikes at once. Simply add them to your cart and proceed with booking.";
-      } else if (userMessage.includes("are there any discounts")) {
-        return "Yes, we offer seasonal discounts and promotional offers. Check out our 'Deals' page for more details!";
-      } else if (userMessage.includes("can i rent a bike for a day")) {
-        return "Yes, you can rent a bike for a day, or choose a longer duration as needed.";
-      } else if (userMessage.includes("how do i track my booking")) {
-        return "You can track your booking status through the 'My Bookings' section on your account dashboard.";
-      } else if (userMessage.includes("what happens if it rains")) {
-        return "If it rains, you can still rent a bike, but we recommend checking the weather and ensuring you're prepared with rain gear or a cover.";
-      } else if (userMessage.includes("can i ride outside the city")) {
-        return "Yes, you can ride outside the city. However, you must return the bike to the agreed-upon location on time.";
-      } else if (userMessage.includes("can i change my bike after booking")) {
-        return "Yes, you can change your bike before the rental period begins. Please contact our support team to make adjustments.";
-      } else if (userMessage.includes("how do i get a receipt")) {
-        return "You will receive a receipt via email after completing your payment and confirming the booking.";
-      } else if (userMessage.includes("what types of bikes do you have")) {
-        return "We have sportbikes, cruisers, scooters, and standard bikes available for rent. Let me know which one interests you!";
-      } else if (
-        userMessage.includes("do you offer discounts for long-term rentals")
-      ) {
-        return "Yes, we offer discounts for long-term rentals. The more days you rent, the more you save!";
-      } else if (
-        userMessage.includes("how much does it cost to rent a scooter")
-      ) {
-        return "Scooter rentals start at $15 per day. Pricing may vary depending on the rental duration and location.";
-      } else if (userMessage.includes("how much does it cost to rent a bike")) {
-        return "Bike rental prices vary by type. For sportbikes, prices start at $50 per day, while cruisers start at $40 per day.";
-      } else if (userMessage.includes("can i ride the bike after dark")) {
-        return "Yes, you can ride after dark. However, we recommend checking your bike's lights and safety equipment before heading out.";
-      } else if (userMessage.includes("can i rent a bike without a card")) {
-        return "Unfortunately, a credit or debit card is required to complete your booking. We accept various payment methods.";
-      } else if (
-        userMessage.includes(
-          "can i rent a bike if i'm visiting from another country"
-        )
-      ) {
-        return "Yes, you can rent a bike if you're visiting from another country. Please make sure to provide a valid international driving permit along with your passport.";
-      } else if (userMessage.includes("do i need a deposit")) {
-        return "A deposit may be required depending on the type of bike you rent. The deposit will be refunded when the bike is returned in good condition.";
-      } else if (userMessage.includes("is there a minimum rental duration")) {
-        return "Yes, the minimum rental duration is 1 hour. You can choose a longer rental duration as needed.";
-      } else if (userMessage.includes("is it safe to ride at night")) {
-        return "Riding at night is safe if proper precautions are taken. Ensure the bike is equipped with functional lights and wear reflective gear.";
-      } else if (userMessage.includes("how do i make a payment")) {
-        return "You can make a payment via credit card, debit card, or through online wallets at the checkout page.";
-      } else if (
-        userMessage.includes("is there an extra charge for delivery")
-      ) {
-        return "Yes, there is an additional charge for delivery, which depends on the location. You will be able to view the delivery charge before finalizing your booking.";
-      } else if (userMessage.includes("can i get a bike for a test ride")) {
-        return "Yes, we offer test rides for certain bikes. Please check with our team to schedule one in advance.";
-      } else if (userMessage.includes("what's the maximum rental period")) {
-        return "The maximum rental period is 30 days. You can extend your rental as needed by contacting our support.";
-      } else if (userMessage.includes("how do i contact support")) {
-        return "You can contact our support team through the 'Contact Us' page on our website or via the customer support number provided in your booking confirmation.";
-      } else if (userMessage.includes("Thank you")) {
-        return "You are most Welcome!";
-      } else {
-        return "I'm sorry, I didn't quite understand that. Could you please clarify?";
       }
+
+      // 2. Rental Process & Steps
+      if (
+        text.includes("how to rent") ||
+        text.includes("what is the process") ||
+        text.includes("process")
+      ) {
+        return "The rental process is simple: 1. Choose a bike from our 'Bikes' section. 2. Fill in your details. 3. Confirm your rental duration. 4. Make a payment. I'll assist you at each step!";
+      }
+
+      if (text.includes("rent")) {
+        return "Are you interested in renting a bike? You can easily browse and rent bikes from our Bikes section.";
+      }
+
+      if (text === "yes") {
+        return "Sure! What type of bike would you like to rent? We have Sportsbikes, Scooters, and Cruisers.";
+      }
+
+      // 3. Categories & Specific Bikes
+      if (
+        text.includes("types of bikes") ||
+        text.includes("what types of bikes")
+      ) {
+        return "We offer different types of bikes: Sportbikes, Cruisers, Scooters, and Standard Bikes. Which type are you interested in?";
+      }
+
+      if (text.includes("30 days")) {
+        return "Okay! We have multiple Sports Bikes available for long-term rental. To see pricing, please go to Category and select Sports Bike.";
+      }
+
+      if (text.includes("sportbike") || text.includes("bike")) {
+        return "Awesome! Good Choice. Now, let me know how long you'd like to rent it for (in days).";
+      }
+
+      if (text.includes("best bike for beginners")) {
+        return "For beginners, we recommend starting with a scooter or standard bike. They are easier to handle and perfect for learning.";
+      }
+
+      // 4. Pricing & Payments
+      if (text.includes("price") || text.includes("cost to rent a bike")) {
+        return "Bike rental prices vary by type. For sportbikes, prices start at $50 per day, while cruisers start at $40 per day. Check our 'Bikes' section for real-time rates.";
+      }
+
+      if (text.includes("cost to rent a scooter")) {
+        return "Scooter rentals start at $15 per day. Pricing may vary depending on the rental duration and location.";
+      }
+
+      if (
+        text.includes("payment methods") ||
+        text.includes("how do i make a payment")
+      ) {
+        return "We accept payments through credit/debit cards, net banking, and e-wallets. Choose the payment method that suits you during checkout.";
+      }
+
+      if (text.includes("deposit")) {
+        return "A deposit may be required depending on the type of bike you rent. The deposit will be refunded when the bike is returned in good condition.";
+      }
+
+      if (text.includes("receipt")) {
+        return "You will receive a receipt via email after completing your payment and confirming the booking.";
+      }
+
+      if (text.includes("discounts for long-term")) {
+        return "Yes, we offer discounts for long-term rentals. The more days you rent, the more you save!";
+      }
+
+      if (text.includes("discounts") || text.includes("offers")) {
+        return "Yes, we offer seasonal discounts and promotional offers. Check out our 'Deals' page for more details!";
+      }
+
+      // 5. Requirements & Policies
+      if (text.includes("age requirement")) {
+        return "You must be at least 18 years old to rent a bike. A valid ID will be required to verify your age.";
+      }
+
+      if (text.includes("driving license")) {
+        return "A valid driving license is required to rent a bike. Ensure your license is valid for the type of bike you're renting.";
+      }
+
+      if (text.includes("international") || text.includes("another country")) {
+        return "Yes, you can rent if you're visiting from another country. Please provide a valid international driving permit along with your passport.";
+      }
+
+      if (text.includes("insurance mandatory")) {
+        return "Insurance is optional, but we highly recommend it for your safety and peace of mind.";
+      }
+
+      if (text.includes("insurance")) {
+        return "Yes, we offer insurance for your rented bike. You can opt for it during the booking process.";
+      }
+
+      // 6. Logistics (Pickup, Delivery, Duration)
+      if (
+        text.includes("delivery service") ||
+        text.includes("extra charge for delivery")
+      ) {
+        return "We offer delivery for an additional fee depending on location. You can view the delivery charge before finalizing your booking.";
+      }
+
+      if (text.includes("pickup location")) {
+        return "You can pick up your bike at our designated locations or choose delivery for convenience.";
+      }
+
+      if (
+        text.includes("how long can i rent") ||
+        text.includes("minimum rental duration")
+      ) {
+        return "The minimum rental duration is 1 hour and the maximum is 30 days. Just let me know your preferred duration!";
+      }
+
+      if (text.includes("maximum rental period")) {
+        return "The maximum rental period is 30 days. You can extend your rental as needed by contacting our support.";
+      }
+
+      if (text.includes("availability")) {
+        return "Our bikes are available 24/7! Simply check availability for the bike of your choice and book it online.";
+      }
+
+      // 7. Support & Issues
+      if (
+        text.includes("support") ||
+        text.includes("how do i contact support")
+      ) {
+        return "You can contact support anytime from the Contact Us page or via the support number in your booking confirmation.";
+      }
+
+      if (text.includes("cancel booking") || text.includes("how to cancel")) {
+        return "To cancel a booking, log in to your account and visit 'My Bookings' to cancel or reschedule.";
+      }
+
+      if (text.includes("extend")) {
+        return "Yes, you can extend the rental period. Please update your booking online or contact our support team.";
+      }
+
+      if (text.includes("track my booking")) {
+        return "You can track your booking status through the 'My Bookings' section on your account dashboard.";
+      }
+
+      if (text.includes("late fee")) {
+        return "Late returns incur a fee based on the duration. Please return the bike on time to avoid extra charges.";
+      }
+
+      if (text.includes("damage")) {
+        return "In case of damages, you will be responsible for repair costs based on the extent of damage. Please handle the bike with care.";
+      }
+
+      if (text.includes("lose the bike") || text.includes("lost")) {
+        return "If you lose the bike, contact support immediately. You will be responsible for the cost as per our terms.";
+      }
+
+      // 8. General Gear & Rules
+      if (text.includes("helmets")) {
+        return "Yes, we provide helmets with the rental. They are included in your bike rental package.";
+      }
+
+      if (text.includes("night") || text.includes("after dark")) {
+        return "Yes, you can ride at night. Ensure lights are functional and wear reflective gear for safety.";
+      }
+
+      if (text.includes("outside the city")) {
+        return "Yes, you can ride outside the city, provided you return the bike to the agreed location on time.";
+      }
+
+      if (text.includes("test ride")) {
+        return "Yes, we offer test rides for certain models. Please contact our team to schedule one.";
+      }
+
+      if (text.includes("thank you") || text.includes("thanks")) {
+        return "You are most welcome! Happy riding! 🏍️";
+      }
+
+      // Default Fallback
+      return "I'm sorry, I didn't quite understand that. Could you please clarify or check our FAQ page?";
     },
+
     formatTime(date) {
       return date.toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
+        hour12: true,
       });
     },
+
     scrollToBottom() {
-      const container = this.$refs.messageContainer;
-      container.scrollTop = container.scrollHeight;
+      this.$nextTick(() => {
+        const container = this.$refs.messageContainer;
+
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      });
     },
-  },
-  updated() {
-    this.scrollToBottom();
   },
 };
 </script>
 
 <style scoped>
-.chat-btn {
+.chat-toggle-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 50%;
-  font-size: 20px;
-  z-index: 100;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  border: none;
+  border-radius: 18px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 999;
 }
 
-.chatbot-sidebar {
-  max-width: 500px;
-  height: 100%;
-  padding: 0;
-}
-
-.chatbot-dialog {
-  height: 100%;
+.chat-box {
+  position: fixed;
+  bottom: 95px;
+  right: 24px;
+  width: 360px;
+  height: 520px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  z-index: 999;
+  border: 1px solid var(--color-gray-100);
 }
 
-.chat-icon {
-  font-size: 24px;
-  transition: transform 0.3s ease;
+.chat-header {
+  padding: 1rem;
+  background: #fff;
+  border-bottom: 1px solid var(--color-gray-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.chat-icon:hover {
-  animation: bounce 0.6s ease;
+.chat-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
+.chat-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-user h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.chat-user span {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-gray-400);
+  font-size: 18px;
+}
+
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.message-row {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: 78%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.message-row.ai .message-bubble {
+  background: #fff;
+  border: 1px solid var(--color-gray-100);
+}
+
+.message-row.user .message-bubble {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.message-bubble small {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.chat-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--color-gray-100);
+  background: #fff;
+}
+
+.chat-input-wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input {
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid var(--color-gray-200);
+}
+
+.send-btn {
+  width: 68px;
+  height: 46px;
+  border: none;
+  border-radius: 14px;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.chat-fade-enter-active,
+.chat-fade-leave-active {
+  transition: all 0.25s ease;
+}
+
+.chat-fade-enter,
+.chat-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@media (max-width: 576px) {
+  .chat-box {
+    width: calc(100% - 24px);
+    right: 12px;
+    bottom: 85px;
+    height: 500px;
   }
-  25% {
-    transform: translateY(-5px);
-  }
-  50% {
-    transform: translateY(0);
-  }
-  75% {
-    transform: translateY(-3px);
-  }
-  100% {
-    transform: translateY(0);
+
+  .chat-toggle-btn {
+    right: 16px;
+    bottom: 16px;
   }
 }
 </style>
