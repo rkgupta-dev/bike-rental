@@ -1,95 +1,117 @@
 <template>
-  <div>
-    <NavBar />
-    <h3 class="text-center header-title" style="margin-top: 4rem;">How It Works</h3>
-    <hr />
-    <b-container>
-      <b-row
-        v-for="(step, index) in steps"
-        :key="index"
-        class="align-items-center"
-      >
-        <b-col
-          cols="12"
-          md="6"
-          class="my-2"
-          :class="{ 'order-md-2': index % 2 !== 0 }"
+  <div class="how-work-page">
+    <!-- STEPS -->
+    <section class="section">
+      <b-container>
+        <div class="listing-top-area">
+          <b-breadcrumb class="custom-breadcrumb">
+            <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
+            <b-breadcrumb-item to="/how-it-works" active
+              >How it works</b-breadcrumb-item
+            >
+          </b-breadcrumb>
+        </div>
+        <div
+          v-for="(step, index) in steps"
+          :key="index"
+          class="process-card"
+          :class="{ reverse: index % 2 !== 0 }"
         >
-          <b-card :header="step.id" class="h-100 shadow-sm card-height">
-            <div class="card-body text-center">
-              <h3 class="card-title mb-3 font-weight-bold">
-                <i :class="step.icon" class="me-2"></i>
-                {{ step.title }}
-              </h3>
-              <p class="card-text">{{ step.description }}</p>
+          <!-- IMAGE -->
+          <div class="process-image">
+            <div class="image-wrap">
+              <img :src="step.image" :alt="step.title" />
             </div>
-          </b-card>
-        </b-col>
-        <b-col
-          cols="12"
-          md="6"
-          :class="{ 'order-md-1': index % 2 !== 0 }"
-          class="text-center"
-        >
-          <b-card class="h-100 border-0 shadow-sm p-0">
-            <b-img
-              :src="step.image"
-              alt="Step illustration"
-              fluid
-              class="rounded"
-            ></b-img>
-          </b-card>
-        </b-col>
-      </b-row>
-    </b-container>
+          </div>
+
+          <!-- CONTENT -->
+          <div class="process-content">
+            <div class="step-number">
+              {{ step.id }}
+            </div>
+
+            <div class="step-icon">
+              <i :class="step.icon"></i>
+            </div>
+
+            <h2>{{ step.title }}</h2>
+
+            <p>
+              {{ step.description }}
+            </p>
+
+            <div class="step-line"></div>
+          </div>
+        </div>
+      </b-container>
+    </section>
+
+    <!-- CTA -->
+    <section class="how-cta">
+      <b-container>
+        <div class="cta-box">
+          <h2 class="text-white">Ready To Start Your Ride?</h2>
+
+          <p>
+            Choose your bike, complete KYC verification and ride anywhere with
+            BikeOnTrack.
+          </p>
+
+          <router-link to="/all-model" class="cta-btn">
+            Explore Bikes
+            <i class="fa-solid fa-arrow-right"></i>
+          </router-link>
+        </div>
+      </b-container>
+    </section>
   </div>
 </template>
 
 <script>
-import NavBar from "./NavBar.vue";
-
 export default {
-  components: {
-    NavBar,
-  },
+  components: {},
+
   data() {
     return {
       steps: [
         {
-          id: "Step-01",
-          title: "Sign Up",
+          id: "01",
+          title: "Create Your Account",
           description:
-            "Sign up and complete your profile to ride with us. Welcome to BikeOntrack!",
+            "Sign up on BikeOnTrack and complete your profile verification to start your bike rental journey smoothly.",
           image:
-            "https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7963.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
-          icon: "fas fa-user-plus", // Font Awesome icon for Sign Up
+            "https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7963.jpg",
+          icon: "fa-solid fa-user-plus",
         },
+
         {
-          id: "Step-02",
-          title: "Rent",
+          id: "02",
+          title: "Choose Your Bike",
           description:
-            "Choose a bike that fits your persona. Make your commute easy, comfortable, and fun!",
+            "Browse premium bikes, compare prices, and select the perfect ride that matches your travel style.",
           image:
-            "https://img.freepik.com/free-vector/vehicle-sale-concept-illustration_114360-2082.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
-          icon: "fas fa-key", // Font Awesome icon for Rent
+            "https://img.freepik.com/free-vector/vehicle-sale-concept-illustration_114360-2082.jpg",
+          icon: "fa-solid fa-motorcycle",
         },
+
         {
-          id: "Step-03",
-          title: "Ride",
+          id: "03",
+          title: "Verify & Ride",
           description:
-            "The bike is yours for a month. Make it an essential part of your everyday travel experience.",
+            "Upload your KYC documents, complete verification, and unlock your bike instantly for the ride.",
           image:
-            "https://img.freepik.com/premium-vector/vector-image-person-motorbike_1310403-495.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
-          icon: "fas fa-motorcycle", // Font Awesome icon for Ride
+            "https://img.freepik.com/premium-vector/vector-image-person-motorbike_1310403-495.jpg",
+          icon: "fa-solid fa-shield",
         },
+
         {
-          id: "Step-04",
-          title: "Repeat",
+          id: "04",
+          title: "Return Or Extend",
           description:
-            "Repeat, Swap or Pause – You have the privilege to opt for whatever works best.",
+            "Extend your rental anytime or return the bike easily at your preferred location without hassle.",
           image:
-            "https://img.freepik.com/free-vector/man-woman-riding-moped-mountains_74855-10868.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
-          icon: "fas fa-redo-alt", // Font Awesome icon for Repeat
+            "https://img.freepik.com/free-vector/man-woman-riding-moped-mountains_74855-10868.jpg",
+          icon: "fa-solid fa-repeat",
         },
       ],
     };
@@ -98,27 +120,229 @@ export default {
 </script>
 
 <style scoped>
-.text-center {
+.how-work-page {
+  background: #f8fafc;
+}
+
+/* PROCESS CARD */
+.process-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.process-card.reverse .process-image {
+  order: 2;
+}
+
+.process-card.reverse .process-content {
+  order: 1;
+}
+
+.image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+
+.image-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* CONTENT */
+.process-content {
+  position: relative;
+}
+
+.step-number {
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(37, 99, 235, 0.08);
+  line-height: 1;
+  margin-bottom: -15px;
+}
+
+.step-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--color-primary), #0ea5e9);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+}
+
+.process-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.process-content p {
+  color: #64748b;
+  line-height: 1.9;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.step-line {
+  width: 80px;
+  height: 5px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, var(--color-primary), #0ea5e9);
+}
+
+/* CTA */
+.how-cta {
+  padding-bottom: 5rem;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, var(--color-primary), #0ea5e9);
+  border-radius: 30px;
+  padding: 4rem 2rem;
   text-align: center;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
 }
 
-.card-height {
-  min-height: 300px; /* Set your desired minimum height */
-  background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(176, 229, 208, 1) 42%,
-    rgba(92, 202, 238, 0.41) 93.6%
-  );
-  background-size: cover; /* Ensure the background covers the card */
+.cta-box h2 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
 
-.card-title {
-  font-weight: bold;
+.cta-box p {
+  max-width: 650px;
+  margin: auto;
+  opacity: 0.9;
+  line-height: 1.8;
 }
 
-.card-header {
-  font-weight: bold;
-  font-size: large;
-  color: blue;
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2rem;
+  background: #fff;
+  color: var(--color-primary);
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+  .process-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .process-card.reverse .process-image,
+  .process-card.reverse .process-content {
+    order: unset;
+  }
+
+  .process-content h2 {
+    font-size: 1.7rem;
+  }
+
+  .image-wrap img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+  .how-hero {
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .process-card {
+    margin-bottom: 4rem;
+  }
+
+  .process-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .step-number {
+    font-size: 4rem;
+  }
+
+  .cta-box {
+    padding: 3rem 1.5rem;
+  }
+
+  .cta-box h2 {
+    font-size: 1.7rem;
+  }
+}
+
+/* breadcrumb */
+.listing-top-area {
+  margin-bottom: 2rem;
+}
+
+.custom-breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.custom-breadcrumb .breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+  color: var(--color-gray-500);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-gray-300);
+}
+
+.card-disabled {
+  opacity: 0.55;
 }
 </style>
