@@ -1,194 +1,583 @@
 <template>
-  <div>
-    <NavBar />
-    <!-- Introduction Section -->
-    <b-container fluid class="intro-section my-5">
-      <b-row class="text-center text-white py-5">
-        <b-col>
-          <h2 class="display-4 font-weight-bold mb-4">
-            Welcome to BikeOntrack
-          </h2>
-          <p class="lead mb-4">
-            Your trusted partner for bike rentals, offering the best rides for
-            your adventures!
-          </p>
-          <b-button variant="primary" href="#mission">Learn More</b-button>
-        </b-col>
-      </b-row>
-    </b-container>
+  <div class="about-page">
+    <!-- HERO -->
+    <!-- SIMPLE ABOUT HEADER -->
+    <section class="section">
+      <b-container>
+        <div class="listing-top-area">
+          <b-breadcrumb class="custom-breadcrumb">
+            <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
+            <b-breadcrumb-item to="/about-us" active
+              >About Us</b-breadcrumb-item
+            >
+          </b-breadcrumb>
+        </div>
+        <div class="about-top-content text-center">
+          <span class="about-label">
+            <i class="fa-solid fa-motorcycle"></i>
+            About BikeOntrack
+          </span>
 
-    <!-- Mission Statement Section -->
-    <b-container id="mission" class="my-5">
-      <b-row class="text-center">
-        <b-col md="6">
-          <b-card class="h-100 border-0 shadow-lg p-0">
-            <b-img
-              src="https://img.freepik.com/free-vector/rockers-concept-illustration_114360-9841.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid"
-              alt="Step illustration"
-              fluid
-              class="rounded"
-            ></b-img>
-          </b-card>
-        </b-col>
-        <b-col md="6" class="mt-5">
-          <h3 class="font-weight-bold mb-3">Our Mission</h3>
-          <p class="lead">
-            At BikeOntrack, we are passionate about providing high-quality bikes
-            for all your riding needs, ensuring comfort, reliability, and
-            adventure. Whether you're looking for an adrenaline rush on a sports
-            bike or a leisurely ride on a cruiser, we have the perfect bike to
-            match your needs. We believe in delivering not just bikes, but
-            experiences—memories that will last long after the ride ends. Our
-            goal is to make every ride an unforgettable adventure, with
-            unmatched quality and service.
-          </p>
-        </b-col>
-      </b-row>
-    </b-container>
+          <h1 class="about-title">
+            Making Bike Rentals
+            <span>Simple, Reliable & Affordable</span>
+          </h1>
 
-    <!-- Our Values Section -->
-    <b-container class="my-5">
-      <b-card class="h-100 border-0 shadow-sm p-0">
-        <b-row>
-          <b-col md="4" class="text-center p-4">
-            <b-icon
-              icon="check-circle"
-              class="display-3 text-primary mb-3"
-            ></b-icon>
-            <h5 class="font-weight-bold mb-2">Customer Focus</h5>
-            <p>
-              We prioritize our customers' needs, ensuring top-notch service and
-              satisfaction.
-            </p>
+          <p class="about-description">
+            BikeOntrack provides premium bike rental services designed for daily
+            commuters, travelers, and adventure riders. We focus on comfort,
+            safety, flexibility, and smooth riding experiences.
+          </p>
+        </div>
+      </b-container>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section bg-light-app">
+      <b-container>
+        <b-row class="align-items-center">
+          <b-col lg="6" class="mb-4 mb-lg-0">
+            <div class="mission-image-card">
+              <b-img
+                src="https://img.magnific.com/free-photo/into-success-group-young-freelancers-office-have-conversation-smiling_146671-13567.jpg?t=st=1778139096~exp=1778142696~hmac=0fdf35d319fa9e5326ac0ee32b4432a4928cedf023c307d194b5c115de56354a&w=2000"
+                fluid
+                class="mission-image"
+              />
+            </div>
           </b-col>
-          <b-col md="4" class="text-center p-4">
-            <b-icon
-              icon="shield-lock"
-              class="display-3 text-primary mb-3"
-            ></b-icon>
-            <h5 class="font-weight-bold mb-2">Safety First</h5>
-            <p>
-              Safety is our top priority, ensuring all bikes are well-maintained
-              and roadworthy.
+
+          <b-col lg="6">
+            <span class="section-tag">Our Mission</span>
+
+            <h2 class="section-title">Delivering Freedom Through Every Ride</h2>
+
+            <p class="section-text">
+              We aim to redefine urban mobility with safe, affordable, and
+              premium-quality bike rental services. Whether it’s your daily
+              commute or your next road adventure, BikeOntrack ensures you ride
+              with confidence and comfort.
             </p>
-          </b-col>
-          <b-col md="4" class="text-center p-4">
-            <b-icon icon="star" class="display-3 text-primary mb-3"></b-icon>
-            <h5 class="font-weight-bold mb-2">Quality Rides</h5>
-            <p>
-              Only the best bikes for the best experiences, from sports bikes to
-              cruisers.
-            </p>
+
+            <div class="mission-points">
+              <div class="mission-item">
+                <i class="fa-solid fa-circle-check"></i>
+                Flexible monthly and daily rentals
+              </div>
+
+              <div class="mission-item">
+                <i class="fa-solid fa-circle-check"></i>
+                Well-maintained premium bike fleet
+              </div>
+
+              <div class="mission-item">
+                <i class="fa-solid fa-circle-check"></i>
+                Fast verification and easy booking process
+              </div>
+
+              <div class="mission-item">
+                <i class="fa-solid fa-circle-check"></i>
+                Dedicated support for every rider
+              </div>
+            </div>
           </b-col>
         </b-row>
-      </b-card>
-    </b-container>
+      </b-container>
+    </section>
 
-    <!-- Our Team Section -->
-    <b-container class="my-5">
-      <b-row class="text-center">
-        <b-col>
-          <h3 class="font-weight-bold mb-4">Meet Our Team</h3>
-          <p class="lead mb-5">
-            Our dedicated team works hard to ensure you have the best bike
-            rental experience.
+    <!-- VALUES -->
+    <section class="section">
+      <b-container>
+        <div class="section-heading text-center">
+          <span class="section-tag">Why Choose Us</span>
+          <h2 class="section-title center">Our Core Values</h2>
+        </div>
+
+        <b-row>
+          <b-col md="4" class="mb-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+
+              <h4>Customer First</h4>
+
+              <p>
+                We focus on delivering the best rental experience with smooth
+                bookings, transparent pricing, and reliable support.
+              </p>
+            </div>
+          </b-col>
+
+          <b-col md="4" class="mb-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fa-solid fa-shield-heart"></i>
+              </div>
+
+              <h4>Safety Always</h4>
+
+              <p>
+                Every bike goes through quality checks and maintenance to ensure
+                safe and stress-free rides.
+              </p>
+            </div>
+          </b-col>
+
+          <b-col md="4" class="mb-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fa-solid fa-road"></i>
+              </div>
+
+              <h4>Ride Better</h4>
+
+              <p>
+                From city rides to long-distance journeys, our bikes are chosen
+                to deliver premium riding comfort.
+              </p>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section bg-light-app">
+      <b-container>
+        <div class="section-heading text-center">
+          <span class="section-tag">Our Team</span>
+          <h2 class="section-title center">
+            Meet The People Behind BikeOntrack
+          </h2>
+        </div>
+
+        <b-row>
+          <b-col md="4" class="mb-4">
+            <div class="team-card">
+              <div class="team-image-wrap">
+                <b-img
+                  src="https://media.licdn.com/dms/image/v2/D5603AQGTA6zhKq8uSA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727696827533?e=1779926400&v=beta&t=mMjZ0HMTJkINdYOtYqNkUdpJ35TXeYFTO8FZ5ayul_Q"
+                  fluid
+                  class="team-image"
+                />
+              </div>
+
+              <h5>Rohit Kr. Gupta</h5>
+              <p>CEO & Founder</p>
+            </div>
+          </b-col>
+
+          <b-col md="4" class="mb-4">
+            <div class="team-card">
+              <div class="team-image-wrap">
+                <b-img
+                  src="https://media.licdn.com/dms/image/v2/D5603AQFdty4EEu8htA/profile-displayphoto-crop_800_800/B56Zk06oUNIAAM-/0/1757529409231?e=1779926400&v=beta&t=FMSGkUHwXocim-pj7KXHPbFIxrN9VrDedkvbi_fVOH4"
+                  fluid
+                  class="team-image"
+                />
+              </div>
+
+              <h5>Divisha Jain</h5>
+              <p>Operations Manager</p>
+            </div>
+          </b-col>
+
+          <b-col md="4" class="mb-4">
+            <div class="team-card">
+              <div class="team-image-wrap">
+                <b-img
+                  src="https://media.licdn.com/dms/image/v2/D5603AQHB-p_N__M7sw/profile-displayphoto-crop_800_800/B56Z2pOelKGoAI-/0/1776660640486?e=1779926400&v=beta&t=patrSfoMZqO2mtPdzi09KW3TWdcV-eWXX5-nVexAyCA"
+                  fluid
+                  class="team-image"
+                />
+              </div>
+
+              <h5>Shilton Rodrigues</h5>
+              <p>Customer Support</p>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <b-container>
+        <div class="contact-cta">
+          <span class="section-tag">Get In Touch</span>
+
+          <h2>Ready To Start Your Journey?</h2>
+
+          <p>
+            Have questions about rentals, subscriptions, or support? Our team is
+            always here to help you.
           </p>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col md="4" class="text-center p-4">
-          <b-img
-            src="https://media.licdn.com/dms/image/v2/D5603AQGTA6zhKq8uSA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1727696827510?e=1736380800&v=beta&t=JW9LlDZwoVCycyXIMiVvoVJEZzabpx0oa6rWm2Wym8o"
-            alt="Team Member 1"
-            rounded-circle
-            class="img-fluid mb-3"
-          ></b-img>
-          <h5>Rohit Kr. Gupta</h5>
-          <p>CEO & Founder</p>
-        </b-col>
-        <b-col md="4" class="text-center p-4">
-          <b-img
-            src="https://media.licdn.com/dms/image/v2/D4E03AQFX_8WluBwkGQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1712950005824?e=1736380800&v=beta&t=y91WtmJ6oaOIPxGgd9MHBPl4gOtFodc08ft5HNgxCMg"
-            alt="Team Member 2"
-            rounded-circle
-            class="img-fluid mb-3"
-          ></b-img>
-          <h5>Divisha Jain</h5>
-          <p>Operations Manager</p>
-        </b-col>
-        <b-col md="4" class="text-center p-4">
-          <b-img
-            src="https://media.licdn.com/dms/image/v2/C5603AQG89Rwlb6MiCQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1658983866670?e=1736380800&v=beta&t=EqEHeJofAhL-nenqVoQtJus6Xz3gFj5SVxE-Vglo5Iw"
-            alt="Team Member 3"
-            rounded-circle
-            class="img-fluid mb-3"
-          ></b-img>
-          <h5>Shilton Rodrigues</h5>
-          <p>Customer Support</p>
-        </b-col>
-      </b-row>
-    </b-container>
 
-    <!-- Contact Information Section -->
-    <b-container class="my-5 text-center">
-      <h3 class="font-weight-bold mb-3">Get In Touch</h3>
-      <p class="lead mb-4">
-        If you have any questions or need more information, feel free to reach
-        out to us!
-      </p>
-      <b-button variant="primary" to="/contact-us">Contact Us</b-button>
-    </b-container>
-    <FooterSectionA />
+          <button
+            class="btn-primary-app btn-lg-app"
+            @click="$router.push('/contact-us')"
+          >
+            Contact Us
+          </button>
+        </div>
+      </b-container>
+    </section>
   </div>
 </template>
 
 <script>
-import FooterSectionA from "../FooterSectionA.vue";
-import NavBar from "../NavBar.vue";
-
 export default {
-  components: {
-    NavBar,
-    FooterSectionA,
-  },
   name: "AboutUs",
 };
 </script>
 
 <style scoped>
-/* Introduction section background image */
-.intro-section {
-  background-image: radial-gradient(
-    circle 382px at 50% 50.2%,
-    rgba(73, 76, 212, 1) 0.1%,
-    rgba(3, 1, 50, 1) 100.2%
-  );
-  background-size: cover;
+.about-page {
+  background: #fff;
 }
 
-/* Typography styling for headings */
-h2,
-h3 {
-  font-family: "Roboto", sans-serif;
+/* HERO */
+
+.about-top {
+  padding-top: 7rem;
+  padding-bottom: 2rem;
 }
 
-/* Button hover effect */
-.b-button:hover {
-  background-color: #0069d9;
-  transform: scale(1.05);
-  transition: 0.3s ease;
+.about-top-content {
+  max-width: 760px;
+  margin: auto;
 }
 
-/* Card hover effect */
-.b-col:hover {
-  transform: scale(1.05);
-  transition: 0.3s ease;
+.about-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(var(--color-primary-rgb), 0.08);
+  color: var(--color-primary);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
-/* Responsiveness for mobile devices */
-@media (max-width: 768px) {
-  .intro-section {
-    padding: 4rem 2rem;
+.about-title {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: 1.5rem;
+}
+
+.about-title span {
+  color: var(--color-primary);
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--color-gray-500);
+  margin: 0 auto;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+  .about-title {
+    font-size: 42px;
   }
+}
+
+@media (max-width: 767px) {
+  .about-top {
+    padding-top: 6.5rem;
+  }
+
+  .about-title {
+    font-size: 32px;
+  }
+
+  .about-description {
+    font-size: 15px;
+  }
+
+  .about-label {
+    font-size: 13px;
+    padding: 9px 16px;
+  }
+}
+
+/* SECTIONS */
+
+.bg-light-app {
+  background: var(--color-gray-50);
+}
+
+.section-heading {
+  margin-bottom: 3rem;
+}
+
+.section-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+}
+
+.section-title.center {
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.section-text {
+  color: var(--color-gray-500);
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+/* MISSION */
+
+.mission-image-card {
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.mission-image {
+  width: 100%;
+  border-radius: 30px;
+}
+
+.mission-points {
+  margin-top: 2rem;
+}
+
+.mission-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.mission-item i {
+  color: var(--color-primary);
+}
+
+/* VALUES */
+
+.value-card {
+  background: #fff;
+  border: 1px solid var(--color-gray-100);
+  border-radius: 28px;
+  padding: 2.2rem;
+  height: 100%;
+  transition: 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+}
+
+.value-icon {
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  background: rgba(var(--color-primary-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.value-icon i {
+  font-size: 28px;
+  /* color: var(--color-primary); */
+}
+
+.value-card h4 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.value-card p {
+  color: var(--color-gray-500);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* TEAM */
+
+.team-card {
+  background: #fff;
+  border-radius: 28px;
+  border: 1px solid var(--color-gray-100);
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+  transition: 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+}
+
+.team-image-wrap {
+  width: 110px;
+  height: 110px;
+  margin: auto auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.team-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-card h5 {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.team-card p {
+  color: var(--color-gray-500);
+  margin: 0;
+}
+
+/* CTA */
+
+.contact-cta {
+  border-radius: 36px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-100);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.contact-cta h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.contact-cta p {
+  max-width: 700px;
+  margin: auto auto 2rem;
+  color: var(--color-gray-500);
+  line-height: 1.9;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+  .hero-title {
+    font-size: 44px;
+  }
+
+  .section-title,
+  .contact-cta h2 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-hero {
+    padding-top: 7rem;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .section-title,
+  .contact-cta h2 {
+    font-size: 28px;
+  }
+
+  .hero-text,
+  .section-text,
+  .contact-cta p {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions button {
+    width: 100%;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+  }
+
+  .stat-box {
+    width: 100%;
+  }
+
+  .contact-cta {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* breadcrumb */
+.listing-top-area {
+  margin-bottom: 2rem;
+}
+
+.custom-breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.custom-breadcrumb .breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+  color: var(--color-gray-500);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-gray-300);
+}
+
+.card-disabled {
+  opacity: 0.55;
+}
+
+.brand-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 </style>
