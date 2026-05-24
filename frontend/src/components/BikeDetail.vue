@@ -1,243 +1,311 @@
 <template>
-  <div>
-    <NavBar />
-    <b-container style="margin-top: 4rem">
-      <b-row>
-        <b-col cols="12" lg="6">
-          <h2>{{ bike.name }}</h2>
-          <div class="d-flex flex-column align-items-start">
-            <b-button variant="light" size="sm" @click="isModalVisible = true">
-              <b-icon icon="share-fill" size="25" variant="primary"></b-icon>
-            </b-button>
+  <div class="bike-detail-page">
+    <!-- Hero Section -->
+    <div class="section">
+      <b-container>
+        <!-- Breadcrumb -->
+        <div class="listing-top-area">
+          <b-breadcrumb class="custom-breadcrumb">
+            <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
+            <b-breadcrumb-item>{{ bike.type }}</b-breadcrumb-item>
+            <b-breadcrumb-item active>{{ bike.name }}</b-breadcrumb-item>
+          </b-breadcrumb>
+        </div>
 
-            <b-modal
-              v-model="isModalVisible"
-              title="Share this link"
-              hide-footer
+        <div class="hero-grid">
+          <!-- Left: Image & Share -->
+          <div class="hero-image-col">
+            <div
+              class="image-panel"
+              :class="{ disabledBike: bike.status === 3 }"
             >
-              <p>Where do you want to share this link?</p>
-              <b-list-group>
-                <b-list-group-item
-                  v-for="(option, index) in shareOptions"
-                  :key="index"
-                  @click="share(option)"
-                >
-                  <b-icon :icon="option.icon" class="mr-2" /> {{ option.label }}
-                </b-list-group-item>
-              </b-list-group>
-              <template #modal-footer>
-                <b-button variant="secondary" @click="isModalVisible = false"
-                  >Close</b-button
-                >
-              </template>
-            </b-modal>
-            <b-button
-              variant="light"
-              size="sm"
-              class="p-2 my-2"
-              @click="chatOnWhatsApp(bike)"
-            >
-              <b-icon icon="whatsapp" size="25" variant="success"></b-icon>
-            </b-button>
-          </div>
-          <!--if you want to set fixed image size -- style="width: 500px; height: 300px;"  -->
-          <b-img class="my-4" :src="bike.image" :alt="bike.name" fluid></b-img>
-          <br />
-          <small class="extra-small">
-            Images are for representation purposes only. Actual products
-            delivered may differ from the images displayed on the website.
-          </small>
-        </b-col>
-        <b-col cols="12" lg="6" class="my-2">
-          <b-badge
-            variant="danger"
-            v-if="bike.highDemand"
-            class="mr-1 font-weight-bold h5 p-2"
-          >
-            High Demand
-          </b-badge>
-          <b-badge
-            variant="primary"
-            v-if="bike.highMileage"
-            class="mr-1 font-weight-bold h5 p-2"
-          >
-            High Mileage
-          </b-badge>
-          <b-badge
-            variant="success"
-            v-if="bike.bestSeller"
-            class="mr-1 font-weight-bold h5 p-2"
-          >
-            Bestseller
-          </b-badge>
-          <h6 class="text-muted">Monthly Rental</h6>
-          <div class="d-flex">
-            <h6 class="text-muted" style="text-decoration: line-through">
-              ₹ {{ bike.originalPrice }}
-            </h6>
-            <h6 class="text-success ml-2">
-              {{ calculateDiscount(bike) }}% off (limited offer)
-            </h6>
-          </div>
-          <h4 class="font-weight-bold">
-            Price: ₹ {{ bike.price }} /month <br />
-            <p></p>
-          </h4>
+              <div class="top-actions">
+                <button class="circle-btn" @click="isModalVisible = true">
+                  <b-icon icon="share-fill"></b-icon>
+                </button>
 
-          <div class="d-flex align-items-center">
-            <b-icon
-              v-for="i in 5"
-              :key="i"
-              icon="star-fill"
-              :variant="i <= Math.floor(bike.rating) ? 'warning' : 'secondary'"
-              class="mr-1"
-            ></b-icon>
-            <span class="text-muted ml-2"
-              >{{ bike.rating }} ({{ bike.ratingCount }})</span
-            >
-          </div>
-          <div>
-            <div v-if="bike.status === 1" class="text-success my-2">
-              Summer Days Sale
+                <button
+                  class="circle-btn whatsapp"
+                  @click="chatOnWhatsApp(bike)"
+                >
+                  <b-icon icon="whatsapp"></b-icon>
+                </button>
+              </div>
+
+              <div class="image-wrap">
+                <b-img
+                  :src="bike.image"
+                  :alt="bike.name"
+                  fluid
+                  class="bike-main-image"
+                ></b-img>
+              </div>
+
+              <small class="img-note">
+                Images are for representation purposes only. Actual delivered
+                product may differ.
+              </small>
             </div>
-            <div v-else-if="bike.status === 2" class="text-warning my-2">
-              Only One Left
+          </div>
+
+          <!-- Right: Details -->
+          <div class="hero-details-col">
+            <!-- Bike Name & Rating -->
+            <div class="bike-header">
+              <h1 class="bike-title font-display">{{ bike.name }}</h1>
+
+              <div class="rating-row">
+                <div class="stars">
+                  <i
+                    v-for="i in 5"
+                    :key="i"
+                    class="fa-star"
+                    :class="
+                      i <= Math.floor(bike.rating)
+                        ? 'fa-solid text-accent'
+                        : 'fa-regular text-subtle'
+                    "
+                  ></i>
+                </div>
+                <span class="rating-value font-semibold">{{
+                  bike.rating
+                }}</span>
+                <span class="rating-count text-muted"
+                  >({{ bike.ratingCount }} reviews)</span
+                >
+              </div>
             </div>
-            <div v-else-if="bike.status === 3" class="text-danger my-2">
-              Out of Stock
+
+            <div class="divider"></div>
+
+            <!-- Pricing -->
+            <div class="pricing-block">
+              <div
+                class="price-label text-muted text-sm font-semibold text-uppercase tracking-wider"
+              >
+                Monthly Rental
+              </div>
+              <div class="price-row">
+                <span class="original-price">₹{{ bike.originalPrice }}</span>
+                <span class="discount-badge">
+                  <i class="fa-solid fa-tag"></i>
+                  {{ calculateDiscount(bike) }}% off
+                </span>
+              </div>
+              <div class="current-price">
+                <span class="price-amount font-display">₹{{ bike.price }}</span>
+                <span class="price-period text-muted">/month</span>
+              </div>
             </div>
-            <CountDown />
-          </div>
-          <div>
-            <b-badge class="color align-items-start">
-              <h6>Doorstep Delivery - Within the next few days</h6>
-              <h6>In-Store Pickup - Ready in 1 hour or sooner .</h6>
-            </b-badge>
-          </div>
-          <div class="mt-4">
-            <h5>Services Included with Rental</h5>
-            <ul class="list-unstyled">
-              <li>
-                <i class="fa-solid fa-gauge"></i>
-                <strong> Unlimited Kilometers:</strong> We give you the
-                flexibility to travel freely without any kilometer limit.
-              </li>
-              <li class="">
-                <i class="fa-solid fa-shield"></i>
-                <strong> Insurance Covered:</strong> Comprehensive insurance at
-                no extra cost covering accidents or damages.
-              </li>
-              <li class="">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                <strong> Maintenance Covered:</strong> Our pricing includes one
-                periodic service/maintenance per rental.
-              </li>
-            </ul>
-          </div>
-          <div class="row text-center mt-4">
-            <b-col cols="12" md="6" class="my-2">
-              <b-button
-                squared
-                variant="outline-success"
-                class="w-100"
+
+            <!-- Countdown -->
+            <div>
+              <CountDown />
+            </div>
+
+            <!-- Delivery Info -->
+            <div class="delivery-card card-flat">
+              <div class="delivery-item">
+                <div class="icon-wrap icon-wrap-sm icon-wrap-primary">
+                  <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-sm">Doorstep Delivery</div>
+                  <div class="text-muted text-sm">
+                    Within the next few hours
+                  </div>
+                </div>
+              </div>
+              <div class="divider-vertical" style="height: 32px"></div>
+              <div class="delivery-item">
+                <div class="icon-wrap icon-wrap-sm icon-wrap-success">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-sm">In-Store Pickup</div>
+                  <div class="text-muted text-sm">
+                    Ready in 1 hour or sooner
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Services Included -->
+            <div class="services-block">
+              <h6
+                class="services-title font-semibold text-sm text-uppercase tracking-wider text-muted"
+              >
+                Services Included
+              </h6>
+              <div class="service-items">
+                <div class="service-item">
+                  <div class="icon-wrap icon-wrap-sm icon-wrap-primary">
+                    <i class="fa-solid fa-gauge"></i>
+                  </div>
+                  <div>
+                    <span class="font-semibold">Unlimited Kilometers</span>
+                    <span class="text-muted text-sm">
+                      — Travel freely without any limit</span
+                    >
+                  </div>
+                </div>
+                <div class="service-item">
+                  <div class="icon-wrap icon-wrap-sm icon-wrap-success">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </div>
+                  <div>
+                    <span class="font-semibold">Insurance Covered</span>
+                    <span class="text-muted text-sm">
+                      — Comprehensive coverage included</span
+                    >
+                  </div>
+                </div>
+                <div class="service-item">
+                  <div class="icon-wrap icon-wrap-sm icon-wrap-warning">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                  </div>
+                  <div>
+                    <span class="font-semibold">Maintenance Covered</span>
+                    <span class="text-muted text-sm">
+                      — One free periodic service per rental</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="cta-row">
+              <button
+                class="btn-secondary-app cta-btn"
                 @click="chatOnWhatsApp(bike)"
               >
-                <i class="fa-brands fa-whatsapp"></i> Get Enquiry
-              </b-button>
-            </b-col>
-            <b-col cols="12" md="6" class="my-2">
-              <b-button
-                squared
-                variant="primary"
-                class="w-100"
+                <i class="fa-brands fa-whatsapp" style="color: #25d366"></i>
+                Get Enquiry
+              </button>
+              <button
+                class="btn-primary-app cta-btn"
                 :disabled="bike.status === 3"
                 @click="goToCheckout"
               >
-                <i class="fa-solid fa-bicycle"></i> Rent Now
-              </b-button>
-            </b-col>
+                <i class="fa-solid fa-bicycle"></i>
+                {{ bike.status === 3 ? "Out of Stock" : "Rent Now" }}
+              </button>
+            </div>
           </div>
-        </b-col>
-      </b-row>
-      <!-- about bike -->
-      <h2 class="text-center my-5">About this bike</h2>
-      <b-row>
-        <b-col cols="12" lg="6">
-          <p class="text-muted">
-            {{ bike.about }}
-          </p>
-          <!-- card for about bike -->
-          <b-row>
-            <b-col cols="6" md="4" sm="6" class="my-2">
-              <b-card class="text-center bg-light">
-                <i class="fa-solid fa-gear fa-xl"></i>
-                <div class="font-weight-bold">Displacement</div>
-                <h6 class="text-primary">{{ bike.displacement }}</h6>
-              </b-card>
-            </b-col>
-            <b-col cols="6" md="4" sm="6" class="my-2">
-              <b-card class="text-center bg-light">
-                <i class="fa-solid fa-bolt fa-xl"></i>
-                <div class="font-weight-bold">Ignition</div>
-                <h6 class="text-primary">{{ bike.ignition }}</h6>
-              </b-card>
-            </b-col>
-            <b-col cols="6" md="4" sm="6" class="my-2">
-              <b-card class="text-center bg-light">
-                <i class="fa-solid fa-power-off fa-xl"></i>
-                <div class="font-weight-bold">Power</div>
-                <h6 class="text-primary">{{ bike.power }}</h6>
-              </b-card>
-            </b-col>
-            <b-col cols="6" md="4" sm="6" class="my-2">
-              <b-card class="text-center bg-light">
-                <i class="fa-solid fa-gauge-high fa-xl"></i>
-                <div class="font-weight-bold">Top Speed</div>
-                <h6 class="text-primary">{{ bike.speed }}</h6>
-              </b-card>
-            </b-col>
-            <b-col cols="6" md="4" sm="6" class="my-2">
-              <b-card class="text-center bg-light">
-                <i class="fa-solid fa-droplet fa-xl"></i>
-                <div class="font-weight-bold">Fuel Capacity</div>
-                <h6 class="text-primary">{{ bike.fuelcapacity }}</h6>
-              </b-card>
-            </b-col>
-            <b-col cols="6" md="4" sm="6" class="my-2">
-              <b-card class="text-center bg-light">
-                <i class="fa-solid fa-battery-full fa-xl"></i>
-                <div class="font-weight-bold">Mileage</div>
-                <h6 class="text-primary">{{ bike.mileage }}</h6>
-              </b-card>
-            </b-col>
-          </b-row>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <b-img class="my-4" :src="bike.image" :alt="bike.name" fluid></b-img>
-        </b-col>
-      </b-row>
+        </div>
+      </b-container>
+    </div>
 
-      <!-- Add any additional details or features here -->
-    </b-container>
-    <FooterSectionA />
+    <!-- About Section -->
+    <div class="about-section section-sm gradient-mesh">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Details</span>
+          <h2 class="section-title">About this Bike</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Description -->
+          <div class="about-desc-col">
+            <p class="about-text text-muted">{{ bike.about }}</p>
+
+            <!-- Specs Grid -->
+            <div class="specs-grid">
+              <div
+                class="spec-card card-flat"
+                v-for="spec in bikeSpecs"
+                :key="spec.label"
+              >
+                <div class="spec-icon icon-wrap icon-wrap-md icon-wrap-primary">
+                  <i :class="spec.icon"></i>
+                </div>
+                <div class="spec-label text-muted text-sm">
+                  {{ spec.label }}
+                </div>
+                <div class="spec-value font-display font-bold text-primary">
+                  {{ spec.value }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="about-image-col">
+            <div class="about-image-wrap">
+              <img
+                :src="bike.image"
+                :alt="bike.name"
+                class="about-bike-image"
+              />
+            </div>
+
+            <!-- Stats row -->
+            <div
+              class="stat-row"
+              style="margin-top: 1.5rem; justify-content: center; gap: 2rem"
+            >
+              <div class="stat-row-item">
+                <span class="stat-row-number text-primary">{{
+                  bike.mileage
+                }}</span>
+                <span class="stat-row-label">Mileage</span>
+              </div>
+              <div class="stat-row-divider"></div>
+              <div class="stat-row-item">
+                <span class="stat-row-number text-primary">{{
+                  bike.speed
+                }}</span>
+                <span class="stat-row-label">Top Speed</span>
+              </div>
+              <div class="stat-row-divider"></div>
+              <div class="stat-row-item">
+                <span class="stat-row-number text-primary">{{
+                  bike.power
+                }}</span>
+                <span class="stat-row-label">Power</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share Modal -->
+    <b-modal
+      v-model="isModalVisible"
+      title="Share this Bike"
+      hide-footer
+      centered
+    >
+      <p class="text-muted text-sm">Where do you want to share this link?</p>
+      <div class="share-options">
+        <button
+          v-for="(option, index) in shareOptions"
+          :key="index"
+          class="share-option-btn"
+          @click="share(option)"
+        >
+          <span class="share-option-icon">
+            <b-icon :icon="option.icon" />
+          </span>
+          <span>{{ option.label }}</span>
+          <i class="fa-solid fa-arrow-right share-arrow"></i>
+        </button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import CountDown from "@/views/CountDown.vue";
-import FooterSectionA from "@/views/FooterSectionA.vue";
-import NavBar from "@/views/NavBar.vue";
 
 export default {
-  components: {
-    CountDown,
-    FooterSectionA,
-    NavBar,
-  },
+  components: { CountDown },
   data() {
     return {
       bike: {},
-      phoneNumber: "917079812442", // Your WhatsApp number
+      phoneNumber: "917079812442",
       isModalVisible: false,
       shareOptions: [
         {
@@ -263,23 +331,53 @@ export default {
       ],
     };
   },
+  computed: {
+    bikeSpecs() {
+      if (!this.bike.displacement) return [];
+      return [
+        {
+          label: "Displacement",
+          value: this.bike.displacement + "cc",
+          icon: "fa-solid fa-gear",
+        },
+        {
+          label: "Ignition",
+          value: this.bike.ignition,
+          icon: "fa-solid fa-bolt",
+        },
+        {
+          label: "Power",
+          value: this.bike.power,
+          icon: "fa-solid fa-power-off",
+        },
+        {
+          label: "Top Speed",
+          value: this.bike.speed,
+          icon: "fa-solid fa-gauge-high",
+        },
+        {
+          label: "Fuel Capacity",
+          value: this.bike.fuelcapacity,
+          icon: "fa-solid fa-droplet",
+        },
+        {
+          label: "Mileage",
+          value: this.bike.mileage,
+          icon: "fa-solid fa-battery-full",
+        },
+      ];
+    },
+  },
   created() {
-    const bikeId = this.$route.params.id; // Get the bike ID from the route params
-    this.fetchBikeDetails(bikeId); // Fetch the bike details using the ID
+    const bikeId = this.$route.params.id;
+    this.fetchBikeDetails(bikeId);
   },
   methods: {
-    handleEnquiry() {
-      // Logic for handling enquiry
-      alert("Enquiry button clicked!");
-    },
     goToCheckout() {
-      // Check if the user is logged in
       if (!this.isLoggedIn()) {
-        // Redirect to login page if not logged in
         this.$router.push({ name: "login" });
         return;
       }
-      // Redirect to the verification page if logged in
       this.$router.push({
         name: "verification",
         query: {
@@ -293,58 +391,61 @@ export default {
     isLoggedIn() {
       return !!localStorage.getItem("user");
     },
-
     share(option) {
-      option.method(); // Call the respective share method
-      this.isModalVisible = false; // Close the modal after sharing
+      option.method();
+      this.isModalVisible = false;
     },
     shareOnWhatsApp() {
-      const pageUrl = window.location.href;
-      const message = "Check out this bike:\n";
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-        message + pageUrl
-      )}`;
-      window.open(whatsappUrl, "_blank");
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(
+          "Check out this bike:\n" + window.location.href,
+        )}`,
+        "_blank",
+      );
     },
     shareOnFacebook() {
-      const pageUrl = window.location.href;
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        pageUrl
-      )}`;
-      window.open(facebookUrl, "_blank");
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          window.location.href,
+        )}`,
+        "_blank",
+      );
     },
     shareOnTwitter() {
-      const pageUrl = window.location.href;
-      const message = "Check out this bike!";
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        message
-      )}&url=${encodeURIComponent(pageUrl)}`;
-      window.open(twitterUrl, "_blank");
+      window.open(
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          "Check out this bike!",
+        )}&url=${encodeURIComponent(window.location.href)}`,
+        "_blank",
+      );
     },
     shareOnEmail() {
-      const pageUrl = window.location.href;
-      const subject = "Check out this bike!";
-      const body = `I found this bike you might like: ${pageUrl}`;
-      const emailUrl = `mailto:?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-      window.open(emailUrl);
+      window.open(
+        `mailto:?subject=${encodeURIComponent(
+          "Check out this bike!",
+        )}&body=${encodeURIComponent(
+          "I found this bike you might like: " + window.location.href,
+        )}`,
+      );
     },
     chatOnWhatsApp(bike) {
       const message = `Hii, I'm interested in the bike: ${bike.name}`;
-      const whatsappUrl = `https://wa.me/${
-        this.phoneNumber
-      }?text=${encodeURIComponent(message)}`;
-
-      // Open WhatsApp chat with the message
-      window.open(whatsappUrl, "_blank");
+      window.open(
+        `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent(message)}`,
+        "_blank",
+      );
+    },
+    calculateDiscount(bike) {
+      return Math.round(
+        ((bike.originalPrice - bike.price) / bike.originalPrice) * 100,
+      );
     },
     fetchBikeDetails(id) {
-      // Fetch the bike details from your data source using the bike ID
       const bikeData = [
         {
           id: 1,
           name: "Honda Shine",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-decent-blue-metallic-2023-1687260642123.png?q=80",
           rating: 4.8,
@@ -367,6 +468,7 @@ export default {
         {
           id: 2,
           name: "Hero Passion Pro",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/hero-passion-pro-2018.jpg?20190103151915&q=80",
           rating: 4.6,
@@ -389,6 +491,7 @@ export default {
         {
           id: 3,
           name: "Bajaj CT 100",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-ebony-black-with-red-decals-1669291918239.png?q=80",
           rating: 4.5,
@@ -411,6 +514,7 @@ export default {
         {
           id: 4,
           name: "Bajaj Platina 100",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-black--blue-1671529556548.png?q=80",
           rating: 4.4,
@@ -433,6 +537,7 @@ export default {
         {
           id: 5,
           name: "Hero Splendor Plus",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/hero-select-model-blue-black-1706531445236.png?q=80",
           rating: 4.6,
@@ -455,6 +560,7 @@ export default {
         {
           id: 6,
           name: "TVS Star City",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/113179/star-city-right-side-view-2.png?isig=0&q=80",
           rating: 4.3,
@@ -477,6 +583,7 @@ export default {
         {
           id: 7,
           name: "TVS Apache RTR 160",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/1056x594/n/bw/models/colors/undefined-matte-blue-1611036120368.jpg?q=80",
           rating: 4.5,
@@ -499,6 +606,7 @@ export default {
         {
           id: 8,
           name: "Yamaha Saluto",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/yamaha-saluto.jpg?20190103151915&q=80",
           rating: 4.2,
@@ -522,6 +630,7 @@ export default {
         {
           id: 9,
           name: "Yamaha R15",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
           rating: 4.8,
@@ -544,6 +653,7 @@ export default {
         {
           id: 10,
           name: "Kawasaki Ninja H2R",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/kawasaki-select-model-mirror-coated-matte-spark-black-1676442407791.png?q=80",
           rating: 4.6,
@@ -566,6 +676,7 @@ export default {
         {
           id: 11,
           name: "Suzuki GSX-R1000",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/suzuki-gsx-r1000.jpg?20190103151915&q=80",
           rating: 4.9,
@@ -588,6 +699,7 @@ export default {
         {
           id: 12,
           name: "KTM RC 390",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ktm-select-model-gp-editiond-1670826275682.png?q=80",
           rating: 4.7,
@@ -610,6 +722,7 @@ export default {
         {
           id: 13,
           name: "Triumph Daytona 675R",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/triumph-daytona-675r-standard-532.jpg?20190103151915&q=80",
           rating: 4.6,
@@ -632,6 +745,7 @@ export default {
         {
           id: 14,
           name: "Ducati Panigale V2",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/ducati-select-model-white-riosso-livery-1598428332689.jpg?q=80",
           rating: 4.8,
@@ -654,6 +768,7 @@ export default {
         {
           id: 15,
           name: "BMW S1000RR",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bmw-select-model-black-storm-metallic-1677058621251.jpg?q=80",
           rating: 4.9,
@@ -676,6 +791,7 @@ export default {
         {
           id: 16,
           name: "Yamaha R15 V4",
+          type: "Sportbike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-red-1704802630538.png?q=80",
           rating: 4.8,
@@ -695,10 +811,10 @@ export default {
           fuelcapacity: "11l",
           mileage: "40-45kmpl",
         },
-        // ############################ Added Scooter form here ##################################>
         {
           id: 17,
           name: "Honda Activa 6G",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-black-1674535477895.png?q=80",
           rating: 4.7,
@@ -721,6 +837,7 @@ export default {
         {
           id: 18,
           name: "TVS Jupiter",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/tvs-jupiter-drum1725609174080.jpg?q=80",
           rating: 4.6,
@@ -743,6 +860,7 @@ export default {
         {
           id: 19,
           name: "Hero Duet",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/hero-duet-lx20190722133839.jpg?q=80",
           rating: 4.5,
@@ -765,6 +883,7 @@ export default {
         {
           id: 20,
           name: "Suzuki Access 125",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/suzuki-select-model-metallic-mattee-black-std-1679635807338.png?q=80",
           rating: 4.8,
@@ -787,6 +906,7 @@ export default {
         {
           id: 21,
           name: "Yamaha Fascino 125",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-white--drum-1712697907928.png?q=80",
           rating: 4.6,
@@ -809,6 +929,7 @@ export default {
         {
           id: 22,
           name: "Hero Pleasure +",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/hero-select-model-sport-red-1707151003981.png?q=80",
           rating: 4.4,
@@ -831,6 +952,7 @@ export default {
         {
           id: 23,
           name: "TVS Ntorq 125",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/tvs-ntorq-125-disc1725629749318.jpg?q=80",
           rating: 4.7,
@@ -853,6 +975,7 @@ export default {
         {
           id: 24,
           name: "Honda Dio",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-jazzy-blue-metallic-1686570017642.png?q=80",
           rating: 4.5,
@@ -875,6 +998,7 @@ export default {
         {
           id: 25,
           name: "Hero Xoom",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/310x174/n/cw/ec/130411/xoom-right-side-view-11.png?isig=0&q=80",
           rating: 4.2,
@@ -897,6 +1021,7 @@ export default {
         {
           id: 26,
           name: "Mahindra Gusto",
+          type: "Scooter",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/mahindra-gusto-dx--cbs20190731111612.jpg?q=80",
           rating: 4.3,
@@ -916,10 +1041,10 @@ export default {
           fuelcapacity: "6l",
           mileage: "45-50kmpl",
         },
-        // ############################ Added Cruiser form here ##################################>
         {
           id: 27,
           name: "Royal Enfield Classic 350",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/royalenfield-classic-350-heritage1725274941405.jpg?q=80",
           rating: 4.7,
@@ -942,6 +1067,7 @@ export default {
         {
           id: 28,
           name: "Harley-Davidson Street 750",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/harleydavidson-street-750-standard20200616012038.jpg?q=80",
           rating: 4.6,
@@ -964,6 +1090,7 @@ export default {
         {
           id: 29,
           name: "Bajaj Avenger Cruise 220",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-auburn-black-1669289946200.png?q=80",
           rating: 4.5,
@@ -986,6 +1113,7 @@ export default {
         {
           id: 30,
           name: "Kawasaki Vulcan S",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/--standard1728554869402.jpg?q=80",
           rating: 4.8,
@@ -1008,6 +1136,7 @@ export default {
         {
           id: 31,
           name: "Benelli 502C",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/benelli-select-model-glossy-black-1645507335732.png?q=80",
           rating: 4.6,
@@ -1030,6 +1159,7 @@ export default {
         {
           id: 32,
           name: "Yamaha VMAX",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/yamaha-vmax-standard-180.jpg?20190103151915&q=80",
           rating: 4.9,
@@ -1052,6 +1182,7 @@ export default {
         {
           id: 33,
           name: "Harley-Davidson Iron 883",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/harleydavidson-iron-883-standard1677237126841.jpg?q=80",
           rating: 4.7,
@@ -1074,6 +1205,7 @@ export default {
         {
           id: 34,
           name: "KTM 790 Duke",
+          type: "Bike",
           image:
             "https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/ktm-duke-200-standard1727961894099.jpg?q=80",
           rating: 4.4,
@@ -1096,6 +1228,7 @@ export default {
         {
           id: 35,
           name: "Suzuki Intruder 150",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/bw/models/suzuki-intruder-150-standard--bs-vi20200320182536.jpg?q=80",
           rating: 4.3,
@@ -1118,6 +1251,7 @@ export default {
         {
           id: 36,
           name: "Triumph Bonneville Bobber",
+          type: "Cruiser",
           image:
             "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/triumph-select-model-jet-black--ash-gray-1698486184857.png?q=80",
           rating: 4.8,
@@ -1140,11 +1274,7 @@ export default {
       ];
       this.bike = bikeData.find((bike) => bike.id === parseInt(id)); // Find the bike by ID
     },
-    calculateDiscount(bike) {
-      return Math.round(
-        ((bike.originalPrice - bike.price) / bike.originalPrice) * 100
-      );
-    },
+
     getStatusText(status) {
       if (status === 1) return "Summer Days Sale";
       if (status === 2) return "Only One Left";
@@ -1154,12 +1284,434 @@ export default {
   },
 };
 </script>
+
 <style scoped>
-.extra-small {
-  font-size: 0.75rem; /* Adjust this size as needed */
+/* ── Page Wrapper ── */
+.bike-detail-page {
+  min-height: 100vh;
+  background: var(--color-white);
 }
-.color {
-  background-color: darkgray;
-  color: rgb(28, 41, 211);
+
+/* ── Breadcrumb ── */
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) 0 var(--space-6);
+  font-size: var(--text-sm);
+}
+.breadcrumb-link {
+  color: var(--color-gray-500);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+.breadcrumb-link:hover {
+  color: var(--color-primary);
+}
+.breadcrumb-sep {
+  color: var(--color-gray-300);
+  font-size: 0.6rem;
+}
+.breadcrumb-current {
+  color: var(--color-gray-700);
+  font-weight: var(--font-medium);
+}
+
+/* ── Hero Section ── */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.circle-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.circle-btn.whatsapp {
+  color: green;
+}
+
+.image-wrap {
+  text-align: center;
+  padding: 30px;
+}
+
+.bike-main-image {
+  max-height: 360px;
+  object-fit: contain;
+}
+
+@media (max-width: 991px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* ── Image Column ── */
+/* ===============================
+   LEFT IMAGE COLUMN
+=================================*/
+.hero-image-col {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .hero-image-col {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+}
+
+.top-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.circle-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.circle-btn:hover {
+  transform: translateY(-2px);
+}
+
+.circle-btn.whatsapp {
+  color: #25d366;
+}
+
+.image-wrap {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bike-main-image {
+  width: 100%;
+  max-height: 330px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.image-panel:hover .bike-main-image {
+  transform: scale(1.04);
+}
+
+.img-note {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--color-gray-400);
+  border-top: 1px solid #edf0f3;
+  padding-top: 0.9rem;
+}
+
+/* ── Details Column ── */
+.hero-details-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bike-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bike-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: var(--font-extrabold);
+  color: var(--color-dark);
+  margin: 0;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.stars {
+  display: flex;
+  gap: 2px;
+}
+.stars i {
+  font-size: 0.9rem;
+}
+.rating-value {
+  font-size: var(--text-base);
+  color: var(--color-dark);
+}
+.rating-count {
+  font-size: var(--text-sm);
+}
+
+/* ── Pricing ── */
+.pricing-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.price-label {
+  margin-bottom: var(--space-1);
+}
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.original-price {
+  font-size: var(--text-base);
+  color: var(--color-gray-400);
+  text-decoration: line-through;
+}
+.discount-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-success-bg);
+  color: #065f46;
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+.current-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.price-amount {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-extrabold);
+  color: var(--color-dark);
+  line-height: 1;
+}
+.price-period {
+  font-size: var(--text-base);
+}
+
+/* ── Countdown Wrap ── */
+.countdown-wrap {
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ── Delivery Card ── */
+.delivery-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+}
+.delivery-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+/* ── Services ── */
+.services-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.services-title {
+  margin: 0;
+}
+.service-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+/* ── CTA Row ── */
+.cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.cta-btn {
+  width: 100% !important;
+  justify-content: center !important;
+  padding: 14px 20px !important;
+  font-size: var(--text-base) !important;
+}
+
+/* ── About Section ── */
+.about-section {
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Specs Grid ── */
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+@media (max-width: 575px) {
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.spec-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  transition: var(--transition-base);
+}
+.spec-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-border);
+}
+
+.spec-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-gray-400);
+}
+.spec-value {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+}
+
+/* ── About Image ── */
+.about-image-wrap {
+  overflow: hidden;
+  padding: var(--space-8);
+
+  text-align: center;
+}
+.about-bike-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+/* ── Share Modal Options ── */
+.share-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.share-option-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--color-gray-700);
+  text-align: left;
+  transition: var(--transition-fast);
+  width: 100%;
+}
+.share-option-btn:hover {
+  background: var(--color-primary-bg);
+  border-color: var(--color-primary-border);
+  color: var(--color-primary);
+}
+.share-option-icon {
+  font-size: 1.1rem;
+}
+.share-arrow {
+  margin-left: auto;
+  font-size: 0.75rem;
+  opacity: 0.4;
+}
+
+.listing-top-area {
+  margin-bottom: 2rem;
+}
+
+.custom-breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.custom-breadcrumb .breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+  color: var(--color-gray-500);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-gray-300);
 }
 </style>
