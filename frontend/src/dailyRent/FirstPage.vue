@@ -1,181 +1,148 @@
 <template>
-  <div class="background-container">
-    <b-container>
-      <b-row class="justify-content-center">
-        <b-col cols="12" lg="10" xl="8">
-          <b-card class="rental-card shadow my-5">
-            <div class="card-header-custom mb-4">
-              <h2 class="text-center mb-0">Plan Your Bike Adventure</h2>
-              <p class="text-center text-muted mt-2">
-                Explore the city on two wheels
-              </p>
+  <section class="hero-booking-section">
+    <!-- Background -->
+    <!-- <img
+      src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9d7e01ff-667f-45be-8590-d67a8d2fdeae_3840w.jpg"
+      class="hero-bg"
+      alt="Bike Rental Banner"
+    />
+
+    <div class="hero-overlay"></div> -->
+
+    <!-- Decorative Blur -->
+    <!-- <div class="hero-blur blur-one"></div>
+    <div class="hero-blur blur-two"></div> -->
+
+    <b-container class="position-relative">
+      <div class="hero-content-wrap">
+        <!-- LEFT CONTENT -->
+        <div class="hero-content">
+          <span class="hero-badge">
+            <i class="fa-solid fa-motorcycle"></i>
+            Premium Bike Rentals
+          </span>
+
+          <h1 class="hero-title">
+            Book Your
+            <span class="text-gradient">Perfect Ride</span>
+            Anytime
+          </h1>
+
+          <p class="hero-subtitle">
+            Explore Bangalore with premium bikes, flexible pickup & drop,
+            affordable pricing and a smooth booking experience.
+          </p>
+
+          <div class="hero-features">
+            <div class="feature-item">
+              <i class="fa-solid fa-circle-check"></i>
+              Instant Booking
             </div>
 
-            <b-alert
-              v-model="showAlert"
-              variant="danger"
-              dismissible
-              class="mb-3"
-            >
-              {{ alertMessage }}
-            </b-alert>
+            <div class="feature-item">
+              <i class="fa-solid fa-circle-check"></i>
+              Zero Deposit
+            </div>
 
-            <b-form @submit.prevent="onSubmit">
-              <!-- Pickup Section -->
-              <section class="mb-4">
-                <h5 class="section-title">
-                  <b-icon icon="box-arrow-in-down-left" class="mr-2"></b-icon>
-                  Pickup Details
-                </h5>
-                <b-row>
-                  <b-col md="6">
-                    <b-form-group label="Pickup Date" label-for="pickup-date">
-                      <b-form-datepicker
-                        id="pickup-date"
-                        v-model="pickup.date"
-                        :min="minDate"
-                        placeholder="Select Date"
-                        :date-format-options="dateFormatOptions"
-                        class="mb-2"
-                        required
-                      ></b-form-datepicker>
-                    </b-form-group>
-                  </b-col>
-                  <b-col md="6">
-                    <b-form-group label="Pickup Time" label-for="pickup-time">
-                      <b-form-select
-                        id="pickup-time"
-                        v-model="pickup.time"
-                        :options="timeOptions"
-                        required
-                      >
-                        <template #first>
-                          <option disabled value="">Select Time</option>
-                        </template>
-                      </b-form-select>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col md="12">
-                    <b-form-group
-                      label="Pickup Location"
-                      label-for="pickup-location"
-                    >
-                      <b-form-select
-                        id="pickup-location"
-                        v-model="pickup.location"
-                        :options="locationOptions"
-                        required
-                      >
-                        <template #first>
-                          <option disabled value="">Select Location</option>
-                        </template>
-                      </b-form-select>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-              </section>
+            <div class="feature-item">
+              <i class="fa-solid fa-circle-check"></i>
+              Best Prices
+            </div>
+          </div>
+        </div>
 
-              <!-- Dropoff Section -->
-              <section class="mb-4">
-                <h5 class="section-title">
-                  <b-icon icon="box-arrow-up-right" class="mr-2"></b-icon>
-                  Dropoff Details
-                </h5>
-                <b-row>
-                  <b-col md="6">
-                    <b-form-group label="Dropoff Date" label-for="dropoff-date">
-                      <b-form-datepicker
-                        id="dropoff-date"
-                        v-model="dropoff.date"
-                        :min="minDropoffDate"
-                        placeholder="Select Date"
-                        :date-format-options="dateFormatOptions"
-                        class="mb-2"
-                        required
-                      ></b-form-datepicker>
-                    </b-form-group>
-                  </b-col>
-                  <b-col md="6">
-                    <b-form-group label="Dropoff Time" label-for="dropoff-time">
-                      <b-form-select
-                        id="dropoff-time"
-                        v-model="dropoff.time"
-                        :options="timeOptions"
-                        required
-                      >
-                        <template #first>
-                          <option disabled value="">Select Time</option>
-                        </template>
-                      </b-form-select>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col md="12">
-                    <b-form-group
-                      label="Dropoff Location"
-                      label-for="dropoff-location"
-                    >
-                      <b-form-select
-                        id="dropoff-location"
-                        v-model="dropoff.location"
-                        :options="locationOptions"
-                        required
-                      >
-                        <template #first>
-                          <option disabled value="">Select Location</option>
-                        </template>
-                      </b-form-select>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-              </section>
+        <!-- BOOKING CARD -->
+        <div class="booking-card card-app">
+          <div class="booking-card-top">
+            <h4 class="booking-title">Search Your Ride</h4>
 
-              <!-- Rental Summary -->
-              <section class="mb-4" v-if="isFormValid">
-                <h5 class="section-title">
-                  <b-icon icon="receipt" class="mr-2"></b-icon>
-                  Rental Summary
-                </h5>
-                <div class="summary-card p-3 border rounded">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span>Rental Duration:</span>
-                    <span>{{ rentalDuration }}</span>
-                  </div>
-                  <div class="d-flex justify-content-between mb-2">
-                    <span>Base Price:</span>
-                    <span>${{ basePrice.toFixed(2) }}</span>
-                  </div>
-                  <div class="d-flex justify-content-between mb-2">
-                    <span>Tax (8%):</span>
-                    <span>${{ tax.toFixed(2) }}</span>
-                  </div>
-                  <hr class="my-2" />
-                  <div class="d-flex justify-content-between font-weight-bold">
-                    <span>Total:</span>
-                    <span>${{ totalPrice.toFixed(2) }}</span>
-                  </div>
-                </div>
-              </section>
+            <p class="booking-subtitle">Select your pickup and drop details</p>
+          </div>
 
-              <!-- Submit Button -->
-              <b-button
-                type="submit"
-                variant="primary"
-                class="w-100 mt-3 py-2"
-                :disabled="!isFormValid"
-              >
-                <b-icon icon="check-circle" class="mr-2"></b-icon>
-                Reserve Your Bike
-              </b-button>
-            </b-form>
-          </b-card>
-        </b-col>
-      </b-row>
+          <!-- PICKUP -->
+          <div class="booking-group">
+            <div class="booking-label">
+              <i class="fa-solid fa-location-dot"></i>
+              Pickup
+            </div>
+
+            <div class="input-grid">
+              <div>
+                <label class="form-label-app"> Pickup Date </label>
+
+                <b-form-input
+                  v-model="pickup.date"
+                  :min="minDate"
+                  type="date"
+                  class="input-app"
+                  @change="setPickupDefaultTime"
+                ></b-form-input>
+              </div>
+
+              <div>
+                <label class="form-label-app"> Pickup Time </label>
+
+                <b-form-select
+                  v-model="pickup.time"
+                  :options="timeOptions"
+                  class="input-app"
+                >
+                  <template #first>
+                    <option disabled value="">Select Time</option>
+                  </template>
+                </b-form-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- DROPOFF -->
+          <div class="booking-group">
+            <div class="booking-label">
+              <i class="fa-solid fa-location-dot"></i>
+              Dropoff
+            </div>
+
+            <div class="input-grid">
+              <div>
+                <label class="form-label-app"> Dropoff Date </label>
+
+                <b-form-input
+                  v-model="dropoff.date"
+                  :min="pickup.date || minDate"
+                  type="date"
+                  class="input-app"
+                  @change="setDropoffDefaultTime"
+                ></b-form-input>
+              </div>
+
+              <div>
+                <label class="form-label-app"> Dropoff Time </label>
+
+                <b-form-select
+                  v-model="dropoff.time"
+                  :options="timeOptions"
+                  class="input-app"
+                >
+                  <template #first>
+                    <option disabled value="">Select Time</option>
+                  </template>
+                </b-form-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- BUTTON -->
+          <button
+            class="btn-primary-app btn-lg-app booking-btn"
+            @click="goToModels"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search Bikes
+          </button>
+        </div>
+      </div>
     </b-container>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -183,17 +150,15 @@ export default {
   data() {
     return {
       pickup: {
-        date: this.$route?.query?.pickupDate || "",
-        time: this.$route?.query?.pickupTime || "",
-        location: this.$route?.query?.pickupLocation || "",
+        date: "",
+        time: "",
       },
+
       dropoff: {
-        date: this.$route?.query?.dropoffDate || "",
-        time: this.$route?.query?.dropoffTime || "",
-        location: this.$route?.query?.dropoffLocation || "",
+        date: "",
+        time: "",
       },
-      showAlert: false,
-      alertMessage: "",
+
       timeOptions: [
         { value: "09:00 AM", text: "09:00 AM" },
         { value: "10:00 AM", text: "10:00 AM" },
@@ -207,152 +172,54 @@ export default {
         { value: "06:00 PM", text: "06:00 PM" },
         { value: "07:00 PM", text: "07:00 PM" },
       ],
-      locationOptions: [
-        { value: "downtown", text: "Downtown Hub" },
-        { value: "waterfront", text: "Waterfront Station" },
-        { value: "central_park", text: "Central Park" },
-        { value: "university", text: "University Campus" },
-        { value: "shopping_district", text: "Shopping District" },
-      ],
-      dateFormatOptions: {
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-      },
     };
   },
+
   computed: {
     minDate() {
-      const today = new Date();
-      return today.toISOString().split("T")[0];
+      return new Date().toISOString().split("T")[0];
     },
-    minDropoffDate() {
-      if (!this.pickup.date) return this.minDate;
-      return this.pickup.date;
+  },
+
+  methods: {
+    setPickupDefaultTime() {
+      if (this.pickup.date && !this.pickup.time) {
+        this.pickup.time = "10:00 AM";
+      }
     },
-    isFormValid() {
-      return (
-        this.pickup.date &&
-        this.pickup.time &&
-        this.pickup.location &&
-        this.dropoff.date &&
-        this.dropoff.time &&
-        this.dropoff.location &&
-        this.isValidDateTimeRange
-      );
+
+    setDropoffDefaultTime() {
+      if (this.dropoff.date && !this.dropoff.time) {
+        this.dropoff.time = "10:00 AM";
+      }
     },
-    isValidDateTimeRange() {
+
+    goToModels() {
       if (
         !this.pickup.date ||
         !this.pickup.time ||
         !this.dropoff.date ||
         !this.dropoff.time
       ) {
-        return false;
-      }
+        this.$bvToast.toast("Please select pickup and drop details", {
+          title: "Required",
+          variant: "danger",
+          solid: true,
+          toaster: "b-toaster-bottom-right",
+        });
 
-      const pickupDateTime = this.getDateTime(
-        this.pickup.date,
-        this.pickup.time
-      );
-      const dropoffDateTime = this.getDateTime(
-        this.dropoff.date,
-        this.dropoff.time
-      );
-
-      return dropoffDateTime > pickupDateTime;
-    },
-    rentalDuration() {
-      if (!this.isValidDateTimeRange) return "Invalid duration";
-
-      const pickupDateTime = this.getDateTime(
-        this.pickup.date,
-        this.pickup.time
-      );
-      const dropoffDateTime = this.getDateTime(
-        this.dropoff.date,
-        this.dropoff.time
-      );
-
-      const durationMs = dropoffDateTime - pickupDateTime;
-      const hours = Math.floor(durationMs / (1000 * 60 * 60));
-      const minutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
-
-      if (hours === 0) {
-        return `${minutes} minutes`;
-      } else if (minutes === 0) {
-        return `${hours} hour${hours > 1 ? "s" : ""}`;
-      } else {
-        return `${hours} hour${hours > 1 ? "s" : ""} and ${minutes} minutes`;
-      }
-    },
-    basePrice() {
-      if (!this.isValidDateTimeRange) return 0;
-
-      const pickupDateTime = this.getDateTime(
-        this.pickup.date,
-        this.pickup.time
-      );
-      const dropoffDateTime = this.getDateTime(
-        this.dropoff.date,
-        this.dropoff.time
-      );
-
-      const durationHours =
-        (dropoffDateTime - pickupDateTime) / (1000 * 60 * 60);
-      // Fixed hourly rate of $15 since we removed bike selection
-      return 15 * durationHours;
-    },
-    tax() {
-      return this.basePrice * 0.08;
-    },
-    totalPrice() {
-      return this.basePrice + this.tax;
-    },
-  },
-  methods: {
-    getDateTime(date, time) {
-      const [hours, minutes, period] = time
-        .match(/(\d+):(\d+)\s(AM|PM)/)
-        .slice(1);
-      let hour = parseInt(hours);
-
-      if (period === "PM" && hour !== 12) {
-        hour += 12;
-      } else if (period === "AM" && hour === 12) {
-        hour = 0;
-      }
-
-      const dateObj = new Date(date);
-      dateObj.setHours(hour, parseInt(minutes), 0, 0);
-
-      return dateObj;
-    },
-    validateForm() {
-      if (!this.isValidDateTimeRange) {
-        this.showAlert = true;
-        this.alertMessage = "Dropoff time must be after pickup time";
-        return false;
-      }
-
-      return true;
-    },
-    onSubmit() {
-      if (!this.validateForm()) {
         return;
       }
 
-      // Update query parameters with the selected values
       this.$router.push({
         name: "model-page",
+
         query: {
           pickupDate: this.pickup.date,
           pickupTime: this.pickup.time,
-          pickupLocation: this.pickup.location,
+
           dropoffDate: this.dropoff.date,
           dropoffTime: this.dropoff.time,
-          dropoffLocation: this.dropoff.location,
-          totalPrice: this.totalPrice.toFixed(2),
         },
       });
     },
@@ -361,98 +228,239 @@ export default {
 </script>
 
 <style scoped>
-.background-container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-    url("https://via.placeholder.com/1920x1080?text=Bike+Rental+Background");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.hero-booking-section {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-}
-
-.rental-card {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  border: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  padding: 2rem;
-}
-
-.card-header-custom {
   position: relative;
-  padding-bottom: 1.5rem;
-}
-
-.card-header-custom:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background-color: #4caf50;
-  border-radius: 3px;
-}
-
-.section-title {
-  color: #2c3e50;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
+  padding: 120px 0 80px;
 }
 
-.summary-card {
-  background-color: #f8f9fa;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Form control styling */
-.form-control,
-.custom-select {
-  border-radius: 6px;
-  border: 1px solid #ced4da;
-  padding: 0.5rem 0.75rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(15, 15, 35, 0.88) 0%,
+    rgba(15, 15, 35, 0.72) 45%,
+    rgba(15, 15, 35, 0.5) 100%
+  );
 }
 
-.form-control:focus,
-.custom-select:focus {
-  border-color: #4caf50;
-  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+/* BLURS */
+.hero-blur {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
 }
 
-/* Button styling */
-.btn-primary {
-  background-color: #4caf50;
-  border-color: #4caf50;
+.blur-one {
+  width: 260px;
+  height: 260px;
+  background: rgba(79, 70, 229, 0.28);
+  top: -60px;
+  left: -40px;
+}
+
+.hero-content-wrap {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* LEFT */
+.hero-content {
+  max-width: 640px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(8, 8, 8, 0.12);
+  backdrop-filter: blur(12px);
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: #3e8e41;
-  border-color: #3e8e41;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* HERO TEXT */
+.hero-title {
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: var(--font-extrabold);
+  line-height: 1.05;
+
+  margin-top: 1.3rem;
+  margin-bottom: 1.2rem;
+  max-width: 620px;
 }
 
-.btn-primary:disabled {
-  background-color: #9e9e9e;
-  border-color: #9e9e9e;
-  transform: none;
-  box-shadow: none;
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-light),
+    var(--color-primary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .rental-card {
-    padding: 1.5rem;
+.hero-subtitle {
+  max-width: 560px;
+  color: rgba(3, 3, 3, 0.78);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.feature-item i {
+  color: var(--color-primary);
+}
+
+/* RIGHT CARD */
+.booking-card {
+  padding: 2rem;
+  border-radius: var(--radius-2xl);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-xl);
+}
+
+.booking-card-top {
+  margin-bottom: 1.8rem;
+}
+
+.booking-title {
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--color-dark);
+}
+
+.booking-subtitle {
+  color: var(--color-gray-500);
+  margin-bottom: 0;
+}
+
+.booking-group {
+  margin-bottom: 1.5rem;
+}
+
+.booking-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+}
+
+.booking-label i {
+  color: var(--color-primary);
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.booking-btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* bootstrap override */
+::v-deep .b-form-datepicker,
+::v-deep .custom-select,
+::v-deep .form-control {
+  min-height: 54px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: none !important;
+}
+
+::v-deep .b-form-datepicker:hover,
+::v-deep .custom-select:hover,
+::v-deep .form-control:hover {
+  border-color: var(--color-primary);
+}
+
+::v-deep .b-form-datepicker.focus,
+::v-deep .custom-select:focus,
+::v-deep .form-control:focus {
+  border-color: var(--color-primary);
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+  .hero-booking-section {
+    padding: 100px 0 60px;
+  }
+
+  .hero-content-wrap {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-content {
+    text-align: center;
+    margin: auto;
+  }
+
+  .hero-features {
+    justify-content: center;
+  }
+
+  .booking-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .booking-card {
+    padding: 1.4rem;
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
   }
 }
 </style>
