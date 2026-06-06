@@ -1,120 +1,170 @@
 <template>
-  <div>
-    <NavBar />
-    <b-container style="margin-top: 3rem">
+  <div class="section gradient-light">
+    <b-container class="profile-container">
+      <div class="listing-top-area">
+        <b-breadcrumb class="custom-breadcrumb">
+          <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
+          <b-breadcrumb-item to="/my-profile">Profile</b-breadcrumb-item>
+          <b-breadcrumb-item to="/account-settings" active
+            >Account Settings</b-breadcrumb-item
+          >
+        </b-breadcrumb>
+      </div>
       <b-row>
-        <b-col lg="8" class="mx-auto">
-          <h2 class="my-4">Account Settings</h2>
-          <b-card no-body>
-            <b-tabs pills card horizontal>
-              <!-- Profile Tab -->
-              <b-tab title="Profile">
-                <b-card-text class="text-center">
-                  <b-avatar
-                    :src="profilePicture"
-                    alt="Profile Picture"
-                    size="100px"
-                    class="mb-3"
-                  ></b-avatar>
-                  <b-form-file
-                    v-model="newProfilePicture"
-                    :state="Boolean(newProfilePicture)"
-                    @change="handleFileChange"
-                    accept="image/*"
-                    label="Choose a new profile picture"
-                    class="mb-3"
-                  ></b-form-file>
-                  <div class="text-left">
-                    <h4>{{ personalInfo.name }}</h4>
-                    <p><strong>Email:</strong> {{ personalInfo.email }}</p>
-                    <p><strong>Phone:</strong> {{ personalInfo.phone }}</p>
-                    <p><strong>Address:</strong> {{ personalInfo.address }}</p>
-                  </div>
-                </b-card-text>
-              </b-tab>
+        <!-- LEFT PROFILE CARD -->
+        <b-col lg="4" class="mb-4">
+          <div class="profile-card sticky-card">
+            <div class="profile-header">
+              <div class="avatar-wrap">
+                <b-avatar
+                  :src="profilePicture || defaultAvatar"
+                  size="100px"
+                ></b-avatar>
+              </div>
 
-              <!-- Personal Information Tab -->
-              <b-tab title="Update Info" active>
-                <b-card-text>
-                  <b-form @submit.prevent="updatePersonalInfo">
-                    <b-form-group label="Full Name" label-for="full-name">
-                      <b-form-input
-                        id="full-name"
-                        v-model="personalInfo.name"
-                        required
-                        placeholder="Enter your full name"
-                      ></b-form-input>
-                    </b-form-group>
+              <h4 class="mb-1 mt-3">
+                {{ personalInfo.name || "Guest User" }}
+              </h4>
 
-                    <b-form-group label="Email" label-for="email">
-                      <b-form-input
-                        id="email"
-                        v-model="personalInfo.email"
-                        type="email"
-                        required
-                        placeholder="Enter your email"
-                      ></b-form-input>
-                    </b-form-group>
+              <p class="text-muted mb-3">
+                {{ personalInfo.email || "No email added" }}
+              </p>
 
-                    <b-form-group label="Phone Number" label-for="phone">
-                      <b-form-input
-                        id="phone"
-                        v-model="personalInfo.phone"
-                        placeholder="Enter your phone number"
-                      ></b-form-input>
-                    </b-form-group>
+              <span class="badge-app badge-primary"> Verified Rider </span>
+            </div>
 
-                    <b-form-group label="Address" label-for="address">
-                      <b-form-textarea
-                        id="address"
-                        v-model="personalInfo.address"
-                        placeholder="Enter your address"
-                        rows="3"
-                      ></b-form-textarea>
-                    </b-form-group>
+            <div class="profile-info">
+              <div class="info-item">
+                <span>Phone</span>
+                <strong>{{ personalInfo.phone || "-" }}</strong>
+              </div>
 
-                    <b-button type="submit" variant="primary">
-                      Update Personal Information
-                    </b-button>
-                  </b-form>
-                </b-card-text>
-              </b-tab>
+              <div class="info-item">
+                <span>Address</span>
+                <strong>{{ personalInfo.address || "-" }}</strong>
+              </div>
+            </div>
 
-              <!-- Change Password Tab -->
-              <b-tab title="Change Password">
-                <b-card-text>
-                  <b-form @submit.prevent="changePassword">
-                    <b-form-group label="New Password" label-for="new-password">
-                      <b-form-input
-                        id="new-password"
-                        v-model="passwordChange.password"
-                        type="password"
-                        required
-                        placeholder="Enter your new password"
-                      ></b-form-input>
-                    </b-form-group>
+            <div class="mt-4">
+              <label class="upload-label mb-2"> Update Profile Picture </label>
 
-                    <b-form-group
-                      label="Confirm New Password"
-                      label-for="confirm-password"
-                    >
-                      <b-form-input
-                        id="confirm-password"
-                        v-model="passwordChange.confirmPassword"
-                        type="password"
-                        required
-                        placeholder="Confirm your new password"
-                      ></b-form-input>
-                    </b-form-group>
+              <b-form-file
+                v-model="newProfilePicture"
+                accept="image/*"
+                @change="handleFileChange"
+                browse-text="Upload"
+                placeholder="Choose profile image..."
+                class="custom-upload mb-3"
+              ></b-form-file>
+            </div>
+          </div>
+        </b-col>
 
-                    <b-button type="submit" variant="primary">
-                      Change Password
-                    </b-button>
-                  </b-form>
-                </b-card-text>
-              </b-tab>
-            </b-tabs>
-          </b-card>
+        <!-- RIGHT SETTINGS -->
+        <b-col lg="8">
+          <!-- PERSONAL INFO -->
+          <div class="settings-card mb-4">
+            <div class="card-title-wrap">
+              <h5 class="mb-1">Personal Information</h5>
+              <p class="text-muted mb-0">Update your personal details</p>
+            </div>
+
+            <b-form @submit.prevent="updatePersonalInfo">
+              <div class="grid-2">
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-user"></i>
+
+                  <b-form-input
+                    v-model="personalInfo.name"
+                    class="custom-input"
+                    placeholder="Full Name"
+                    required
+                  ></b-form-input>
+                </div>
+
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-envelope"></i>
+
+                  <b-form-input
+                    v-model="personalInfo.email"
+                    type="email"
+                    class="custom-input"
+                    placeholder="Email Address"
+                    required
+                  ></b-form-input>
+                </div>
+              </div>
+
+              <div class="grid-2 mt-3">
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-phone"></i>
+
+                  <b-form-input
+                    v-model="personalInfo.phone"
+                    type="tel"
+                    class="custom-input"
+                    placeholder="Phone Number"
+                  ></b-form-input>
+                </div>
+
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-location-dot"></i>
+
+                  <b-form-input
+                    v-model="personalInfo.address"
+                    class="custom-input"
+                    placeholder="Address"
+                  ></b-form-input>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <b-button type="submit" class="btn-primary-app px-4">
+                  Save Changes
+                </b-button>
+              </div>
+            </b-form>
+          </div>
+
+          <!-- SECURITY -->
+          <div class="settings-card">
+            <div class="card-title-wrap">
+              <h5 class="mb-1">Security</h5>
+              <p class="text-muted mb-0">Change your account password</p>
+            </div>
+
+            <b-form @submit.prevent="changePassword">
+              <div class="grid-2">
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-lock"></i>
+
+                  <b-form-input
+                    v-model="passwordChange.password"
+                    type="password"
+                    class="custom-input"
+                    placeholder="New Password"
+                  ></b-form-input>
+                </div>
+
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-unlock-keyhole"></i>
+
+                  <b-form-input
+                    v-model="passwordChange.confirmPassword"
+                    type="password"
+                    class="custom-input"
+                    placeholder="Confirm Password"
+                  ></b-form-input>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <b-button type="submit" class="btn-primary-app px-4">
+                  Update Password
+                </b-button>
+              </div>
+            </b-form>
+          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -122,49 +172,73 @@
 </template>
 
 <script>
-import NavBar from "./NavBar.vue";
-
 export default {
-  components: {
-    NavBar,
-  },
   data() {
     return {
+      defaultAvatar: "https://i.pravatar.cc/150?img=12",
+
       personalInfo: {
         name: "",
         email: "",
         phone: "",
         address: "",
       },
+
       passwordChange: {
         password: "",
         confirmPassword: "",
       },
-      profilePicture: "path-to-profile-picture.jpg", // Default profile picture
-      newProfilePicture: null, // Holds the new profile picture selected by the user
+
+      profilePicture: "",
+      newProfilePicture: null,
     };
   },
+
+  mounted() {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) {
+      this.personalInfo = {
+        ...this.personalInfo,
+        ...user,
+      };
+    }
+
+    const savedImage = localStorage.getItem("profilePicture");
+
+    if (savedImage) {
+      this.profilePicture = savedImage;
+    }
+  },
+
   methods: {
     updatePersonalInfo() {
-      // Check if the user is logged in
-      const user = JSON.parse(localStorage.getItem("user")) || {};
-      if (user) {
-        // Update user info and save to localStorage
-        user.name = this.personalInfo.name;
-        user.email = this.personalInfo.email;
-        user.phone = this.personalInfo.phone;
-        user.address = this.personalInfo.address;
-        localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(this.personalInfo));
 
-        this.$bvToast.toast("Personal information updated successfully", {
-          title: "Success",
-          variant: "success",
-          solid: true,
-          autoHideDelay: 3000,
-        });
-      }
+      this.$bvToast.toast("Profile updated successfully", {
+        title: "Success",
+        variant: "success",
+        solid: true,
+        autoHideDelay: 2500,
+        toaster: "b-toaster-bottom-right",
+      });
     },
+
     changePassword() {
+      if (
+        !this.passwordChange.password ||
+        !this.passwordChange.confirmPassword
+      ) {
+        this.$bvToast.toast("Please fill all password fields", {
+          title: "Error",
+          variant: "danger",
+          solid: true,
+          toaster: "b-toaster-bottom-right",
+        });
+
+        return;
+      }
+
       if (
         this.passwordChange.password !== this.passwordChange.confirmPassword
       ) {
@@ -172,71 +246,240 @@ export default {
           title: "Error",
           variant: "danger",
           solid: true,
-          autoHideDelay: 3000,
+          toaster: "b-toaster-bottom-right",
         });
+
         return;
       }
 
-      if (!this.passwordChange.password) {
-        this.$bvToast.toast("Password cannot be empty", {
-          title: "Error",
-          variant: "danger",
-          solid: true,
-          autoHideDelay: 3000,
-        });
-        return;
-      }
-
-      // Retrieve the existing user data from localStorage
       const user = JSON.parse(localStorage.getItem("user")) || {};
-      if (user) {
-        // Update password
-        user.password = this.passwordChange.password;
-        localStorage.setItem("user", JSON.stringify(user));
 
-        this.$bvToast.toast("Password updated successfully", {
-          title: "Success",
-          variant: "success",
-          solid: true,
-          autoHideDelay: 3000,
-        });
+      user.password = this.passwordChange.password;
 
-        // Clear the password input fields
-        this.passwordChange.password = "";
-        this.passwordChange.confirmPassword = "";
-      }
+      localStorage.setItem("user", JSON.stringify(user));
+
+      this.passwordChange.password = "";
+      this.passwordChange.confirmPassword = "";
+
+      this.$bvToast.toast("Password updated successfully", {
+        title: "Success",
+        variant: "success",
+        solid: true,
+        autoHideDelay: 2500,
+        toaster: "b-toaster-bottom-right",
+      });
     },
 
     handleFileChange(event) {
       const file = event.target.files[0];
-      if (file && file.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.profilePicture = e.target.result;
-          localStorage.setItem("profilePicture", e.target.result);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        this.$bvToast.toast("Please select a valid image file", {
-          title: "Error",
-          variant: "danger",
-          solid: true,
-          autoHideDelay: 3000,
-        });
-      }
-    },
-  },
-  mounted() {
-    // Retrieve user data and profile picture from localStorage
-    const savedPersonalInfo = localStorage.getItem("user");
-    if (savedPersonalInfo) {
-      this.personalInfo = JSON.parse(savedPersonalInfo);
-    }
 
-    const savedProfilePicture = localStorage.getItem("profilePicture");
-    if (savedProfilePicture) {
-      this.profilePicture = savedProfilePicture;
-    }
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.profilePicture = e.target.result;
+
+        localStorage.setItem("profilePicture", e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    },
   },
 };
 </script>
+
+<style scoped>
+.profile-container {
+  min-height: 100vh;
+}
+
+.sticky-card {
+  position: sticky;
+  top: 100px;
+}
+
+.profile-card,
+.settings-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.profile-header {
+  text-align: center;
+}
+
+.avatar-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-header h4 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.profile-info {
+  margin-top: 24px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.info-item span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.info-item strong {
+  color: #0f172a;
+  font-size: 14px;
+  text-align: right;
+}
+
+.card-title-wrap {
+  margin-bottom: 24px;
+}
+
+.card-title-wrap h5 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.input-icon-wrap {
+  position: relative;
+}
+
+.input-icon-wrap i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  z-index: 2;
+}
+
+.custom-input {
+  height: 52px;
+  border-radius: 14px;
+  padding-left: 48px !important;
+  border: 1px solid #e2e8f0;
+  box-shadow: none !important;
+}
+
+.custom-input:focus {
+  border-color: var(--color-primary);
+}
+
+.upload-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+@media (max-width: 991px) {
+  .sticky-card {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card,
+  .settings-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .profile-header h4 {
+    font-size: 20px;
+  }
+}
+
+.custom-upload ::v-deep .custom-file-label {
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid #dbe2ea;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  font-size: 14px;
+  color: #64748b;
+  background: #fff;
+  overflow: hidden;
+}
+
+.custom-upload ::v-deep .custom-file-label::after {
+  height: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-primary), #6366f1);
+  color: #fff;
+  font-weight: 600;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-upload ::v-deep .custom-file-input:focus ~ .custom-file-label {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* breadcrumb */
+.listing-top-area {
+  margin-bottom: 2rem;
+}
+
+.custom-breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.custom-breadcrumb .breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+  color: var(--color-gray-500);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--color-gray-300);
+}
+
+.card-disabled {
+  opacity: 0.55;
+}
+</style>
