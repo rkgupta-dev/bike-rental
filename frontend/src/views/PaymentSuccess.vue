@@ -1,61 +1,92 @@
 <template>
-  <div
-    class="min-vh-100 bg-light d-flex align-items-center justify-content-center py-5"
-  >
+  <section class="section gradient-light">
     <b-container>
       <b-row class="justify-content-center">
-        <b-col cols="12" md="8" lg="6">
-          <b-card class="border-0 shadow-lg">
-            <div class="text-center mb-4">
-              <b-icon
-                icon="check-circle"
-                variant="success"
-                class="mb-3 animated-icon large-icon"
-              />
-              <h2 class="mt-3 mb-2">Payment Successful!</h2>
-              <p class="text-muted">
-                Thank you for choosing BikeOntrack! Your booking is confirmed,
-                and your ride awaits you soon.
+        <b-col cols="12" lg="8">
+          <div class="card-app shadow-lg success-card">
+            <!-- top success -->
+            <div class="success-top text-center">
+              <div class="success-icon-wrap">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+
+              <h2 class="success-title mt-4">Payment Successful 🎉</h2>
+              <p class="success-subtitle">
+                Your BikeOntrack booking has been confirmed successfully.
               </p>
-              <strong class="text-muted">{{ formattedDateTime }}</strong>
+              <span class="success-time">{{ formattedDateTime }}</span>
             </div>
 
-            <b-list-group flush>
-              <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-              >
-                <span>Order ID:</span>
+            <!-- bike summary -->
+            <div class="bike-book-summary">
+              <img :src="bookingDetails.bikeImage" class="success-bike-img" />
+              <div>
+                <h4>{{ bookingDetails.bikeName }}</h4>
+                <p>
+                  {{ bookingDetails.rentalStartDate }} →
+                  {{ bookingDetails.rentalEndDate }}
+                </p>
+                <span class="mode-chip">{{ bookingDetails.pickupType }}</span>
+              </div>
+            </div>
+
+            <!-- payment info -->
+            <div class="receipt-summary">
+              <div class="receipt-row">
+                <span>Order ID</span>
                 <strong>#{{ orderId }}</strong>
-              </b-list-group-item>
-              <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-              >
-                <span>Payment Method:</span>
-                <strong>Credit Card</strong>
-              </b-list-group-item>
-              <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-              >
-                <span>Amount Paid:</span>
-                <strong>₹ {{ bookingDetails.totalPrice }}/-</strong>
-              </b-list-group-item>
-            </b-list-group>
+              </div>
 
-            <div class="text-center mt-4">
-              <b-button variant="primary" to="/" class="my-2 mr-2">
-                <b-icon icon="house" class="mr-2" />
-                Home
-              </b-button>
-              <b-button variant="success" @click="downloadReceipt">
-                <b-icon icon="download" class="mr-2" />
-                Receipt
-              </b-button>
+              <div class="receipt-row">
+                <span>Payment Method</span>
+                <strong>Razorpay</strong>
+              </div>
+
+              <div class="receipt-row">
+                <span>Bike Rent</span>
+                <strong>₹ {{ bookingDetails.bikeOriginalPrice }}</strong>
+              </div>
+
+              <div class="receipt-row">
+                <span>Discount</span>
+                <strong class="text-success"
+                  >- ₹ {{ bookingDetails.discountedPrice }}</strong
+                >
+              </div>
+
+              <div class="receipt-row" v-if="bookingDetails.addonPrice > 0">
+                <span>Add-on Charge</span>
+                <strong>₹ {{ bookingDetails.addonPrice }}</strong>
+              </div>
+
+              <div class="receipt-row" v-if="bookingDetails.deliveryCharge > 0">
+                <span>Delivery Charge</span>
+                <strong>₹ {{ bookingDetails.deliveryCharge }}</strong>
+              </div>
+
+              <div class="receipt-row total-row">
+                <span>Total Paid</span>
+                <strong>₹ {{ bookingDetails.totalPrice }}</strong>
+              </div>
             </div>
-          </b-card>
+
+            <!-- action buttons -->
+            <div class="success-actions">
+              <button class="btn-secondary-app" @click="$router.push('/')">
+                <i class="fa-solid fa-house"></i>
+                Back Home
+              </button>
+
+              <button class="btn-primary-app" @click="downloadReceipt">
+                <i class="fa-solid fa-download"></i>
+                Download Receipt
+              </button>
+            </div>
+          </div>
         </b-col>
       </b-row>
     </b-container>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -69,6 +100,7 @@ export default {
       orderId: "",
     };
   },
+
   created() {
     const details = localStorage.getItem("bookingDetails");
     if (details) {
@@ -76,176 +108,274 @@ export default {
     }
 
     const now = new Date();
-    const date = now.toLocaleDateString("en-GB", {
+
+    this.formattedDateTime = now.toLocaleString("en-GB", {
       day: "2-digit",
-      month: "2-digit",
+      month: "short",
       year: "numeric",
-    });
-    const time = now.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
-      hour12: true,
     });
-    this.formattedDateTime = `${date} - ${time}`;
 
-    this.orderId = this.generateOrderId();
+    this.orderId = "BOT" + Math.floor(100000 + Math.random() * 900000);
   },
+
   methods: {
-    generateOrderId() {
-      return Math.floor(10000000 + Math.random() * 90000000);
-    },
     downloadReceipt() {
       const doc = new jsPDF();
 
-      // Add logo on the left
-      const logoUrl = require("@/assets/BikeOntrackLogo.png"); // Replace with your logo URL or base64
-      doc.addImage(logoUrl, "PNG", 10, 10, 30, 30); // Position logo at (10, 10), 30x30 size
-
-      // Add company address on the right
-      doc.setFontSize(10);
-      const addressLines = [
-        "BikeOntrack Techno Pvt. Ltd.",
-        "123, Track Avenue, Ground Floor",
-        "Giridih - 815314, Jharkhand",
-        "support@bikeontrack.com",
-        "+91 70798 12442",
-      ];
-      let addressY = 15; // Starting Y position for the address
-      addressLines.forEach((line) => {
-        doc.text(line, 200, addressY, { align: "right" }); // Align each line to the right
-        addressY += 5; // Spacing between lines
-      });
-      // Add line before "Payment Receipt"
-      doc.line(10, 40, 200, 40); // Adjust Y-position as needed
-
-      // Add title below the logo and address
-      doc.setFontSize(16);
-      doc.text("Payment Receipt", 105, 50, { align: "center" });
-
-      // Draw a separator
-      doc.setLineWidth(0.5);
-
-      // Get the page width
       const pageWidth = doc.internal.pageSize.width;
 
-      // Set the new smaller line width (for example, 50)
-      const lineWidth = 50;
+      // ================= HEADER BG =================
+      doc.setFillColor(66, 56, 202);
+      doc.rect(0, 0, pageWidth, 30, "F");
 
-      // Calculate the starting and ending positions for the centered line
-      const lineStartX = (pageWidth - lineWidth) / 2; // Center the line
-      const lineEndX = lineStartX + lineWidth; // Add the length of the line (50) to get the end X position
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(20);
+      doc.setFont("helvetica", "bold");
+      doc.text("BikeOntrack", 15, 18);
 
-      // Add line in the center
-      doc.line(lineStartX, 55, lineEndX, 55);
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "normal");
+      doc.text("PAYMENT RECEIPT", pageWidth - 15, 18, { align: "right" });
 
-      // Add title
-      doc.setFontSize(16);
-      doc.text("Payment Receipt", pageWidth / 2, 50, { align: "center" });
+      // ================= PAID BADGE =================
+      doc.setFillColor(22, 163, 74);
+      doc.roundedRect(pageWidth - 45, 38, 28, 10, 2, 2, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(10);
+      doc.text("PAID", pageWidth - 31, 45, { align: "center" });
 
-      // Add receipt details
-      const details = [
-        { label: "Date & Time", value: this.formattedDateTime || "N/A" },
-        { label: "Order ID", value: `#${this.orderId || "N/A"}` },
-        { label: "Payment Method", value: "Credit Card" },
-        {
-          label: "Price",
-          value: `${this.bookingDetails.originalPrice || "N/A"}`,
-        },
-        {
-          label: "Addons Charge",
-          value: `${this.bookingDetails.addonPrice || "N/A"}`,
-        },
-        {
-          label: "Delivery Charge",
-          value: `${this.bookingDetails.deliveryCharge || "N/A"}`,
-        },
-        {
-          label: "Discounted Price",
-          value: `${this.bookingDetails.discountedPrice || "N/A"}`,
-        },
-      ];
+      // ================= RESET COLOR =================
+      doc.setTextColor(0, 0, 0);
 
-      let yPosition = 65; // Starting Y position for details
+      // ================= ORDER INFO =================
+      doc.setFont("helvetica", "bold");
       doc.setFontSize(12);
+      doc.text("Receipt Details", 15, 48);
 
-      details.forEach((detail) => {
-        doc.text(`${detail.label}:`, 20, yPosition); // Label on the left
-        doc.text(detail.value, 190, yPosition, { align: "right" }); // Value on the right
-        yPosition += 8; // Spacing between rows
-      });
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
 
-      // Add a separator line before Amount Paid
-      doc.setLineWidth(0.3);
-      doc.line(10, yPosition, 200, yPosition);
-      yPosition += 5; // Space below the line
-
-      // Add Amount Paid in bold
-      doc.setFont("helvetica", "bold"); // Set font to bold
-      doc.text("Amount Paid:", 20, yPosition); // Label on the left
-      doc.text(`${this.bookingDetails.totalPrice || "N/A"}`, 190, yPosition, {
+      doc.text(`Order ID: #${this.orderId}`, 15, 58);
+      doc.text(`Date: ${this.formattedDateTime}`, pageWidth - 15, 58, {
         align: "right",
       });
 
-      // Reset font for the footer
-      doc.setFont("helvetica", "normal");
-      yPosition += 15; // Spacing for footer
+      // ================= CUSTOMER BOOKING BOX =================
+      doc.setDrawColor(220);
+      doc.roundedRect(15, 68, pageWidth - 30, 52, 3, 3);
 
-      // Add footer
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.text("Booking Summary", 20, 78);
+
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(10);
-      doc.text("Thank you for choosing BikeOntrack!", 105, yPosition, {
-        align: "center",
+
+      doc.text(`Bike Name: ${this.bookingDetails.bikeName}`, 20, 88);
+      doc.text(
+        `Rental: ${this.bookingDetails.rentalStartDate} to ${this.bookingDetails.rentalEndDate}`,
+        20,
+        96,
+      );
+      doc.text(`Mode: ${this.bookingDetails.pickupType}`, 20, 104);
+
+      if (this.bookingDetails.pickupType === "Pickup") {
+        doc.text(
+          `Pickup Location: ${this.bookingDetails.pickupLocation}`,
+          20,
+          112,
+        );
+      } else {
+        doc.text(
+          `Delivery Address: ${this.bookingDetails.deliveryAddress}`,
+          20,
+          112,
+        );
+      }
+
+      // ================= PAYMENT BREAKDOWN =================
+      let startY = 135;
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.text("Payment Breakdown", 15, startY);
+
+      const paymentRows = [
+        ["Bike Rental Price", "Rs. " + this.bookingDetails.bikeOriginalPrice],
+        ["Discount Applied", "Rs. " + this.bookingDetails.discountedPrice],
+        ["Add-on Charge", "Rs. " + this.bookingDetails.addonPrice],
+        ["Delivery Charge", "Rs. " + this.bookingDetails.deliveryCharge],
+      ];
+
+      startY += 12;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+
+      paymentRows.forEach((row) => {
+        doc.text(row[0], 20, startY);
+        doc.text(row[1], pageWidth - 20, startY, { align: "right" });
+        startY += 10;
       });
 
-      // Save the file
-      doc.save(`BikeOntrack-Payment_Slip-${this.orderId || "N/A"}.pdf`);
+      // ================= TOTAL BOX =================
+      doc.setFillColor(245, 245, 245);
+      doc.roundedRect(15, startY + 5, pageWidth - 30, 15, 2, 2, "F");
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.text("TOTAL PAID", 20, startY + 15);
+      doc.text(
+        "Rs. " + this.bookingDetails.totalPrice,
+        pageWidth - 20,
+        startY + 15,
+        {
+          align: "right",
+        },
+      );
+
+      // ================= FOOTER =================
+      startY += 35;
+
+      doc.setDrawColor(230, 230, 230);
+      doc.line(15, startY, pageWidth - 15, startY);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(90);
+
+      doc.text(
+        "Thank you for choosing BikeOntrack.",
+        pageWidth / 2,
+        startY + 12,
+        {
+          align: "center",
+        },
+      );
+
+      doc.text(
+        "For booking support contact: support@bikeontrack.com | +91 7079812442",
+        pageWidth / 2,
+        startY + 20,
+        { align: "center" },
+      );
+
+      // ================= SAVE =================
+      doc.save(`BikeOntrack_Receipt_${this.orderId}.pdf`);
     },
   },
 };
 </script>
 
 <style scoped>
-.bg-light {
-  background-color: #f8f9fa;
+.success-page {
+  min-height: 100vh;
 }
 
-.card {
-  border-radius: 1rem;
+.success-card {
+  border-radius: var(--radius-2xl);
+  padding: 40px;
 }
 
-.list-group-item {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.success-top {
+  margin-bottom: 30px;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  transition: all 0.3s ease;
+.success-icon-wrap {
+  width: 95px;
+  height: 95px;
+  margin: auto;
+  border-radius: 50%;
+  background: #dcfce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1.4s infinite;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-.large-icon {
-  font-size: 4rem; /* Adjust the size as needed */
+.success-icon-wrap i {
+  font-size: 48px;
+  color: #16a34a;
 }
 
-/* Animation for the icon */
-@keyframes bounce {
+.success-title {
+  font-weight: 800;
+}
+
+.success-subtitle {
+  color: var(--color-gray-500);
+}
+
+.success-time {
+  display: inline-block;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 14px;
+}
+
+.bike-book-summary {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: var(--radius-xl);
+  margin-bottom: 25px;
+}
+
+.success-bike-img {
+  width: 120px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.mode-chip {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.receipt-summary {
+  border: 1px dashed #ddd;
+  border-radius: var(--radius-xl);
+  padding: 20px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.total-row {
+  border-top: 1px solid #eee;
+  padding-top: 14px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.success-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@keyframes pulse {
   0% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.08);
   }
   100% {
     transform: scale(1);
   }
-}
-
-/* Apply the bounce animation */
-.animated-icon {
-  animation: bounce 1s ease infinite;
 }
 </style>
